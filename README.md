@@ -1,6 +1,6 @@
-# solace-asapio-demo
+# Solace & Asapio Demonstrator to event-enable SAP ERP
 
-Demonstration of Solace + ASAPIO interacting with SAP ERP.
+Demonstration of Solace + ASAPIO interacting with SAP ECC, Sales & Distribution.
 
 ## Overview
 
@@ -55,27 +55,54 @@ sudo npm install -g --unsafe-perm node-red
 
 ### Install Node-RED Dashboard
 
-todo:
-
-### Install Solace Node-RED Utilities
-
-- git clone all the other projects
-
-
-This installs the local dependencies into ``<install-dir>/bosch-xdk110-solace-mqtt-app/node-red/node_modules``:
 ```bash
-$ cd <install-dir>/bosch-xdk110-solace-mqtt-app/node-red
-$ npm install
+npm install node-red-dashboard
 ```
 
-### Install the Node-RED Demo
+### Install
 
-todo ...
+Create a working directory where all the Node-RED code will live.
 
+For example: **``sap-demo``**
+
+```bash
+cd sap-demo
+```
+```bash
+git clone https://github.com/solace-iot-team/node-red-contrib-solace-utils.git
+```
+```bash
+git clone https://github.com/solace-iot-team/node-red-contrib-solace-sempv2.git
+```
+```bash
+git clone https://github.com/solace-iot-team/solace-asapio-demo.git
+```
+```bash
+
+cd solace-asapio-demo
+
+npm install .
+
+```
+
+**TODO: The Solace Theme.txt**
+
+copy sap-demo-theme.txt
+
+  ~/.node-red/lib/themes/sap-demo-theme.txt
+
+select or something ...
 
 ### Start the Demo Server
 
+```bash
+
+cd sap-demo/solace-asapio-demo
+
 ./start-node-red.sh
+
+```
+
 
 ### Connect to the UI
 

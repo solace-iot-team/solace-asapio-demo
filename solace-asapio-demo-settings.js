@@ -246,14 +246,6 @@ module.exports = {
       default: "memoryOnly",
       memoryOnly: {
         module:"memory"
-      },
-      persistent: {
-        module:"localfilesystem",
-        config: {
-          dir:"./localContextStore",
-          cache: true,
-          flushInterval: 30
-        }
       }
     },
 

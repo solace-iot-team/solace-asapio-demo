@@ -11,8 +11,7 @@ module.exports = {
   order: require('./order.js'),
   mqttConnectionMonitor: require('./mqttConnectionMonitor.js'),
   productCatalog: require('./productCatalog.js'),
-  events: require('./events.js'),
-  devicesettings: require('./devicesettings.js'),
+  events: require('./events.js')
 }
 
 // The end.
