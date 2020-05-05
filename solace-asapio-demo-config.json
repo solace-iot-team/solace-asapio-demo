@@ -1,0 +1,102 @@
+{
+  "config": {
+    "app": {
+      "channel": {
+        "orderType": "ZTM",
+        "salesOrg": "1000",
+        "distributionChannel": "01",
+        "division": "00"
+      },
+      "partners": [
+        {
+          "soldToId": "CE01",
+          "shipToId": "CE01",
+          "displayName": "address 01"
+        },
+        {
+          "soldToId": "CE02",
+          "shipToId": "CE02",
+          "displayName": "address 02"
+        },
+        {
+          "soldToId": "CE03",
+          "shipToId": "CE03",
+          "displayName": "address 03"
+        }
+      ]
+    },
+    "eventSchemas": [
+      {
+    "name": "createSalesOrder",
+    "topicSchema": {
+      "schema": "{domain}/{sapObjectId}/{eventType}/{action}/{payloadType}/{version}/{sapOrgId}/{salesOrgId}/{systemId}/{externalReference}",
+      "elements": {
+        "domain": {
+          "valueFunction": "staticContent",
+          "value": "sap-demo"
+        },
+        "sapObjectId": {
+          "valueFunction": "staticContent",
+          "value": "BUS2032"
+        },
+        "eventType": {
+          "valueFunction": "staticContent",
+          "value": "sap-bo-data"
+        },
+        "action": {
+          "valueFunction": "staticContent",
+          "value": "create"
+        },
+        "payloadType": {
+          "valueFunction": "staticContent",
+          "value": "json"
+        },
+        "version": {
+          "valueFunction": "staticContent",
+          "value": "v1"
+        },
+        "sapOrgId": {
+          "valueFunction": "staticContent",
+          "value": "asadev"
+        },
+        "salesOrgId": {
+          "valueFunction": "staticContent",
+          "value": "1000"
+        },
+        "systemId": {
+          "valueFunction": "staticContent",
+          "value": "system1"
+        },
+        "externalReference": {
+          "valueFunction": "runtimeInput"
+        }
+      }
+    },
+    "metaData": {
+      "namespace": "sap_demo/BUS2032/sap-bo-data",
+      "version": "v1",
+      "eventName": "CreateSalesOrder",
+      "topic": "{topic}",
+      "originDomain": "webshop",
+      "eventId": "{uuid}",
+      "correlationId": "{uuid}",
+      "timestamp": "{ISO-timestamp}"
+    }
+  }
+    ],
+    "productCatalog": {
+      "products": [
+        {
+          "sku": "CONTROLLER-2",
+          "title": "controller-2 user title",
+          "description": "this is a controller 2"
+        },
+        {
+          "sku": "second-sku",
+          "title": "the second sku product title",
+          "description": "this is a second sku"
+        }
+      ]
+    }
+  }
+}
