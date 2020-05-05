@@ -26,19 +26,19 @@ For example, get it from here: https://www.npmjs.com/get-npm
 
 Update to latest npm:
 ```bash
-$ npm install npm@latest -g
+npm install npm@latest -g
 ```
 Note: on a Mac, if you run into '... missing write access ...' to the npm folders, you could do this:
 ```bash
-$ cd /usr/local/lib
-$ sudo chmod -R ugo+w ./node_modules
+cd /usr/local/lib
+sudo chmod -R ugo+w ./node_modules
 <type in your password>
 
-$ cd /usr/local/share
-$ sudo chmod -R ugo+w ./man
+cd /usr/local/share
+sudo chmod -R ugo+w ./man
 
-$ cd /usr/local
-$ sudo chmod ugo+w ./bin
+cd /usr/local
+sudo chmod ugo+w ./bin
 
 <now install npm again>
 
@@ -59,7 +59,7 @@ sudo npm install -g --unsafe-perm node-red
 npm install node-red-dashboard
 ```
 
-### Install
+### Install Demo
 
 Create a working directory where all the Node-RED code will live.
 
@@ -102,44 +102,18 @@ cd sap-demo/solace-asapio-demo
 ./start-node-red.sh
 
 ```
+### Configure Mqtt Credentials
 
+- go to: Configuration Nodes
+  - select mqtt broker
+  - user: ``$(SOLACE_SAP_DEMO_MQTT_BROKER_USER)``
+  - pwd: ``$(SOLACE_SAP_DEMO_MQTT_BROKER_PASSWORD)``
+  - save
+  - Deploy
 
 ### Connect to the UI
 
 Point your browser at: http://127.0.0.1:1882/ui/
-
----
-**backup from here**
-
-
-
-### Configure
-
-#### Scripts
-* copy ``start-node-red.sh.template`` to ``start-node-red.sh``
-* change permissions: ``chmod u+x start-node-red.sh``
-* edit ``start-node-red.sh``: enter the Solace broker connection parameters
-* start node red: ``./start-node-red.sh``
-* you will get a message like this:
-
-```bash
-... Waiting for missing types to be registered:
-... and a list of modules
-...
-Server now running at http://127.0.0.1:1880/
-```
-#### Node-RED
-* Point your browser at the server url: http://127.0.0.1:1880/
-* Go to: manage palletes
-  - install 'node-red-dashboard'
-  - install 'node-red-contrib-mytimeout'
-
-#### Credentials
-**TODO**
-- work out how to store credentials locally in plain text
-  - enter the env vars in there?
-- also for SEMPv2 -> env vars!
-
 
 
 
