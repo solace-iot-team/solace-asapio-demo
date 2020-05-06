@@ -84,8 +84,8 @@ module.exports = {
     // the user's home directory. To use a different location, the following
     // property can be used
     //userDir: '/home/nol/.node-red/',
-    // cannot use it currently, having trouble installing node-red-dashboard
-    //userDir: '../node-red-user-dir/',
+
+    userDir: './node-red-user-dir/',
 
     // Node-RED scans the `nodes` directory in the userDir to find local node files.
     // The following property can be used to specify an additional directory to scan.
@@ -254,7 +254,7 @@ module.exports = {
     // added to the end of the palette.
     // If not set, the following default order is used:
     //paletteCategories: ['subflows','flow','input','output','function','parser','social','mobile','storage','analysis','advanced'],
-    paletteCategories: ['solace asapio demo', 'solace utils', 'solace sempv2', 'solace xdk110 mgmt'],
+    paletteCategories: ['solace asapio demo', 'solace utils', 'solace sempv2'],
 
     // Configure the logging output
     logging: {

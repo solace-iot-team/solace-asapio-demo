@@ -48,7 +48,7 @@ sudo chmod ugo+w ./bin
 
 Check: https://nodered.org/docs/getting-started/local
 
-For example, install it with npm locally:
+For example, install it with npm:
 ```bash
 sudo npm install -g --unsafe-perm node-red
 ```
@@ -56,12 +56,16 @@ sudo npm install -g --unsafe-perm node-red
 ### Install Node-RED Dashboard
 
 ```bash
-npm install node-red-dashboard
+cd solace-asapio-demo/node-red-user-dir
+
+npm install -g node-red-dashboard
 ```
 
 ### Install Demo
 
 Create a working directory where all the Node-RED code will live.
+
+_**Note: you may be asked for your github credentials.**_
 
 For example: **``sap-demo``**
 
@@ -80,6 +84,10 @@ git clone https://github.com/solace-iot-team/solace-asapio-demo.git
 ```bash
 
 cd solace-asapio-demo
+
+npm install .
+
+(first time it may come up with errors, do it again)
 
 npm install .
 
@@ -104,18 +112,34 @@ cd sap-demo/solace-asapio-demo
 ```
 ### Configure Mqtt Credentials
 
-- go to: Configuration Nodes
-  - select mqtt broker
-  - user: ``$(SOLACE_SAP_DEMO_MQTT_BROKER_USER)``
-  - pwd: ``$(SOLACE_SAP_DEMO_MQTT_BROKER_PASSWORD)``
-  - save
-  - Deploy
+- go to: **Configuration nodes**
+  - select: **SAP_DEMO_MQTT_BROKER**
+  - tab: **Security**
+  - **Username**
+  ```
+  $(SOLACE_SAP_DEMO_MQTT_BROKER_USER)
+  ```
+  - **Password**
+  ```
+  $(SOLACE_SAP_DEMO_MQTT_BROKER_PASSWORD)
+  ```
+  - **Update**
+  - **Deploy**
 
 ### Connect to the UI
 
 Point your browser at: http://127.0.0.1:1882/ui/
 
+### Uninstall Node-RED
 
+```
+sudo npm -g remove node-red
+
+sudo npm -g remove node-red-admin
+
+rm -R ~/.node-red
+
+```
 
 ---
 The End.
