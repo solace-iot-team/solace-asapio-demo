@@ -3,7 +3,6 @@
   "lockfileVersion": 1,
   "dependencies": {
     "node-red-contrib-solace-sempv2": "file:../node-red-contrib-solace-sempv2",
-    "node-red-contrib-solace-utils": "file:../node-red-contrib-solace-utils",
     "node-red-solace-asapio-demo": "file:src"
   }
 }

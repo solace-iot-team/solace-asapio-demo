@@ -26,22 +26,7 @@ For example, get it from here: https://www.npmjs.com/get-npm
 
 Update to latest npm:
 ```bash
-npm install npm@latest -g
-```
-Note: on a Mac, if you run into '... missing write access ...' to the npm folders, you could do this:
-```bash
-cd /usr/local/lib
-sudo chmod -R ugo+w ./node_modules
-<type in your password>
-
-cd /usr/local/share
-sudo chmod -R ugo+w ./man
-
-cd /usr/local
-sudo chmod ugo+w ./bin
-
-<now install npm again>
-
+sudo npm install -g npm
 ```
 
 ### Install Node-RED
@@ -56,9 +41,7 @@ sudo npm install -g --unsafe-perm node-red
 ### Install Node-RED Dashboard
 
 ```bash
-cd solace-asapio-demo/node-red-user-dir
-
-npm install -g node-red-dashboard
+sudo npm install -g --unsafe-perm node-red-dashboard
 ```
 
 ### Install Demo
@@ -133,11 +116,11 @@ Point your browser at: http://127.0.0.1:1882/ui/
 ### Uninstall Node-RED
 
 ```
+sudo npm -g remove node-red-dashboard
+
 sudo npm -g remove node-red
 
-sudo npm -g remove node-red-admin
-
-rm -R ~/.node-red
+//rm -R ~/.node-red
 
 ```
 
