@@ -75,15 +75,6 @@ npm install .
 npm install .
 
 ```
-
-**TODO: The Solace Theme.txt**
-
-copy sap-demo-theme.txt
-
-  ~/.node-red/lib/themes/sap-demo-theme.txt
-
-select or something ...
-
 ### Start the Demo Server
 
 ```bash
@@ -93,21 +84,6 @@ cd sap-demo/solace-asapio-demo
 ./start-node-red.sh
 
 ```
-### Configure Mqtt Credentials
-
-- go to: **Configuration nodes**
-  - select: **SAP_DEMO_MQTT_BROKER**
-  - tab: **Security**
-  - **Username**
-  ```
-  $(SOLACE_SAP_DEMO_MQTT_BROKER_USER)
-  ```
-  - **Password**
-  ```
-  $(SOLACE_SAP_DEMO_MQTT_BROKER_PASSWORD)
-  ```
-  - **Update**
-  - **Deploy**
 
 ### Connect to the UI
 
@@ -119,8 +95,6 @@ Point your browser at: http://127.0.0.1:1882/ui/
 sudo npm -g remove node-red-dashboard
 
 sudo npm -g remove node-red
-
-//rm -R ~/.node-red
 
 ```
 
