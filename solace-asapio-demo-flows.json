@@ -268,7 +268,8 @@
                         "types": [
                             "str"
                         ]
-                    }
+                    },
+                    "label": {}
                 }
             },
             {
@@ -310,7 +311,8 @@
                                 "v": "clear-state"
                             }
                         ]
-                    }
+                    },
+                    "label": {}
                 }
             }
         ],
@@ -1028,7 +1030,7 @@
         "in": [
             {
                 "x": 60,
-                "y": 420,
+                "y": 400,
                 "wires": [
                     {
                         "id": "65f0e574.7b208c"
@@ -1039,7 +1041,7 @@
         "out": [
             {
                 "x": 1480,
-                "y": 420,
+                "y": 400,
                 "wires": [
                     {
                         "id": "94c8332b.57079",
@@ -1059,8 +1061,7 @@
                         "types": [
                             "str"
                         ]
-                    },
-                    "label": {}
+                    }
                 }
             },
             {
@@ -1073,8 +1074,7 @@
                         "types": [
                             "str"
                         ]
-                    },
-                    "label": {}
+                    }
                 }
             },
             {
@@ -1099,6 +1099,12 @@
                             },
                             {
                                 "l": {
+                                    "en-US": "log.clear"
+                                },
+                                "v": "log.clear"
+                            },
+                            {
+                                "l": {
                                     "en-US": "log.init(log.entry)"
                                 },
                                 "v": "log.init"
@@ -1117,13 +1123,12 @@
                             },
                             {
                                 "l": {
-                                    "en-US": "get"
+                                    "en-US": "log.get"
                                 },
-                                "v": "get"
+                                "v": "log.get"
                             }
                         ]
-                    },
-                    "label": {}
+                    }
                 }
             },
             {
@@ -1136,8 +1141,48 @@
                         "types": [
                             "str"
                         ]
+                    }
+                }
+            },
+            {
+                "name": "max-entries",
+                "type": "str",
+                "value": "20",
+                "ui": {
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "20"
+                                },
+                                "v": "20"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "50"
+                                },
+                                "v": "50"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "100"
+                                },
+                                "v": "100"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "add-timestamp",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "add timestamp to every entry"
                     },
-                    "label": {}
+                    "type": "checkbox"
                 }
             }
         ],
@@ -1390,7 +1435,7 @@
         "z": "",
         "name": "About",
         "icon": "dashboard",
-        "order": 7,
+        "order": 3,
         "disabled": false,
         "hidden": false
     },
@@ -1637,7 +1682,7 @@
         "type": "ui_group",
         "z": "",
         "name": "SAP Event Log",
-        "tab": "68e5a2a5.0d004c",
+        "tab": "858fa0a9.7048d",
         "order": 3,
         "disp": true,
         "width": "21",
@@ -1660,6 +1705,16 @@
         "order": 4,
         "width": "7",
         "height": 1
+    },
+    {
+        "id": "858fa0a9.7048d",
+        "type": "ui_tab",
+        "z": "",
+        "name": "SAP Event Log",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "1e3d4002.580e9",
@@ -1887,7 +1942,7 @@
         "type": "function",
         "z": "7335a6bf.4e03a8",
         "name": "app.about",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n\nlet about = {\n    version: '0.1.0',\n    date: 'May-2020 to June-2020',\n    author: 'Solace & ASAPIO',\n    asapioVersion: {\n        major: 9,\n        minor: 3,\n        build: 2004\n    },\n    details: {\n        app: su.flow.getMsgProperties(msg, _meta)\n    }\n}\n\nglobal.set(sau.app.getAboutPath(_meta), about);\n\nreturn msg;\n\n",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n\nlet about = {\n    version: _meta.version,\n    date: 'May-2020 to June-2020',\n    author: 'Solace & ASAPIO',\n    asapioVersion: {\n        major: 9,\n        minor: 3,\n        build: 2004\n    },\n    details: {\n        app: su.flow.getMsgProperties(msg, _meta)\n    }\n}\n\nglobal.set(sau.app.getAboutPath(_meta), about);\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
         "x": 710,
@@ -1903,7 +1958,7 @@
         "type": "function",
         "z": "3eb672f6.dc73fe",
         "name": "disableTabs",
-        "func": "\nmsg.payload = {\n    tab: 'About',\n    tabs: {\n        disable: [\n            'Order'\n        ]\n    }\n}\n\nreturn msg;\n\n\n",
+        "func": "\nmsg.payload = {\n    tab: 'About',\n    tabs: {\n        disable: [\n            'Order', 'SAP Event Log'\n        ]\n    }\n}\n\nreturn msg;\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "x": 470,
@@ -4875,7 +4930,7 @@
         "type": "function",
         "z": "3eb672f6.dc73fe",
         "name": "enableTabs",
-        "func": "\nmsg.payload = {\n    tab: 'Order',\n    tabs: {\n        enable: [\n            'Order'\n        ]\n    }\n}\n\nreturn msg;\n",
+        "func": "\nmsg.payload = {\n    tab: 'Order',\n    tabs: {\n        enable: [\n            'Order', 'SAP Event Log'\n        ]\n    }\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 1210,
@@ -6430,7 +6485,7 @@
         "type": "function",
         "z": "3eb672f6.dc73fe",
         "name": "enableTabs",
-        "func": "\nmsg.payload = {\n    tab: 'Order',\n    tabs: {\n        enable: [\n            'Order'\n        ]\n    }\n}\n\nreturn msg;\n",
+        "func": "\nmsg.payload = {\n    tab: 'Order',\n    tabs: {\n        enable: [\n            'Order', 'SAP Event Log'\n        ]\n    }\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 810,
@@ -6521,7 +6576,7 @@
         "id": "ed1064cf.934c58",
         "type": "comment",
         "z": "7335a6bf.4e03a8",
-        "name": "var _meta = {   packageId: 'app',   componentId: 'controller',   version: '0.1.0',   shortName: 'app',   id: 'solace-asapio-demo' }",
+        "name": "var _meta = {   packageId: 'app',   componentId: 'controller',   version: '0.1.1',   shortName: 'app',   id: 'solace-asapio-demo' }",
         "info": "",
         "x": 420,
         "y": 120,
@@ -6551,7 +6606,7 @@
         "id": "b9d72bab.020668",
         "type": "comment",
         "z": "ba93632a.b212b",
-        "name": "var _meta = {   packageId: 'utils',   componentId: 'log',   version: '0.1.0',   shortName: 'log' }",
+        "name": "var _meta = {   packageId: 'utils',   componentId: 'log',   version: '0.1.1',   shortName: 'log' }",
         "info": "",
         "x": 320,
         "y": 60,
@@ -6624,11 +6679,11 @@
         "type": "function",
         "z": "ba93632a.b212b",
         "name": "utils.log.start",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction isValidFrameworkInstanceProperties(msg) {\n    let fips = {\n        instanceName: env.get('instance-name')\n    };\n    if(su.misc.isStringEmpty(fips.instanceName)) return throwError(msg, 'instance-name not found');\n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, fips);\n    return true;\n}\n\n/* component vars & functions --- */\n\nfunction isValidInstanceProperties(msg) {\n    let ips = {\n        logName: env.get('log-name'),\n        method: env.get('method')\n    };\n\n    if(su.misc.isStringEmpty(ips.logName)) return throwError(msg, 'log-name not found');\n    // now get the parent flowProperties\n    let properties = flow.get(su.flowProperties.getParentFlowPath());\n    if(su.misc.isObjectEmpty(properties)) \n        return throwError(msg, 'cannot find parent flow properties', {path: su.flowProperties.getParentFlowPath()});\n    \n    let fullLogName = properties.packageId + '.' + properties.componentId + '.' + ips.logName;\n    ips.logName = fullLogName;\n\n    if(su.misc.isStringEmpty(ips.method)) return throwError(msg, 'method not found');\n\n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, ips);\n\n    return true;\n}\n\n// main ----------------------------------------------------\n\nmsg = su.flow.initMsgProperties(msg, _meta);\n\nif(!isValidFrameworkInstanceProperties(msg)) return;\n\nif(!isValidInstanceProperties(msg)) return;\n\nnode.status({fill:\"green\", shape:\"dot\", text:\"start\"});\n\nreturn msg;\n\n//--------------------\n//The End.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction isValidFrameworkInstanceProperties(msg) {\n    let fips = {\n        instanceName: env.get('instance-name')\n    };\n    if(su.misc.isStringEmpty(fips.instanceName)) return throwError(msg, 'instance-name not found');\n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, fips);\n    return true;\n}\n\n/* component vars & functions --- */\n\nfunction isValidInstanceProperties(msg) {\n\n    let mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\n    let ips = {\n        logName: env.get('log-name'),\n        method: env.get('method'),\n        maxEntriesStr: env.get('max-entries'),\n        isAddTimestamp: env.get('add-timestamp')\n    };\n\n    if(su.misc.isStringEmpty(ips.logName)) return throwError(msg, 'log-name not found', {ips: ips});\n    // get the parent flowProperties\n    let properties = flow.get(su.flowProperties.getParentFlowPath());\n    if(su.misc.isObjectEmpty(properties)) \n        return throwError(msg, 'cannot find parent flow properties', {path: su.flowProperties.getParentFlowPath()});\n    \n    let fullLogName = properties.packageId + '.' + properties.componentId + '.' + ips.logName;\n    ips.logName = fullLogName;\n\n    if(su.misc.isStringEmpty(ips.method)) return throwError(msg, 'method not found', {ips: ips});\n\n    if(su.misc.isStringEmpty(ips.maxEntriesStr)) return throwError(msg, 'maxEntries not found', {ips: ips});\n\n    let maxEntries = su.misc.toNumber(ips.maxEntriesStr);\n    if(!su.misc.isNumber(maxEntries)) return throwError(msg, 'maxEntries is not a number string', {ips: ips});\n    ips.maxEntries = maxEntries;\n    ips.maxEntriesStr = undefined;\n    if(ips.maxEntries < 0 || ips.maxEntries > 100) return throwError(msg, 'maxEntries must be in range: 0 < maxEntries <= 100', {ips: ips});\n\n    if(!su.misc.isBoolean(ips.isAddTimestamp)) return throwError(msg, 'isAddTimestamp not found / not a boolean', {ips: ips});\n\n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, ips);\n\n    return true;\n}\n\n// main ----------------------------------------------------\n\nmsg = su.flow.initMsgProperties(msg, _meta);\n\nif(!isValidFrameworkInstanceProperties(msg)) return;\n\nif(!isValidInstanceProperties(msg)) return;\n\nnode.status({fill:\"green\", shape:\"dot\", text:\"start\"});\n\nreturn msg;\n\n//--------------------\n//The End.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "x": 170,
-        "y": 420,
+        "y": 400,
         "wires": [
             [
                 "1995fadd.3126c5"
@@ -6640,26 +6695,22 @@
         "type": "function",
         "z": "ba93632a.b212b",
         "name": "utils.log.method",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n/* main --- */\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\nlet elems = mips.method.split('.');\nlet methodStartsWith = elems[0];\n\nswitch(methodStartsWith) {\n    case 'init':\n        return msg;\n    case 'log':\n        if(elems.length < 2) return throwError(msg, 'invalid log method, must have at least 2 elements', {method: method});\n        elems.shift();\n        mips.logMethod = elems.join('.');\n        su.flow.updateMsgInstanceProperties(msg, _meta, mips);\n        return [null, msg];\n    case 'get':\n        return [null, null, msg];\n    default: {\n        return throwError(msg, 'unknown method', {method: method});\n    }\n}\n\n// ------------\n// The End",
-        "outputs": 3,
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n/* main --- */\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\nlet elems = mips.method.split('.');\nlet methodStartsWith = elems[0];\n\nswitch(methodStartsWith) {\n    case 'init':\n        return msg;\n    case 'log':\n        if(elems.length < 2) return throwError(msg, 'invalid log method, must have at least 2 elements', {method: mips.method});\n        elems.shift();\n        mips.logMethod = elems.join('.');\n        su.flow.updateMsgInstanceProperties(msg, _meta, mips);\n        return [null, msg];\n    default: {\n        return throwError(msg, 'unknown method', {method: mips.method});\n    }\n}\n\n// ------------\n// The End",
+        "outputs": 2,
         "noerr": 0,
         "x": 340,
-        "y": 420,
+        "y": 400,
         "wires": [
             [
                 "18282ec9.81f671"
             ],
             [
                 "9d8e0631.826108"
-            ],
-            [
-                "a6efd942.17e908"
             ]
         ],
         "outputLabels": [
             "init",
-            "log.x",
-            "get"
+            "log.x"
         ]
     },
     {
@@ -6667,7 +6718,7 @@
         "type": "function",
         "z": "ba93632a.b212b",
         "name": "utils.log.method.init",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nfunction isValidMsgPayload(msg) {\n    return true;\n}\n\n/* main --- */\n\n//if(!isValidMsgPayload(msg)) return;\n\n// set the state\nlet state = su.log.createInitializedStateObject();\n\nstate.properties = su.flow.getMsgMetaProperties(msg, _meta);\n\nglobal.set(su.flow.getBasePath(_meta), state);\n\n// clear the log\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\nflow.set(su.log.getLogPath(mips.logName), undefined);\n\nreturn msg;\n\n// ------------\n// The End",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nfunction isValidMsgPayload(msg) {\n    return true;\n}\n\n/* main --- */\n\n//if(!isValidMsgPayload(msg)) return;\n\n// set the state\nlet state = su.log.createInitializedStateObject();\n\nstate.properties = su.flow.getMsgMetaProperties(msg, _meta);\n\nglobal.set(su.flow.getBasePath(_meta), state);\n\n// create the log\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\nlet logProperties = su.log.createLogProperties(mips);\n\nflow.set(su.log.getLogBasePath(mips.logName), logProperties);\n\nreturn msg;\n\n// ------------\n// The End",
         "outputs": 1,
         "noerr": 0,
         "x": 550,
@@ -6687,7 +6738,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 1340,
-        "y": 420,
+        "y": 400,
         "wires": [
             []
         ]
@@ -6712,7 +6763,7 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nglobal.set(su.flow.getIsInitializedPath(_meta), true);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1050,
+        "x": 870,
         "y": 360,
         "wires": [
             [
@@ -6725,11 +6776,11 @@
         "type": "function",
         "z": "ba93632a.b212b",
         "name": "utils.log.method.log",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n\nfunction isValidInstanceProperties(msg) {\n    let ips = {\n        logEntryPath: env.get('log.entry')\n    };\n    \n    if(su.misc.isStringEmpty(ips.logEntryPath)) return throwError(msg, 'log.entry not found');\n    // must have at least two levels\n    let elems = ips.logEntryPath.split('.');\n    if(elems.length < 2) return throwError(msg, \"log.entry must have the format 'msg.{path}'\");\n    let start = elems.shift();\n    if(start !== 'msg') return throwError(msg, \"log.entry must have the format 'msg.{path}'\");\n    ips.logEntryMsgPath = elems.join('.');\n    \n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, ips);\n    return true;\n}\n\n/* main --- */\nif(!isValidInstanceProperties(msg)) return;\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\n    //node.warn(node.name + ': logEntryMsgPath = ' + JSON.stringify(mips.logEntryMsgPath, null, 1));\n\nlet logEntry = su.misc.getObjectPath(msg, mips.logEntryMsgPath);\nif(su.misc.isEmpty(logEntry)) return throwError(msg, 'cannot find log entry in msg', {path: 'msg.' + mips.logEntryMsgPath });\n    \n    //node.warn(node.name + ': logEntry = \\n' + JSON.stringify(logEntry));\n\n\nswitch(mips.logMethod) {\n    case 'init': {\n        let log = [];\n        log.push(logEntry);\n        flow.set(su.log.getLogPath(mips.logName), log);\n    }\n    break;\n    case 'append': {\n        let log = flow.get(su.log.getLogPath(mips.logName)) || [];\n        log.push(logEntry);\n        flow.set(su.log.getLogPath(mips.logName), log);\n        \n        //mips.logEntry = JSON.parse(JSON.stringify(logEntry));\n        mips.logEntry = logEntry;\n        //msg = su.flow.updateMsgInstanceProperties(msg, _meta, mips);\n        msg = su.flow.updateMsgInstanceProperties(msg, _meta, {logEntry: logEntry});\n    }\n    break;\n    case 'append.httpResponse': {\n        return [null, msg];\n    }\n    break;\n    default: {\n        return throwError(msg, 'unknown log method', {method: method});\n    }\n}\n\nreturn msg;\n\n// ------------\n// The End",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n\nfunction isValidInstanceProperties(msg) {\n    let ips = {\n        logEntryPath: env.get('log.entry')\n    };\n    \n    if(su.misc.isStringEmpty(ips.logEntryPath)) return throwError(msg, 'log.entry not found');\n    // must have at least two levels\n    let elems = ips.logEntryPath.split('.');\n    if(elems.length < 2) return throwError(msg, \"log.entry must have the format 'msg.{path}'\");\n    let start = elems.shift();\n    if(start !== 'msg') return throwError(msg, \"log.entry must have the format 'msg.{path}'\");\n    ips.logEntryMsgPath = elems.join('.');\n    \n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, ips);\n    return true;\n}\n\n/* main --- */\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\nswitch(mips.logMethod) {\n    case 'clear': {\n        let log = [];\n        flow.set(su.log.getLogPath(mips.logName), log);\n        return msg;\n    }\n    case 'get': {\n        msg.payload = flow.get(su.log.getLogPath(mips.logName)) || [];\n        su.misc.setObjectPath(msg, su.flow.getMsgOutputBasePath(_meta), {logName:mips.logName});\n        return msg;\n    }\n}\n\nif(!isValidInstanceProperties(msg)) return;\n\n    //node.warn(node.name + ': logEntryMsgPath = ' + JSON.stringify(mips.logEntryMsgPath, null, 1));\n\nlet logEntry = su.misc.getObjectPath(msg, mips.logEntryMsgPath);\nif(su.misc.isEmpty(logEntry)) return throwError(msg, 'cannot find log entry in msg', {path: 'msg.' + mips.logEntryMsgPath });\n    \n    //node.warn(node.name + ': logEntry = \\n' + JSON.stringify(logEntry));\n\nswitch(mips.logMethod) {\n    case 'init': {\n        let logProperties = flow.get(su.log.getLogBasePath(mips.logName));\n        logEntry = su.log.createLogEntry(logProperties, logEntry);\n        let log = [];\n        log.push(logEntry);\n        flow.set(su.log.getLogPath(mips.logName), log);\n        mips.logEntry = logEntry;\n        msg = su.flow.updateMsgInstanceProperties(msg, _meta, {logEntry: logEntry});\n        return msg;\n    }\n    case 'append': {\n        let logProperties = flow.get(su.log.getLogBasePath(mips.logName));\n        logEntry = su.log.createLogEntry(logProperties, logEntry);\n        let log = flow.get(su.log.getLogPath(mips.logName)) || [];\n        if(log.length+1 > logProperties.maxEntries) {\n            log.shift();\n        }\n        log.push(logEntry);\n        flow.set(su.log.getLogPath(mips.logName), log);\n        mips.logEntry = logEntry;\n        msg = su.flow.updateMsgInstanceProperties(msg, _meta, {logEntry: logEntry});\n        return msg;\n    }\n    case 'append.httpResponse': {\n        return [null, msg];\n    }\n    break;\n    default: {\n        return throwError(msg, 'unknown log method', {method: mips.logMethod});\n    }\n}\n\n\n// ------------\n// The End",
         "outputs": 2,
         "noerr": 0,
         "x": 550,
-        "y": 420,
+        "y": 440,
         "wires": [
             [
                 "94c8332b.57079"
@@ -6751,8 +6802,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n\nlet error;\nlet responseCode;\nlet request;\nlet headers;\nlet data;\n\n//if(msg.statusCode === 'ENOTFOUND') {\nif(msg.statusCode !== 200) {\n    error = msg.payload;\n    responseCode = msg.statusCode;\n} else {\n    error = msg.payload.meta.error;\n    request = msg.payload.meta.request;\n    responseCode = msg.payload.meta.responseCode;\n}\n\n//if(msg.properties.isLogEntireResponse) {\n    headers = msg.headers;\n    data = msg.payload.data;\n//}\n\nlet entry = {\n    responseCode: responseCode,\n    error: error,\n    request: request,\n    responseHeaders: headers,\n    responseData: data\n}\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\nlet log = flow.get(su.log.getLogPath(mips.logName)) || [];\nlog.push(entry);\nflow.set(su.log.getLogPath(mips.logName), log);\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 1030,
-        "y": 440,
+        "x": 850,
+        "y": 460,
         "wires": [
             [
                 "94c8332b.57079"
@@ -6771,41 +6822,6 @@
         "y": 140,
         "wires": [],
         "icon": "node-red/alert.svg"
-    },
-    {
-        "id": "a6efd942.17e908",
-        "type": "function",
-        "z": "ba93632a.b212b",
-        "name": "uitls.log.method.get",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar _meta = su.log.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n/* main --- */\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\nmsg.payload = flow.get(su.log.getLogPath(mips.logName)) || [];\n\nsu.misc.setObjectPath(msg, su.flow.getMsgOutputBasePath(_meta), {logName:mips.logName});\n//msg.logName = mips.logName;\n\nreturn msg;\n\n// ------------\n// The End",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 560,
-        "y": 480,
-        "wires": [
-            [
-                "d5628a43.c4da68"
-            ]
-        ],
-        "outputLabels": [
-            "done"
-        ]
-    },
-    {
-        "id": "d5628a43.c4da68",
-        "type": "function",
-        "z": "ba93632a.b212b",
-        "name": "",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1110,
-        "y": 480,
-        "wires": [
-            [
-                "94c8332b.57079"
-            ]
-        ]
     },
     {
         "id": "37f2340a.15817c",
@@ -7700,81 +7716,15 @@
         "order": 5,
         "width": "14",
         "height": "7",
-        "format": "<ol>\n<div ng-repeat=\"x in msg.payload\">\n    <li>\n        <ol>\n            <div>\n                <pre>{{x | json}}</pre>\n            </div>\n        </ol>\n    </li>\n    <hr/>\n</div>\n</ol>\n\n",
+        "format": "<ol>\n<div ng-repeat=\"x in msg.payload\">\n    <li>\n        {{x.timestamp}}\n        <div>\n            <pre>{{x | json}}</pre>\n        </div>\n    </li>\n    <hr/>\n</div>\n</ol>\n\n",
         "storeOutMessages": false,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 740,
+        "x": 760,
         "y": 1280,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "e013f092.4a151",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderDisplayLog.init",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderDisplayLog.init",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderDisplayLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "init",
-                "type": "str"
-            },
-            {
-                "name": "log.entry",
-                "value": "msg.payload.orderEntries",
-                "type": "str"
-            }
-        ],
-        "x": 980,
-        "y": 1120,
-        "wires": [
-            [
-                "231ba45e.49414c"
-            ]
-        ]
-    },
-    {
-        "id": "231ba45e.49414c",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderTechLog.init",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderTechLog.init",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderTechLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "init",
-                "type": "str"
-            }
-        ],
-        "x": 1190,
-        "y": 1120,
-        "wires": [
-            [
-                "19824587.ecd0ba",
-                "b302ffb5.3538b"
-            ]
         ]
     },
     {
@@ -7799,19 +7749,6 @@
         ]
     },
     {
-        "id": "19824587.ecd0ba",
-        "type": "function",
-        "z": "4d60d452.18914c",
-        "name": "trigger_updateDisplay",
-        "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
-        "outputs": 0,
-        "noerr": 0,
-        "x": 1420,
-        "y": 1160,
-        "wires": [],
-        "icon": "node-red/trigger.svg"
-    },
-    {
         "id": "b302ffb5.3538b",
         "type": "function",
         "z": "4d60d452.18914c",
@@ -7819,8 +7756,8 @@
         "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
         "outputs": 0,
         "noerr": 0,
-        "x": 1410,
-        "y": 1080,
+        "x": 970,
+        "y": 1140,
         "wires": [],
         "icon": "node-red/trigger.svg"
     },
@@ -7977,11 +7914,11 @@
         "id": "cf803f67.d0eb6",
         "type": "subflow:ba93632a.b212b",
         "z": "4d60d452.18914c",
-        "name": "orderDisplayLog.get",
+        "name": "orderDisplayLog.log.get",
         "env": [
             {
                 "name": "instance-name",
-                "value": "orderDisplayLog.get",
+                "value": "orderDisplayLog.log.get",
                 "type": "str"
             },
             {
@@ -7991,7 +7928,7 @@
             },
             {
                 "name": "method",
-                "value": "get",
+                "value": "log.get",
                 "type": "str"
             },
             {
@@ -8000,7 +7937,7 @@
                 "type": "str"
             }
         ],
-        "x": 520,
+        "x": 530,
         "y": 1280,
         "wires": [
             [
@@ -8017,12 +7954,12 @@
         "order": 2,
         "width": "21",
         "height": "15",
-        "format": "\n<ol>\n<div ng-repeat=\"x in msg.payload\">\n    <li>\n        <ol>\n            <div>\n                <pre>{{x | json}}</pre>\n            </div>\n        </ol>\n    </li>\n    <hr/>\n</div>\n</ol>\n\n",
+        "format": "\n<ol>\n<div ng-repeat=\"x in msg.payload\">\n    <li>\n        {{x.timestamp}}\n        <div>\n            <pre>{{x | json}}</pre>\n        </div>\n    </li>\n    <hr/>\n</div>\n</ol>\n\n\n",
         "storeOutMessages": false,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 700,
+        "x": 720,
         "y": 1340,
         "wires": [
             []
@@ -8032,11 +7969,11 @@
         "id": "6e2d5c43.705b34",
         "type": "subflow:ba93632a.b212b",
         "z": "4d60d452.18914c",
-        "name": "orderTechLog.get",
+        "name": "orderTechLog.log.get",
         "env": [
             {
                 "name": "instance-name",
-                "value": "orderTechLog.get",
+                "value": "orderTechLog.log.get",
                 "type": "str"
             },
             {
@@ -8046,7 +7983,7 @@
             },
             {
                 "name": "method",
-                "value": "get",
+                "value": "log.get",
                 "type": "str"
             },
             {
@@ -8055,7 +7992,7 @@
                 "type": "str"
             }
         ],
-        "x": 510,
+        "x": 520,
         "y": 1340,
         "wires": [
             [
@@ -8088,8 +8025,8 @@
         "y": 1120,
         "wires": [
             [
-                "e013f092.4a151",
-                "a1f17392.1791a"
+                "a1f17392.1791a",
+                "b302ffb5.3538b"
             ]
         ],
         "icon": "node-red/leveldb.png"
@@ -8481,11 +8418,11 @@
         "id": "c24b4c63.5f296",
         "type": "subflow:ba93632a.b212b",
         "z": "4d60d452.18914c",
-        "name": "orderTechLog.append",
+        "name": "orderTechLog.log.init@sendOrder",
         "env": [
             {
                 "name": "instance-name",
-                "value": "orderTechLog.append",
+                "value": "orderTechLog.log.init@sendOrder",
                 "type": "str"
             },
             {
@@ -8495,11 +8432,11 @@
             },
             {
                 "name": "method",
-                "value": "log.append",
+                "value": "log.init",
                 "type": "str"
             }
         ],
-        "x": 1020,
+        "x": 1060,
         "y": 1700,
         "wires": [
             [
@@ -8532,7 +8469,7 @@
         "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
         "outputs": 0,
         "noerr": 0,
-        "x": 1240,
+        "x": 1320,
         "y": 1700,
         "wires": [],
         "icon": "node-red/trigger.svg"
@@ -8541,11 +8478,11 @@
         "id": "442b596a.bb0ff8",
         "type": "subflow:ba93632a.b212b",
         "z": "4d60d452.18914c",
-        "name": "orderDisplayLog.append",
+        "name": "orderDisplayLog.log.init@sendOrder",
         "env": [
             {
                 "name": "instance-name",
-                "value": "orderDisplayLog.append",
+                "value": "orderDisplayLog.log.init@sendOrder",
                 "type": "str"
             },
             {
@@ -8555,7 +8492,7 @@
             },
             {
                 "name": "method",
-                "value": "log.append",
+                "value": "log.init",
                 "type": "str"
             },
             {
@@ -8564,7 +8501,7 @@
                 "type": "str"
             }
         ],
-        "x": 690,
+        "x": 730,
         "y": 1580,
         "wires": [
             []
@@ -8591,11 +8528,11 @@
         "id": "2c3db3bf.aec82c",
         "type": "subflow:ba93632a.b212b",
         "z": "4d60d452.18914c",
-        "name": "orderDisplayLog.init",
+        "name": "orderDisplayLog.init@startup",
         "env": [
             {
                 "name": "instance-name",
-                "value": "orderDisplayLog.init",
+                "value": "orderDisplayLog.init@startup",
                 "type": "str"
             },
             {
@@ -8607,9 +8544,14 @@
                 "name": "method",
                 "value": "init",
                 "type": "str"
+            },
+            {
+                "name": "add-timestamp",
+                "type": "bool",
+                "value": "false"
             }
         ],
-        "x": 580,
+        "x": 600,
         "y": 260,
         "wires": [
             [
@@ -8621,11 +8563,11 @@
         "id": "9b588f88.db526",
         "type": "subflow:ba93632a.b212b",
         "z": "4d60d452.18914c",
-        "name": "orderTechLog.init",
+        "name": "orderTechLog.init@startup",
         "env": [
             {
                 "name": "instance-name",
-                "value": "orderTechLog.init",
+                "value": "orderTechLog.init@startup",
                 "type": "str"
             },
             {
@@ -8637,9 +8579,14 @@
                 "name": "method",
                 "value": "init",
                 "type": "str"
+            },
+            {
+                "name": "max-entries",
+                "value": "100",
+                "type": "str"
             }
         ],
-        "x": 790,
+        "x": 860,
         "y": 260,
         "wires": [
             [
@@ -8655,7 +8602,7 @@
         "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
         "outputs": 0,
         "noerr": 0,
-        "x": 1000,
+        "x": 1100,
         "y": 260,
         "wires": [],
         "icon": "node-red/trigger.svg"
@@ -8669,7 +8616,7 @@
         "outputs": 0,
         "noerr": 0,
         "x": 990,
-        "y": 1060,
+        "y": 1080,
         "wires": [],
         "icon": "node-red/trigger.svg"
     },
@@ -8734,11 +8681,11 @@
         "id": "1d583ca4.7764c3",
         "type": "subflow:ba93632a.b212b",
         "z": "4d60d452.18914c",
-        "name": "orderTechLog.append",
+        "name": "orderTechLog.log.append",
         "env": [
             {
                 "name": "instance-name",
-                "value": "orderTechLog.append",
+                "value": "orderTechLog.log.append",
                 "type": "str"
             },
             {
@@ -8752,7 +8699,7 @@
                 "type": "str"
             }
         ],
-        "x": 820,
+        "x": 830,
         "y": 1840,
         "wires": [
             [
@@ -8781,11 +8728,11 @@
         "id": "c4bc4121.d4cfa",
         "type": "subflow:ba93632a.b212b",
         "z": "4d60d452.18914c",
-        "name": "orderDisplayLog.append",
+        "name": "orderDisplayLog.log.append",
         "env": [
             {
                 "name": "instance-name",
-                "value": "orderDisplayLog.append",
+                "value": "orderDisplayLog.log.append",
                 "type": "str"
             },
             {
@@ -8799,7 +8746,7 @@
                 "type": "str"
             }
         ],
-        "x": 810,
+        "x": 820,
         "y": 1920,
         "wires": [
             [
@@ -8917,8 +8864,8 @@
         "qos": "",
         "retain": "",
         "broker": "62bac859.25e008",
-        "x": 770,
-        "y": 320,
+        "x": 950,
+        "y": 480,
         "wires": []
     },
     {
@@ -8933,8 +8880,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 190,
-        "y": 200,
+        "x": 170,
+        "y": 360,
         "wires": [
             [
                 "291b2668.02349a"
@@ -8949,8 +8896,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 350,
-        "y": 200,
+        "x": 330,
+        "y": 360,
         "wires": [
             [
                 "b11d4aa3.d00d88"
@@ -8966,8 +8913,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 340,
-        "y": 240,
+        "x": 320,
+        "y": 400,
         "wires": [
             [
                 "b11d4aa3.d00d88"
@@ -8987,8 +8934,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 190,
-        "y": 240,
+        "x": 170,
+        "y": 400,
         "wires": [
             [
                 "64f3d1cd.91ed8"
@@ -9002,7 +8949,7 @@
         "name": "test -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
         "info": "",
         "x": 800,
-        "y": 80,
+        "y": 60,
         "wires": []
     },
     {
@@ -9011,8 +8958,8 @@
         "z": "4b36e62d.340ed8",
         "name": "with my orderReference",
         "info": "",
-        "x": 200,
-        "y": 140,
+        "x": 180,
+        "y": 300,
         "wires": []
     },
     {
@@ -9021,8 +8968,8 @@
         "z": "4b36e62d.340ed8",
         "name": "with other orderReference",
         "info": "",
-        "x": 210,
-        "y": 300,
+        "x": 190,
+        "y": 460,
         "wires": []
     },
     {
@@ -9037,8 +8984,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 210,
-        "y": 360,
+        "x": 190,
+        "y": 520,
         "wires": [
             [
                 "6eaf3bbf.771834"
@@ -9053,8 +9000,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.uuid();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 370,
-        "y": 360,
+        "x": 350,
+        "y": 520,
         "wires": [
             [
                 "b11d4aa3.d00d88"
@@ -9070,8 +9017,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.uuid();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 360,
-        "y": 400,
+        "x": 340,
+        "y": 560,
         "wires": [
             [
                 "b11d4aa3.d00d88"
@@ -9091,8 +9038,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 210,
-        "y": 400,
+        "x": 190,
+        "y": 560,
         "wires": [
             [
                 "98d4bce5.5a692"
@@ -9129,11 +9076,11 @@
         "id": "9e42bb7f.2c0e38",
         "type": "subflow:ba93632a.b212b",
         "z": "4d60d452.18914c",
-        "name": "orderTechLog.init",
+        "name": "orderTechLog.log.clear",
         "env": [
             {
                 "name": "instance-name",
-                "value": "orderTechLog.init",
+                "value": "orderTechLog.log.clear",
                 "type": "str"
             },
             {
@@ -9143,16 +9090,222 @@
             },
             {
                 "name": "method",
-                "value": "init",
+                "value": "log.clear",
                 "type": "str"
             }
         ],
-        "x": 270,
+        "x": 280,
         "y": 1380,
         "wires": [
             [
                 "6e2d5c43.705b34"
             ]
+        ]
+    },
+    {
+        "id": "d6de9c2f.4365",
+        "type": "inject",
+        "z": "4b36e62d.340ed8",
+        "name": "t",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 720,
+        "wires": [
+            [
+                "7bd7d15.b34fd3"
+            ]
+        ]
+    },
+    {
+        "id": "ef24e1c6.ab195",
+        "type": "comment",
+        "z": "4b36e62d.340ed8",
+        "name": "send 200 with my orderReference",
+        "info": "",
+        "x": 220,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "466feecd.5cc7",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "update",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 720,
+        "wires": [
+            [
+                "b11d4aa3.d00d88",
+                "9c5a70e1.c8d7f"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "e1d370b.0f14d9",
+        "type": "delay",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "50",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 650,
+        "y": 800,
+        "wires": [
+            [
+                "466feecd.5cc7"
+            ]
+        ]
+    },
+    {
+        "id": "7bd7d15.b34fd3",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "initCounter",
+        "func": "\nflow.set('counter', 0);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 720,
+        "wires": [
+            [
+                "466feecd.5cc7"
+            ]
+        ]
+    },
+    {
+        "id": "9c5a70e1.c8d7f",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "counter++ < 200",
+        "func": "\nlet counter = flow.get('counter');\ncounter++;\n\nif(counter < 200) {\n    flow.set('counter', counter);\n    return msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 800,
+        "wires": [
+            [
+                "e1d370b.0f14d9"
+            ]
+        ]
+    },
+    {
+        "id": "6a938a97.e243f4",
+        "type": "catch",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "fd15bd93.b2b76"
+            ]
+        ]
+    },
+    {
+        "id": "5e51cbe3.1597c4",
+        "type": "subflow:317873af.a031fc",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "env": [],
+        "x": 470,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "fd15bd93.b2b76",
+        "type": "subflow:4f07498e.ebb5f8",
+        "z": "4b36e62d.340ed8",
+        "name": "flowProperties:get",
+        "env": [
+            {
+                "name": "instance-name",
+                "value": "flowProperties:get",
+                "type": "str"
+            },
+            {
+                "name": "method",
+                "value": "get",
+                "type": "str"
+            }
+        ],
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "5e51cbe3.1597c4"
+            ]
+        ]
+    },
+    {
+        "id": "1cefa0ad.a6001f",
+        "type": "inject",
+        "z": "4b36e62d.340ed8",
+        "name": "startup",
+        "topic": "",
+        "payload": "",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "47b0553a.d7edbc"
+            ]
+        ]
+    },
+    {
+        "id": "47b0553a.d7edbc",
+        "type": "subflow:4f07498e.ebb5f8",
+        "z": "4b36e62d.340ed8",
+        "name": "flowProperties:set(main.test)",
+        "env": [
+            {
+                "name": "instance-name",
+                "value": "flowProperties:set(main.test)",
+                "type": "str"
+            },
+            {
+                "name": "method",
+                "value": "set",
+                "type": "str"
+            },
+            {
+                "name": "packageId",
+                "value": "main",
+                "type": "str"
+            },
+            {
+                "name": "componentId",
+                "value": "test",
+                "type": "str"
+            }
+        ],
+        "x": 320,
+        "y": 160,
+        "wires": [
+            []
         ]
     }
 ]

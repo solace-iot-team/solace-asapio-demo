@@ -13,7 +13,7 @@ var flow = require('node-red-contrib-solace-utils/flow.js');
 var _meta = {
   packageId: 'app',
   componentId: 'controller',
-  version: '0.1.0',
+  version: '0.1.1',
   shortName: 'app',
   id: 'solace-asapio-demo'
 }
