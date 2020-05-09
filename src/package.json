@@ -1,31 +1,6 @@
 {
-  "name": "solace-asapio-demo",
+  "name": "app-utils",
   "version": "0.1.0",
-  "description": "Solace ASAPIO Demo application utility functions for Node-RED",
   "main": "index.js",
-  "homepage": "https://github.com/solace-iot-team/xxxx",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/solace-iot-team/xxxxx.git"
-  },
-  "bugs": {
-    "url": "https://github.com/solace-iot-team/xxx/issues"
-  },
-  "keywords": [
-    "node-red",
-    "solace",
-    "asapio",
-    "sap"
-  ],
-  "dependencies": {
-    "node-red-contrib-solace-utils": "file:../../node-red-contrib-solace-utils"
-  },
-  "author": "Solace-IoT-Team",
-  "contributors": [
-    {
-      "name": "Ricardo Gomez-Ulmke",
-      "email": "ricardo.gomez-ulmke@solace.com"
-    }
-  ],
-  "license": "Apache-2.0"
+  "dependencies": {}
 }

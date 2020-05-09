@@ -217,10 +217,9 @@ module.exports = {
     // can be accessed in a function block as:
     //    global.get("os")
     functionGlobalContext: {
-        _solaceUtils:require('node-red-contrib-solace-utils'),
-        _solaceUtilsSempv2:require('node-red-contrib-solace-sempv2'),
-        //_solaceAppUtils:require('node-red-solace-xdk110-mgmt')
-        _solaceAppUtils:require('node-red-solace-asapio-demo')
+      _solaceAppUtils:require('app-utils'),
+      _solaceUtils: require('node-red-contrib-solace-utils'),
+      _solaceUtilsSempv2:require('node-red-contrib-solace-sempv2')
     },
     // `global.keys()` returns a list of all properties set in global context.
     // This allows them to be displayed in the Context Sidebar within the editor.

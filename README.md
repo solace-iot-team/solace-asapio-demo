@@ -68,18 +68,14 @@ git clone https://github.com/solace-iot-team/solace-asapio-demo.git
 
 cd solace-asapio-demo
 
-npm install .
-
-(first time it may come up with errors, do it again)
-
-npm install .
+./install.sh
 
 ```
 ### Start the Demo Server
 
 ```bash
 
-cd sap-demo/solace-asapio-demo
+in directory: sap-demo/solace-asapio-demo
 
 ./start-node-red.sh
 
