@@ -609,6 +609,50 @@
      "file": "/usr/local/lib/node_modules/node-red-dashboard/nodes/ui_spacer.js"
     }
    }
+  },
+  "node-red-contrib-mytimeout": {
+   "name": "node-red-contrib-mytimeout",
+   "version": "3.2.0",
+   "local": false,
+   "nodes": {
+    "mytimeout": {
+     "name": "mytimeout",
+     "types": [
+      "mytimeout"
+     ],
+     "enabled": false,
+     "local": false,
+     "module": "node-red-contrib-mytimeout",
+     "file": "/usr/local/lib/node_modules/node-red-contrib-mytimeout/mytimeout.js"
+    }
+   }
+  },
+  "node-red-contrib-solace-utils": {
+   "name": "node-red-contrib-solace-utils",
+   "version": "0.1.3",
+   "local": false,
+   "nodes": {
+    "Log": {
+     "name": "Log",
+     "types": [
+      "Log"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-solace-utils",
+     "file": "/usr/local/lib/node_modules/node-red-contrib-solace-utils/nodes/Log.js"
+    },
+    "Logger": {
+     "name": "Logger",
+     "types": [
+      "Logger"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-solace-utils",
+     "file": "/usr/local/lib/node_modules/node-red-contrib-solace-utils/nodes/Logger.js"
+    }
+   }
   }
  },
  "_credentialSecret": "1d990d5da81a3eaf66ded9133adbde4ffe068aa9b5887685de6cecec7ecb055b",

@@ -2,7 +2,6 @@
 node_modules
 backups
 localContextStore
-#start-node-red.sh
-deploy*.sh
 docs
 save.README.md
+package-lock.json

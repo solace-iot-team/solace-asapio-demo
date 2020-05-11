@@ -34,7 +34,7 @@ export SOLACE_SAP_DEMO_BROKER_SEMPV2_IS_SOLACE_CLOUD="true"
 #
 # size is in Mega Bytes
 #
-node --max-old-space-size=3072 /usr/local/bin/node-red -s solace-asapio-demo-settings.js
+node --max-old-space-size=3072 /usr/local/bin/node-red -v -s solace-asapio-demo-settings.js
 
 
 

@@ -30,7 +30,7 @@
     {
         "id": "4b36e62d.340ed8",
         "type": "tab",
-        "label": "test",
+        "label": "main.test",
         "disabled": false,
         "info": ""
     },
@@ -1024,7 +1024,7 @@
     {
         "id": "ba93632a.b212b",
         "type": "subflow",
-        "name": "log",
+        "name": "flow log",
         "info": "",
         "category": "solace utils",
         "in": [
@@ -1061,7 +1061,8 @@
                         "types": [
                             "str"
                         ]
-                    }
+                    },
+                    "label": {}
                 }
             },
             {
@@ -1074,7 +1075,8 @@
                         "types": [
                             "str"
                         ]
-                    }
+                    },
+                    "label": {}
                 }
             },
             {
@@ -1128,7 +1130,8 @@
                                 "v": "log.get"
                             }
                         ]
-                    }
+                    },
+                    "label": {}
                 }
             },
             {
@@ -1141,7 +1144,8 @@
                         "types": [
                             "str"
                         ]
-                    }
+                    },
+                    "label": {}
                 }
             },
             {
@@ -1171,7 +1175,8 @@
                                 "v": "100"
                             }
                         ]
-                    }
+                    },
+                    "label": {}
                 }
             },
             {
@@ -1182,7 +1187,8 @@
                     "label": {
                         "en-US": "add timestamp to every entry"
                     },
-                    "type": "checkbox"
+                    "type": "checkbox",
+                    "opts": {}
                 }
             }
         ],
@@ -1451,17 +1457,6 @@
         "collapse": false
     },
     {
-        "id": "fbe688ce.9f8fb8",
-        "type": "ui_group",
-        "z": "",
-        "name": "Telemetry Config",
-        "tab": "",
-        "order": 6,
-        "disp": true,
-        "width": "21",
-        "collapse": true
-    },
-    {
         "id": "ede2c094.95dbd",
         "type": "ui_spacer",
         "name": "spacer",
@@ -1510,7 +1505,7 @@
         "id": "20ae59d9.885f86",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 2,
         "width": "14",
         "height": 1
@@ -1519,7 +1514,7 @@
         "id": "1d704910.48c9e7",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 4,
         "width": "14",
         "height": 1
@@ -1528,7 +1523,7 @@
         "id": "64f0f988.765608",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 6,
         "width": "14",
         "height": 1
@@ -1537,7 +1532,7 @@
         "id": "bd2af989.97c0b8",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 8,
         "width": "14",
         "height": 1
@@ -1546,7 +1541,7 @@
         "id": "6f6ee107.dfc2a",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 10,
         "width": "14",
         "height": 1
@@ -1555,7 +1550,7 @@
         "id": "770f1c0e.0fb904",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 12,
         "width": "14",
         "height": 1
@@ -1564,7 +1559,7 @@
         "id": "47727c58.1de504",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 15,
         "width": "14",
         "height": 1
@@ -1573,7 +1568,7 @@
         "id": "fc8a0439.ab4d28",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 17,
         "width": "14",
         "height": 1
@@ -1582,7 +1577,7 @@
         "id": "cc6753eb.d0f5c",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 19,
         "width": "14",
         "height": 1
@@ -1591,7 +1586,7 @@
         "id": "8fbc39ce.f454c8",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 21,
         "width": "14",
         "height": 1
@@ -1600,7 +1595,7 @@
         "id": "43f5f0a4.72d2d",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "fbe688ce.9f8fb8",
+        "group": "",
         "order": 23,
         "width": "14",
         "height": 1
@@ -1715,6 +1710,22 @@
         "order": 2,
         "disabled": false,
         "hidden": false
+    },
+    {
+        "id": "9c9ae5b4.ea3b48",
+        "type": "Log",
+        "z": "",
+        "name": "orderDisplayLog",
+        "maxEntries": "20",
+        "isAddTimestamp2Entries": false
+    },
+    {
+        "id": "4d494f6d.5997c",
+        "type": "Log",
+        "z": "",
+        "name": "SAPEventLog",
+        "maxEntries": "100",
+        "isAddTimestamp2Entries": true
     },
     {
         "id": "1e3d4002.580e9",
@@ -2161,7 +2172,7 @@
         "scope": null,
         "uncaught": false,
         "x": 100,
-        "y": 100,
+        "y": 140,
         "wires": [
             [
                 "c0a145aa.41d538"
@@ -2175,7 +2186,7 @@
         "name": "",
         "env": [],
         "x": 470,
-        "y": 100,
+        "y": 140,
         "wires": []
     },
     {
@@ -2212,7 +2223,7 @@
         "name": "main app -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
         "info": "",
         "x": 810,
-        "y": 40,
+        "y": 80,
         "wires": []
     },
     {
@@ -4648,7 +4659,7 @@
             }
         ],
         "x": 270,
-        "y": 100,
+        "y": 140,
         "wires": [
             [
                 "b5a3e8df.459f58"
@@ -6991,7 +7002,7 @@
         "y": 260,
         "wires": [
             [
-                "2c3db3bf.aec82c"
+                "141896d.489c069"
             ]
         ]
     },
@@ -7721,7 +7732,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 760,
+        "x": 920,
         "y": 1280,
         "wires": [
             []
@@ -7743,8 +7754,8 @@
         "y": 1300,
         "wires": [
             [
-                "cf803f67.d0eb6",
-                "6e2d5c43.705b34"
+                "af3625fc.67c038",
+                "45ba2acf.048044"
             ]
         ]
     },
@@ -7911,46 +7922,11 @@
         "icon": "node-red/trigger.svg"
     },
     {
-        "id": "cf803f67.d0eb6",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderDisplayLog.log.get",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderDisplayLog.log.get",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderDisplayLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "log.get",
-                "type": "str"
-            },
-            {
-                "name": "log.entry",
-                "value": "",
-                "type": "str"
-            }
-        ],
-        "x": 530,
-        "y": 1280,
-        "wires": [
-            [
-                "8f2beeb3.7f3ec"
-            ]
-        ]
-    },
-    {
         "id": "3822c38e.c75a5c",
         "type": "ui_template",
         "z": "4d60d452.18914c",
         "group": "b1ee4438.4885c8",
-        "name": "displayTechLog",
+        "name": "displaySAPEventLog",
         "order": 2,
         "width": "21",
         "height": "15",
@@ -7959,45 +7935,10 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 720,
+        "x": 920,
         "y": 1340,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "6e2d5c43.705b34",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderTechLog.log.get",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderTechLog.log.get",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderTechLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "log.get",
-                "type": "str"
-            },
-            {
-                "name": "log.entry",
-                "value": "",
-                "type": "str"
-            }
-        ],
-        "x": 520,
-        "y": 1340,
-        "wires": [
-            [
-                "3822c38e.c75a5c"
-            ]
         ]
     },
     {
@@ -8415,36 +8356,6 @@
         "icon": "node-red/leveldb.png"
     },
     {
-        "id": "c24b4c63.5f296",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderTechLog.log.init@sendOrder",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderTechLog.log.init@sendOrder",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderTechLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "log.init",
-                "type": "str"
-            }
-        ],
-        "x": 1060,
-        "y": 1700,
-        "wires": [
-            [
-                "d8272e7b.79ec2"
-            ]
-        ]
-    },
-    {
         "id": "28c54d13.d3cef2",
         "type": "function",
         "z": "4d60d452.18914c",
@@ -8456,7 +8367,7 @@
         "y": 1700,
         "wires": [
             [
-                "c24b4c63.5f296"
+                "499ae631.a2a4e8"
             ]
         ],
         "icon": "node-red/arrow-in.svg"
@@ -8469,43 +8380,10 @@
         "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
         "outputs": 0,
         "noerr": 0,
-        "x": 1320,
+        "x": 1340,
         "y": 1700,
         "wires": [],
         "icon": "node-red/trigger.svg"
-    },
-    {
-        "id": "442b596a.bb0ff8",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderDisplayLog.log.init@sendOrder",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderDisplayLog.log.init@sendOrder",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderDisplayLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "log.init",
-                "type": "str"
-            },
-            {
-                "name": "log.entry",
-                "value": "msg.payload.order",
-                "type": "str"
-            }
-        ],
-        "x": 730,
-        "y": 1580,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "b9964c3e.6d543",
@@ -8519,80 +8397,10 @@
         "y": 1580,
         "wires": [
             [
-                "442b596a.bb0ff8"
+                "d128cc75.1e4eb"
             ]
         ],
         "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "2c3db3bf.aec82c",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderDisplayLog.init@startup",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderDisplayLog.init@startup",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderDisplayLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "init",
-                "type": "str"
-            },
-            {
-                "name": "add-timestamp",
-                "type": "bool",
-                "value": "false"
-            }
-        ],
-        "x": 600,
-        "y": 260,
-        "wires": [
-            [
-                "9b588f88.db526"
-            ]
-        ]
-    },
-    {
-        "id": "9b588f88.db526",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderTechLog.init@startup",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderTechLog.init@startup",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderTechLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "init",
-                "type": "str"
-            },
-            {
-                "name": "max-entries",
-                "value": "100",
-                "type": "str"
-            }
-        ],
-        "x": 860,
-        "y": 260,
-        "wires": [
-            [
-                "141896d.489c069"
-            ]
-        ]
     },
     {
         "id": "141896d.489c069",
@@ -8602,7 +8410,7 @@
         "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
         "outputs": 0,
         "noerr": 0,
-        "x": 1100,
+        "x": 580,
         "y": 260,
         "wires": [],
         "icon": "node-red/trigger.svg"
@@ -8669,43 +8477,13 @@
         "outputs": 1,
         "noerr": 0,
         "x": 450,
-        "y": 1840,
+        "y": 1860,
         "wires": [
             [
-                "1d583ca4.7764c3"
+                "bc9a184.96095e8"
             ]
         ],
         "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "1d583ca4.7764c3",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderTechLog.log.append",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderTechLog.log.append",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderTechLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "log.append",
-                "type": "str"
-            }
-        ],
-        "x": 830,
-        "y": 1840,
-        "wires": [
-            [
-                "676a534.75ce5ac"
-            ]
-        ]
     },
     {
         "id": "8de1f889.868108",
@@ -8719,40 +8497,10 @@
         "y": 1900,
         "wires": [
             [
-                "c4bc4121.d4cfa"
+                "39954b5f.9718f4"
             ]
         ],
         "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "c4bc4121.d4cfa",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderDisplayLog.log.append",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderDisplayLog.log.append",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderDisplayLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "log.append",
-                "type": "str"
-            }
-        ],
-        "x": 820,
-        "y": 1920,
-        "wires": [
-            [
-                "676a534.75ce5ac"
-            ]
-        ]
     },
     {
         "id": "c13eb75e.29c2f8",
@@ -8763,10 +8511,10 @@
         "outputs": 1,
         "noerr": 0,
         "x": 590,
-        "y": 1960,
+        "y": 1980,
         "wires": [
             [
-                "c4bc4121.d4cfa"
+                "39954b5f.9718f4"
             ]
         ],
         "icon": "node-red/arrow-in.svg"
@@ -8779,8 +8527,8 @@
         "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
         "outputs": 0,
         "noerr": 0,
-        "x": 1080,
-        "y": 1880,
+        "x": 1160,
+        "y": 1900,
         "wires": [],
         "icon": "node-red/trigger.svg"
     },
@@ -8804,7 +8552,7 @@
         "datatype": "json",
         "broker": "62bac859.25e008",
         "x": 150,
-        "y": 1960,
+        "y": 1980,
         "wires": [
             [
                 "8f1e4643.cf0728",
@@ -8821,7 +8569,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 450,
-        "y": 1960,
+        "y": 1980,
         "wires": [
             [
                 "c13eb75e.29c2f8"
@@ -9050,7 +8798,7 @@
         "id": "f4ba5870.5cfe98",
         "type": "ui_button",
         "z": "4d60d452.18914c",
-        "name": "clearTechLog",
+        "name": "clear",
         "group": "b1ee4438.4885c8",
         "order": 1,
         "width": "3",
@@ -9064,41 +8812,11 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 90,
+        "x": 70,
         "y": 1380,
         "wires": [
             [
-                "9e42bb7f.2c0e38"
-            ]
-        ]
-    },
-    {
-        "id": "9e42bb7f.2c0e38",
-        "type": "subflow:ba93632a.b212b",
-        "z": "4d60d452.18914c",
-        "name": "orderTechLog.log.clear",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "orderTechLog.log.clear",
-                "type": "str"
-            },
-            {
-                "name": "log-name",
-                "value": "orderTechLog",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "log.clear",
-                "type": "str"
-            }
-        ],
-        "x": 280,
-        "y": 1380,
-        "wires": [
-            [
-                "6e2d5c43.705b34"
+                "6eddbbe.c5e4a44"
             ]
         ]
     },
@@ -9307,5 +9025,125 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "d128cc75.1e4eb",
+        "type": "Logger",
+        "z": "4d60d452.18914c",
+        "log": "9c9ae5b4.ea3b48",
+        "name": "logger.init(orderDisplayLog)@sendOrder",
+        "method": "init",
+        "msgPath": "msg.payload.order",
+        "x": 820,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "af3625fc.67c038",
+        "type": "Logger",
+        "z": "4d60d452.18914c",
+        "log": "9c9ae5b4.ea3b48",
+        "name": "logger.get(orderDisplayLog)",
+        "method": "get",
+        "msgPath": "msg.payload",
+        "x": 660,
+        "y": 1280,
+        "wires": [
+            [
+                "8f2beeb3.7f3ec"
+            ]
+        ]
+    },
+    {
+        "id": "39954b5f.9718f4",
+        "type": "Logger",
+        "z": "4d60d452.18914c",
+        "log": "9c9ae5b4.ea3b48",
+        "name": "logger.append(orderDisplayLog)@SAPEvent",
+        "method": "append",
+        "msgPath": "msg.payload",
+        "x": 850,
+        "y": 1940,
+        "wires": [
+            [
+                "676a534.75ce5ac"
+            ]
+        ]
+    },
+    {
+        "id": "6eddbbe.c5e4a44",
+        "type": "Logger",
+        "z": "4d60d452.18914c",
+        "log": "4d494f6d.5997c",
+        "name": "logger.clear(SAPEventLog)@clearButton",
+        "method": "clear",
+        "msgPath": "msg.payload",
+        "x": 300,
+        "y": 1380,
+        "wires": [
+            [
+                "45ba2acf.048044"
+            ]
+        ]
+    },
+    {
+        "id": "45ba2acf.048044",
+        "type": "Logger",
+        "z": "4d60d452.18914c",
+        "log": "4d494f6d.5997c",
+        "name": "logger.get(SAPEventLog)",
+        "method": "get",
+        "msgPath": "msg.payload",
+        "x": 650,
+        "y": 1340,
+        "wires": [
+            [
+                "3822c38e.c75a5c"
+            ]
+        ]
+    },
+    {
+        "id": "499ae631.a2a4e8",
+        "type": "Logger",
+        "z": "4d60d452.18914c",
+        "log": "4d494f6d.5997c",
+        "name": "logger.init(SAPEventLog)@sendOrder",
+        "method": "init",
+        "msgPath": "msg.payload",
+        "x": 1070,
+        "y": 1700,
+        "wires": [
+            [
+                "d8272e7b.79ec2"
+            ]
+        ]
+    },
+    {
+        "id": "bc9a184.96095e8",
+        "type": "Logger",
+        "z": "4d60d452.18914c",
+        "log": "4d494f6d.5997c",
+        "name": "logger.append(SAPEventLog)@SAPEvent",
+        "method": "append",
+        "msgPath": "msg.payload",
+        "x": 860,
+        "y": 1860,
+        "wires": [
+            [
+                "676a534.75ce5ac"
+            ]
+        ]
+    },
+    {
+        "id": "8e5febba.7d6118",
+        "type": "comment",
+        "z": "3eb672f6.dc73fe",
+        "name": "var _meta = {   packageId: 'app',   componentId: 'controller',   version: '0.1.3',   shortName: 'app',   id: 'solace-asapio-demo' }",
+        "info": "",
+        "x": 420,
+        "y": 40,
+        "wires": []
     }
 ]
