@@ -42,7 +42,7 @@ function getMetaInfo() {
 
 
 function composeTopic(topicSchema, sapEventMeta) {
-  return "sap_demo/BUS2032/sap-bo-data/create/json/v1/asadev/1000/system1/" + sapEventMeta.externalReference;
+  return "sap_demo/BUS2032/sap-bo-data/create/json/v1/asadev/1000/ERD100/" + sapEventMeta.externalReference;
 }
 /*
 let sapEventMeta = {

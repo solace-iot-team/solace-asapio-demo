@@ -4,7 +4,7 @@
         "type": "tab",
         "label": "main.app",
         "disabled": false,
-        "info": "The app controller.\n\nTODO: github links\n\n[see app.md on github](xxxx/doc/app.md)\n\n[see app-state-interfaces.md](xxx/doc/app-state-interfaces.md)\n\n[see app-micro-services.md](xxx/doc/app-micro-services.md)\n\n[see subflows.md](xxx/doc/subflows.md)\n\n\n\n\n\n---\nThe End.\n"
+        "info": "The app controller.\n\n---\nThe End.\n"
     },
     {
         "id": "4d60d452.18914c",
@@ -4826,7 +4826,8 @@
             "193fe52b.b9a7fb",
             "af47e4e7.3f1028",
             "2bce26b2.a7cd2a",
-            "7228d7e4.7201d8"
+            "7228d7e4.7201d8",
+            "f57ca277.7980b"
         ],
         "x": 610,
         "y": 1020,
@@ -4842,13 +4843,14 @@
             "4b3510ea.91f22",
             "c3a55027.c2818",
             "fa9e6fc1.f5adb",
-            "a6890ed.17d7ff"
+            "a6890ed.17d7ff",
+            "33a06c8f.527d04"
         ],
-        "x": 310,
+        "x": 210,
         "y": 1460,
         "wires": [
             [
-                "c75372a4.e92b5"
+                "7a97e025.20ade"
             ]
         ],
         "l": true
@@ -4904,7 +4906,7 @@
         "type": "function",
         "z": "3eb672f6.dc73fe",
         "name": "app.checkModules",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction showStatus(status) {\n    if(!status) node.status({fill:'yellow', shape: 'dot', text: 'false'});\n    else node.status({fill:'green', shape: 'dot', text: 'true'});     \n    return status;\n}\n\n// main -----------------------------------------------------------------\n\n\nlet modules = {\n    isAboutInitialized: global.get(sau.app.getIsInitializedPath(sau.about.getMetaInfo())) || false,\n    isOrderInitialized: global.get(sau.app.getIsInitializedPath(sau.order.getMetaInfo())) || false,\n    //isDeviceSettingsInitialized: global.get(sau.app.getIsInitializedPath(sau.devicesettings.getMetaInfo())) || false,\n    //isMqttDeviceSessionControl: global.get(sau.app.getIsInitializedPath(sau.mqttDeviceSessionControl.getMetaInfo())) || false\n}\n\nlet isFullyInitialized = true;\n\nfor(var p in modules) {\n    if(modules[p] === false) isFullyInitialized = false;\n}\n\nshowStatus(isFullyInitialized);\n\nmsg.payload = modules;\n\nif(!isFullyInitialized) {\n    return [null, msg];\n} \n\nreturn msg;\n\n",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction showStatus(status) {\n    if(!status) node.status({fill:'yellow', shape: 'dot', text: 'false'});\n    else node.status({fill:'green', shape: 'dot', text: 'true'});     \n    return status;\n}\n\n// main -----------------------------------------------------------------\n\n\nlet modules = {\n    isAboutInitialized: global.get(sau.app.getIsInitializedPath(sau.about.getMetaInfo())) || false,\n    isOrderInitialized: global.get(sau.app.getIsInitializedPath(sau.order.getMetaInfo())) || false,\n    isTestInitialized: global.get(sau.app.getIsInitializedPath(sau.test.getMetaInfo())) || false,\n    //isDeviceSettingsInitialized: global.get(sau.app.getIsInitializedPath(sau.devicesettings.getMetaInfo())) || false,\n    //isMqttDeviceSessionControl: global.get(sau.app.getIsInitializedPath(sau.mqttDeviceSessionControl.getMetaInfo())) || false\n}\n\nlet isFullyInitialized = true;\n\nfor(var p in modules) {\n    if(modules[p] === false) isFullyInitialized = false;\n}\n\nshowStatus(isFullyInitialized);\n\nmsg.payload = modules;\n\nif(!isFullyInitialized) {\n    return [null, msg];\n} \n\nreturn msg;\n\n",
         "outputs": 2,
         "noerr": 0,
         "x": 530,
@@ -4944,7 +4946,7 @@
         "func": "\nmsg.payload = {\n    tab: 'Order',\n    tabs: {\n        enable: [\n            'Order', 'SAP Event Log'\n        ]\n    }\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 1210,
+        "x": 1350,
         "y": 1540,
         "wires": [
             [
@@ -4958,7 +4960,7 @@
         "z": "3eb672f6.dc73fe",
         "name": "applyTabs",
         "events": "change",
-        "x": 1370,
+        "x": 1510,
         "y": 1540,
         "wires": [
             []
@@ -4978,7 +4980,7 @@
         "raw": false,
         "topic": "Application started successfully.",
         "name": "done.",
-        "x": 1390,
+        "x": 1530,
         "y": 1580,
         "wires": []
     },
@@ -4990,7 +4992,7 @@
         "func": "\nmsg.payload = \"enjoy.\";\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 1200,
+        "x": 1340,
         "y": 1580,
         "wires": [
             [
@@ -5006,7 +5008,7 @@
         "func": "\nmsg.payload = {\n    log:    '_END_:_INITIALIZATION_'\n}\n\nnode.log(msg.payload.log);           \n\nreturn msg;",
         "outputs": 0,
         "noerr": 0,
-        "x": 1130,
+        "x": 1270,
         "y": 1500,
         "wires": []
     },
@@ -5031,8 +5033,7 @@
         "y": 1540,
         "wires": [
             [
-                "8708783b.8323a8",
-                "4a61cafd.01b3d4"
+                "70a9bd94.630364"
             ]
         ]
     },
@@ -5273,7 +5274,7 @@
         "func": "\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1060,
+        "x": 1200,
         "y": 1560,
         "wires": [
             [
@@ -8220,7 +8221,7 @@
         "type": "function",
         "z": "4d60d452.18914c",
         "name": "order.composeOrder",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\n\nlet orderEntries = global.get(sau.order.getOrderEntriesPath());\n\n    //node.warn(node.name + ': orderEntries = \\n' + JSON.stringify(orderEntries, null, 1));\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.uuid(),\n    orderEntries: orderEntries\n}\n\nglobal.set(sau.order.getNewOrderPath(), order);\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\n\nlet orderEntries = global.get(sau.order.getOrderEntriesPath());\n\n    //node.warn(node.name + ': orderEntries = \\n' + JSON.stringify(orderEntries, null, 1));\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.shortUUID(),\n    orderEntries: orderEntries\n}\n\nglobal.set(sau.order.getNewOrderPath(), order);\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 300,
@@ -8612,8 +8613,8 @@
         "qos": "",
         "retain": "",
         "broker": "62bac859.25e008",
-        "x": 950,
-        "y": 480,
+        "x": 910,
+        "y": 600,
         "wires": []
     },
     {
@@ -8628,8 +8629,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 170,
-        "y": 360,
+        "x": 130,
+        "y": 480,
         "wires": [
             [
                 "291b2668.02349a"
@@ -8644,8 +8645,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 330,
-        "y": 360,
+        "x": 290,
+        "y": 480,
         "wires": [
             [
                 "b11d4aa3.d00d88"
@@ -8661,8 +8662,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 320,
-        "y": 400,
+        "x": 280,
+        "y": 520,
         "wires": [
             [
                 "b11d4aa3.d00d88"
@@ -8682,8 +8683,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 170,
-        "y": 400,
+        "x": 130,
+        "y": 520,
         "wires": [
             [
                 "64f3d1cd.91ed8"
@@ -8706,8 +8707,8 @@
         "z": "4b36e62d.340ed8",
         "name": "with my orderReference",
         "info": "",
-        "x": 180,
-        "y": 300,
+        "x": 140,
+        "y": 420,
         "wires": []
     },
     {
@@ -8716,8 +8717,8 @@
         "z": "4b36e62d.340ed8",
         "name": "with other orderReference",
         "info": "",
-        "x": 190,
-        "y": 460,
+        "x": 150,
+        "y": 580,
         "wires": []
     },
     {
@@ -8732,8 +8733,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 190,
-        "y": 520,
+        "x": 150,
+        "y": 640,
         "wires": [
             [
                 "6eaf3bbf.771834"
@@ -8745,11 +8746,11 @@
         "type": "function",
         "z": "4b36e62d.340ed8",
         "name": "fault",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.uuid();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.shortUUID();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 350,
-        "y": 520,
+        "x": 310,
+        "y": 640,
         "wires": [
             [
                 "b11d4aa3.d00d88"
@@ -8762,11 +8763,11 @@
         "type": "function",
         "z": "4b36e62d.340ed8",
         "name": "update",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.uuid();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.shortUUID();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 340,
-        "y": 560,
+        "x": 300,
+        "y": 680,
         "wires": [
             [
                 "b11d4aa3.d00d88"
@@ -8786,8 +8787,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 190,
-        "y": 560,
+        "x": 150,
+        "y": 680,
         "wires": [
             [
                 "98d4bce5.5a692"
@@ -8832,8 +8833,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 150,
-        "y": 720,
+        "x": 110,
+        "y": 840,
         "wires": [
             [
                 "7bd7d15.b34fd3"
@@ -8846,8 +8847,8 @@
         "z": "4b36e62d.340ed8",
         "name": "send 200 with my orderReference",
         "info": "",
-        "x": 220,
-        "y": 680,
+        "x": 180,
+        "y": 800,
         "wires": []
     },
     {
@@ -8858,8 +8859,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 520,
-        "y": 720,
+        "x": 480,
+        "y": 840,
         "wires": [
             [
                 "b11d4aa3.d00d88",
@@ -8883,8 +8884,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 650,
-        "y": 800,
+        "x": 610,
+        "y": 920,
         "wires": [
             [
                 "466feecd.5cc7"
@@ -8899,8 +8900,8 @@
         "func": "\nflow.set('counter', 0);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 310,
-        "y": 720,
+        "x": 270,
+        "y": 840,
         "wires": [
             [
                 "466feecd.5cc7"
@@ -8915,8 +8916,8 @@
         "func": "\nlet counter = flow.get('counter');\ncounter++;\n\nif(counter < 200) {\n    flow.set('counter', counter);\n    return msg;\n}\n\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 470,
-        "y": 800,
+        "x": 430,
+        "y": 920,
         "wires": [
             [
                 "e1d370b.0f14d9"
@@ -9145,5 +9146,150 @@
         "x": 420,
         "y": 40,
         "wires": []
+    },
+    {
+        "id": "7e214718.e9e798",
+        "type": "comment",
+        "z": "4b36e62d.340ed8",
+        "name": "var _meta = {   packageId: 'app',   componentId: 'test',   version: '0.1.0' }",
+        "info": "",
+        "x": 260,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "f57ca277.7980b",
+        "type": "link in",
+        "z": "4b36e62d.340ed8",
+        "name": "main.app.initialize.create",
+        "links": [
+            "f96041d6.ab02"
+        ],
+        "x": 290,
+        "y": 280,
+        "wires": [
+            [
+                "a48469d9.2bdb38"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "33a06c8f.527d04",
+        "type": "link out",
+        "z": "4b36e62d.340ed8",
+        "name": "main.app.initialize.update",
+        "links": [
+            "8940887d.e380d8"
+        ],
+        "x": 1130,
+        "y": 280,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "a48469d9.2bdb38",
+        "type": "delay",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 490,
+        "y": 280,
+        "wires": [
+            [
+                "efbcc82a.1ed738"
+            ]
+        ]
+    },
+    {
+        "id": "7aac64f6.91a58c",
+        "type": "comment",
+        "z": "4b36e62d.340ed8",
+        "name": "testing initialized mutex -----------------------------------------------------------------------------------------------",
+        "info": "",
+        "x": 420,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "efbcc82a.1ed738",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.set(isInitialized=true)",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nglobal.set(sau.app.getIsInitializedPath(_meta), true);\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 280,
+        "wires": [
+            [
+                "ad95000a.48b0f"
+            ]
+        ],
+        "icon": "node-red/leveldb.png"
+    },
+    {
+        "id": "ad95000a.48b0f",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "cleanMsg",
+        "func": "\n\nmsg = {}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 940,
+        "y": 280,
+        "wires": [
+            [
+                "33a06c8f.527d04"
+            ]
+        ]
+    },
+    {
+        "id": "7a97e025.20ade",
+        "type": "function",
+        "z": "3eb672f6.dc73fe",
+        "name": "mutex.acquire(initMutex)@app.initialized",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction showStatus(status) {\n    if(!status) node.status({fill:'yellow', shape: 'dot', text: 'false'});\n    else node.status({fill:'green', shape: 'dot', text: 'true'});     \n    return status;\n}\n\n// main -----------------------------------------------------------------\n\nnode.status({fill:'yellow', shape: 'dot', text: 'implement me'}); \n\nconst mutex = new su.Mutex();\n\nif(mutex.isLocked()) {\n    \n    node.warn(node.name + ': mutex is locked');\n    \n} else {\n\n    node.warn(node.name + ': mutex is not locked');\n    \n}\n\nmutex\n    .acquire()\n    .then(function(release) {\n\n        node.warn(node.name + ': mutex acquired ... ');\n        \n    });\n/*\nconst release = await mutex.acquire();\ntry {\n    \n    node.warn(node.name + ': mutex acquired ... ');\n    \n} finally {\n    //release();\n}\n*/\n\n/*\nlet modules = {\n    isAboutInitialized: global.get(sau.app.getIsInitializedPath(sau.about.getMetaInfo())) || false,\n    isOrderInitialized: global.get(sau.app.getIsInitializedPath(sau.order.getMetaInfo())) || false,\n    isTestInitialized: global.get(sau.app.getIsInitializedPath(sau.test.getMetaInfo())) || false,\n    //isDeviceSettingsInitialized: global.get(sau.app.getIsInitializedPath(sau.devicesettings.getMetaInfo())) || false,\n    //isMqttDeviceSessionControl: global.get(sau.app.getIsInitializedPath(sau.mqttDeviceSessionControl.getMetaInfo())) || false\n}\n\nlet isFullyInitialized = true;\n\nfor(var p in modules) {\n    if(modules[p] === false) isFullyInitialized = false;\n}\n\nshowStatus(isFullyInitialized);\n\nmsg.payload = modules;\n\nif(!isFullyInitialized) {\n    return [null, msg];\n} \n*/\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 1380,
+        "wires": [
+            [
+                "c75372a4.e92b5"
+            ]
+        ],
+        "outputLabels": [
+            "true"
+        ]
+    },
+    {
+        "id": "70a9bd94.630364",
+        "type": "function",
+        "z": "3eb672f6.dc73fe",
+        "name": "mutex.release(initMutex)@app.initialized",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction showStatus(status) {\n    if(!status) node.status({fill:'yellow', shape: 'dot', text: 'false'});\n    else node.status({fill:'green', shape: 'dot', text: 'true'});     \n    return status;\n}\n\n// main -----------------------------------------------------------------\n\nnode.status({fill:'yellow', shape: 'dot', text: 'implement me'}); \n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1080,
+        "y": 1380,
+        "wires": [
+            [
+                "8708783b.8323a8",
+                "4a61cafd.01b3d4"
+            ]
+        ],
+        "outputLabels": [
+            "true"
+        ]
     }
 ]
