@@ -1,6 +1,8 @@
-# Solace & Asapio Demonstrator to event-enable SAP ERP
+# Solace & Asapio Demonstrator: Event-enabling SAP ERP
 
 Demonstration of Solace + ASAPIO interacting with SAP ECC, Sales & Distribution.
+
+**Version: 0.1.4**
 
 ## Overview
 
