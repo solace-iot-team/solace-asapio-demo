@@ -12,13 +12,13 @@ The demonstrator consists of:
 - an on-premise Solace broker HA instance deployed in ASAPIO's data center
 - a Solace Cloud broker running in AWS Frankfurt, bridged into the on-premise broker
 
-and finally, this Node-RED based Order System that:
-- loads a product catalog as defined in SAP Sales & Distribution
-- allows the user to place an order in SAP (sends an Mqtt event to ACI)
+This Node-RED based Order System Simulator:
+- loads a product catalog as defined in SAP Sales & Distribution (SD)
+- allows the user to place an order in SAP SD (sends an Mqtt event to ACI)
 - receives SAP Events triggered by the creation of a new sales order
 
 As it is written in Node-RED, it is a single instance, single user system.
-Which means installation on your local machine.
+Which means installation on a local machine.
 
 ## Installation
 
