@@ -1728,6 +1728,12 @@
         "isAddTimestamp2Entries": true
     },
     {
+        "id": "8c779f84.c086",
+        "type": "Mutex",
+        "z": "",
+        "name": "mutex.app.initialize"
+    },
+    {
         "id": "1e3d4002.580e9",
         "type": "ui_text",
         "z": "b661b75c.e7b738",
@@ -2323,7 +2329,7 @@
         "name": "the end  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
         "info": "",
         "x": 900,
-        "y": 1720,
+        "y": 1760,
         "wires": []
     },
     {
@@ -4846,11 +4852,11 @@
             "a6890ed.17d7ff",
             "33a06c8f.527d04"
         ],
-        "x": 210,
-        "y": 1460,
+        "x": 350,
+        "y": 1380,
         "wires": [
             [
-                "7a97e025.20ade"
+                "2debfd8e.0a3792"
             ]
         ],
         "l": true
@@ -4909,13 +4915,15 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction showStatus(status) {\n    if(!status) node.status({fill:'yellow', shape: 'dot', text: 'false'});\n    else node.status({fill:'green', shape: 'dot', text: 'true'});     \n    return status;\n}\n\n// main -----------------------------------------------------------------\n\n\nlet modules = {\n    isAboutInitialized: global.get(sau.app.getIsInitializedPath(sau.about.getMetaInfo())) || false,\n    isOrderInitialized: global.get(sau.app.getIsInitializedPath(sau.order.getMetaInfo())) || false,\n    isTestInitialized: global.get(sau.app.getIsInitializedPath(sau.test.getMetaInfo())) || false,\n    //isDeviceSettingsInitialized: global.get(sau.app.getIsInitializedPath(sau.devicesettings.getMetaInfo())) || false,\n    //isMqttDeviceSessionControl: global.get(sau.app.getIsInitializedPath(sau.mqttDeviceSessionControl.getMetaInfo())) || false\n}\n\nlet isFullyInitialized = true;\n\nfor(var p in modules) {\n    if(modules[p] === false) isFullyInitialized = false;\n}\n\nshowStatus(isFullyInitialized);\n\nmsg.payload = modules;\n\nif(!isFullyInitialized) {\n    return [null, msg];\n} \n\nreturn msg;\n\n",
         "outputs": 2,
         "noerr": 0,
-        "x": 530,
-        "y": 1540,
+        "x": 1050,
+        "y": 1460,
         "wires": [
             [
                 "25855df.ddca3a2"
             ],
-            []
+            [
+                "24d718e.46061e8"
+            ]
         ],
         "outputLabels": [
             "true",
@@ -4946,8 +4954,8 @@
         "func": "\nmsg.payload = {\n    tab: 'Order',\n    tabs: {\n        enable: [\n            'Order', 'SAP Event Log'\n        ]\n    }\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 1350,
-        "y": 1540,
+        "x": 850,
+        "y": 1640,
         "wires": [
             [
                 "952ad74a.443de8"
@@ -4960,8 +4968,8 @@
         "z": "3eb672f6.dc73fe",
         "name": "applyTabs",
         "events": "change",
-        "x": 1510,
-        "y": 1540,
+        "x": 1010,
+        "y": 1640,
         "wires": [
             []
         ]
@@ -4980,8 +4988,8 @@
         "raw": false,
         "topic": "Application started successfully.",
         "name": "done.",
-        "x": 1530,
-        "y": 1580,
+        "x": 1030,
+        "y": 1680,
         "wires": []
     },
     {
@@ -4992,8 +5000,8 @@
         "func": "\nmsg.payload = \"enjoy.\";\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 1340,
-        "y": 1580,
+        "x": 840,
+        "y": 1680,
         "wires": [
             [
                 "60f3a96.b5b3158"
@@ -5008,8 +5016,8 @@
         "func": "\nmsg.payload = {\n    log:    '_END_:_INITIALIZATION_'\n}\n\nnode.log(msg.payload.log);           \n\nreturn msg;",
         "outputs": 0,
         "noerr": 0,
-        "x": 1270,
-        "y": 1500,
+        "x": 770,
+        "y": 1600,
         "wires": []
     },
     {
@@ -5029,11 +5037,11 @@
                 "type": "str"
             }
         ],
-        "x": 860,
-        "y": 1540,
+        "x": 1440,
+        "y": 1460,
         "wires": [
             [
-                "70a9bd94.630364"
+                "82c734da.6ecea8"
             ]
         ]
     },
@@ -5045,8 +5053,8 @@
         "func": "msg.payload = {\n    set: {\n        state: 'app.isInitialized',\n        params: {\n            value: true \n        }\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 690,
-        "y": 1540,
+        "x": 1250,
+        "y": 1460,
         "wires": [
             [
                 "f7521c5a.a9712"
@@ -5274,8 +5282,8 @@
         "func": "\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1200,
-        "y": 1560,
+        "x": 700,
+        "y": 1660,
         "wires": [
             [
                 "d9f82abd.764ae8",
@@ -6896,16 +6904,22 @@
         "rules": [
             {
                 "t": "false"
+            },
+            {
+                "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
+        "outputs": 2,
         "x": 830,
         "y": 1460,
         "wires": [
             [
                 "50816677.e479f8"
+            ],
+            [
+                "24d718e.46061e8"
             ]
         ]
     },
@@ -7073,11 +7087,9 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 850,
-        "y": 540,
+        "y": 500,
         "wires": [
-            [
-                "a6890ed.17d7ff"
-            ]
+            []
         ]
     },
     {
@@ -7170,7 +7182,8 @@
         "y": 540,
         "wires": [
             [
-                "be1e7465.193368"
+                "be1e7465.193368",
+                "a6890ed.17d7ff"
             ]
         ]
     },
@@ -9165,11 +9178,12 @@
         "links": [
             "f96041d6.ab02"
         ],
-        "x": 290,
+        "x": 310,
         "y": 280,
         "wires": [
             [
-                "a48469d9.2bdb38"
+                "a48469d9.2bdb38",
+                "efbcc82a.1ed738"
             ]
         ],
         "l": true
@@ -9182,7 +9196,7 @@
         "links": [
             "8940887d.e380d8"
         ],
-        "x": 1130,
+        "x": 1090,
         "y": 280,
         "wires": [],
         "l": true
@@ -9193,8 +9207,8 @@
         "z": "4b36e62d.340ed8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -9202,12 +9216,10 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 490,
-        "y": 280,
+        "x": 520,
+        "y": 300,
         "wires": [
-            [
-                "efbcc82a.1ed738"
-            ]
+            []
         ]
     },
     {
@@ -9216,7 +9228,7 @@
         "z": "4b36e62d.340ed8",
         "name": "testing initialized mutex -----------------------------------------------------------------------------------------------",
         "info": "",
-        "x": 420,
+        "x": 380,
         "y": 240,
         "wires": []
     },
@@ -9228,7 +9240,7 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nglobal.set(sau.app.getIsInitializedPath(_meta), true);\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 750,
+        "x": 710,
         "y": 280,
         "wires": [
             [
@@ -9245,7 +9257,7 @@
         "func": "\n\nmsg = {}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 940,
+        "x": 900,
         "y": 280,
         "wires": [
             [
@@ -9254,42 +9266,114 @@
         ]
     },
     {
-        "id": "7a97e025.20ade",
-        "type": "function",
+        "id": "a2127ed5.e0643",
+        "type": "MutexMethods",
         "z": "3eb672f6.dc73fe",
-        "name": "mutex.acquire(initMutex)@app.initialized",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction showStatus(status) {\n    if(!status) node.status({fill:'yellow', shape: 'dot', text: 'false'});\n    else node.status({fill:'green', shape: 'dot', text: 'true'});     \n    return status;\n}\n\n// main -----------------------------------------------------------------\n\nnode.status({fill:'yellow', shape: 'dot', text: 'implement me'}); \n\nconst mutex = new su.Mutex();\n\nif(mutex.isLocked()) {\n    \n    node.warn(node.name + ': mutex is locked');\n    \n} else {\n\n    node.warn(node.name + ': mutex is not locked');\n    \n}\n\nmutex\n    .acquire()\n    .then(function(release) {\n\n        node.warn(node.name + ': mutex acquired ... ');\n        \n    });\n/*\nconst release = await mutex.acquire();\ntry {\n    \n    node.warn(node.name + ': mutex acquired ... ');\n    \n} finally {\n    //release();\n}\n*/\n\n/*\nlet modules = {\n    isAboutInitialized: global.get(sau.app.getIsInitializedPath(sau.about.getMetaInfo())) || false,\n    isOrderInitialized: global.get(sau.app.getIsInitializedPath(sau.order.getMetaInfo())) || false,\n    isTestInitialized: global.get(sau.app.getIsInitializedPath(sau.test.getMetaInfo())) || false,\n    //isDeviceSettingsInitialized: global.get(sau.app.getIsInitializedPath(sau.devicesettings.getMetaInfo())) || false,\n    //isMqttDeviceSessionControl: global.get(sau.app.getIsInitializedPath(sau.mqttDeviceSessionControl.getMetaInfo())) || false\n}\n\nlet isFullyInitialized = true;\n\nfor(var p in modules) {\n    if(modules[p] === false) isFullyInitialized = false;\n}\n\nshowStatus(isFullyInitialized);\n\nmsg.payload = modules;\n\nif(!isFullyInitialized) {\n    return [null, msg];\n} \n*/\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 400,
-        "y": 1380,
+        "mutex": "8c779f84.c086",
+        "name": "mutex.acquire/blocking(app.initialize)",
+        "method": "acquireBlock",
+        "mutexTimeout": "100",
+        "x": 270,
+        "y": 1460,
         "wires": [
             [
                 "c75372a4.e92b5"
-            ]
-        ],
-        "outputLabels": [
-            "true"
+            ],
+            []
         ]
     },
     {
-        "id": "70a9bd94.630364",
+        "id": "82c734da.6ecea8",
+        "type": "MutexMethods",
+        "z": "3eb672f6.dc73fe",
+        "mutex": "8c779f84.c086",
+        "name": "mutex.release(app.initialize)",
+        "method": "release",
+        "mutexTimeout": "100",
+        "x": 1680,
+        "y": 1460,
+        "wires": [
+            [
+                "fbee5225.8b618"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5d3c4581.5d3d7c",
         "type": "function",
         "z": "3eb672f6.dc73fe",
-        "name": "mutex.release(initMutex)@app.initialized",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction showStatus(status) {\n    if(!status) node.status({fill:'yellow', shape: 'dot', text: 'false'});\n    else node.status({fill:'green', shape: 'dot', text: 'true'});     \n    return status;\n}\n\n// main -----------------------------------------------------------------\n\nnode.status({fill:'yellow', shape: 'dot', text: 'implement me'}); \n\nreturn msg;\n\n",
+        "name": "",
+        "func": "\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1080,
+        "x": 530,
+        "y": 1600,
+        "wires": [
+            [
+                "4a61cafd.01b3d4",
+                "8708783b.8323a8"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "2debfd8e.0a3792",
+        "type": "function",
+        "z": "3eb672f6.dc73fe",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
         "y": 1380,
         "wires": [
             [
-                "8708783b.8323a8",
-                "4a61cafd.01b3d4"
+                "a2127ed5.e0643"
             ]
         ],
-        "outputLabels": [
-            "true"
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "24d718e.46061e8",
+        "type": "MutexMethods",
+        "z": "3eb672f6.dc73fe",
+        "mutex": "8c779f84.c086",
+        "name": "mutex.release(app.initialize)",
+        "method": "release",
+        "mutexTimeout": "100",
+        "x": 1140,
+        "y": 1400,
+        "wires": [
+            [],
+            []
         ]
+    },
+    {
+        "id": "fbee5225.8b618",
+        "type": "function",
+        "z": "3eb672f6.dc73fe",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1690,
+        "y": 1540,
+        "wires": [
+            [
+                "5d3c4581.5d3d7c"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "77c0c6a1.fd27d8",
+        "type": "comment",
+        "z": "4b36e62d.340ed8",
+        "name": "manual tests -----------------------------------------------------------------------------------------------",
+        "info": "",
+        "x": 350,
+        "y": 380,
+        "wires": []
     }
 ]

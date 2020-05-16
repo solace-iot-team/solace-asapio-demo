@@ -1,0 +1,86 @@
+{
+  "eventMetaData": {
+    "namespace": "",
+    "version": "v1",
+    "eventName": "SalesOrderCreated",
+    "topic": "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/ERD100/59fa7555a32747e8a02cee2352bc2403/0000096961",
+    "originDomain": "DomainECC",
+    "eventId": "",
+    "correlationId": "",
+    "timestamp": "2020-05-14T14:42:42Z"
+  },
+  "data": {
+    "topic": "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/ERD100/59fa7555a32747e8a02cee2352bc2403/0000096961",
+    "sapOrderNo": "0000096961",
+    "orderType": "ZTM",
+    "salesOrg": "1000",
+    "distrChan": "01",
+    "division": "00",
+    "netValue": "0.0",
+    "documentCurrency": "EUR",
+    "shippingCond": "01",
+    "externalReference": "59fa7555a32747e8a02cee2352bc2403",
+    "paymentTerms": "0001",
+    "pricingDate": "2020-05-14",
+    "incoTerms1": "FH",
+    "incoTerms2": "",
+    "orderReason": "",
+    "billingBlock": "",
+    "deliveryBlock": "",
+    "orderCreationDate": "2020-05-14T14:42:41Z",
+    "items": [
+      {
+        "itemNo": "000010",
+        "itemType": "TAN",
+        "materialNo": "CONTROLLER-2",
+        "customerMaterialNo": "",
+        "itemText": "Controller-2",
+        "quantity": "0.0",
+        "quantityUOM": "ST",
+        "netPrice": "0.0",
+        "pricingUnit": "1",
+        "conditionUnit": "ST",
+        "paymentGuarantee": "",
+        "maxPartialDeliveryItem": "9",
+        "overDeliveryToleranceLimit": "0.0",
+        "underDeliveryToleranceLimit": "0.0",
+        "billingItemBlock": "",
+        "relevantBilling": "A",
+        "netValue": "0.0",
+        "plant": "1000",
+        "storageLocation": "",
+        "deliveryPriority": "01",
+        "shippingPoint": "1000",
+        "netWeight": "0.0",
+        "grossItemWeight": "0.0",
+        "itemVolume": "0.0",
+        "itemVolumeUnit": "",
+        "itemPaymentTerm": "",
+        "receivingPoint": "",
+        "departmentNumber": "",
+        "salesDistrict": "",
+        "busType": "",
+        "itemIncoTerms1": "",
+        "itemIncoTerms2": ""
+      }
+    ]
+  },
+  "partner": [
+    {
+      "partnerType": "soldTo",
+      "partnerID": "CE02"
+    },
+    {
+      "partnerType": "billTo",
+      "partnerID": "CE02"
+    },
+    {
+      "partnerType": "payer",
+      "partnerID": "CE02"
+    },
+    {
+      "partnerType": "shipTo",
+      "partnerID": "CE02"
+    }
+  ]
+}

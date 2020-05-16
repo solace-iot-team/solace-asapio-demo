@@ -651,6 +651,26 @@
      "local": false,
      "module": "node-red-contrib-solace-utils",
      "file": "/usr/local/lib/node_modules/node-red-contrib-solace-utils/nodes/Logger.js"
+    },
+    "Mutex": {
+     "name": "Mutex",
+     "types": [
+      "Mutex"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-solace-utils",
+     "file": "/usr/local/lib/node_modules/node-red-contrib-solace-utils/nodes/Mutex.js"
+    },
+    "MutexMethods": {
+     "name": "MutexMethods",
+     "types": [
+      "MutexMethods"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-solace-utils",
+     "file": "/usr/local/lib/node_modules/node-red-contrib-solace-utils/nodes/MutexMethods.js"
     }
    }
   }

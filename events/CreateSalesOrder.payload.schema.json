@@ -1,0 +1,225 @@
+{
+  "definitions": {
+    "timestampType": {
+      "type": "string",
+      "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+    },
+    "uuid": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "topic": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9/\\._-]+$"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://solace.com/sap-events/createSalesOrder.json",
+  "type": "object",
+  "title": "SAP Create Sales Order",
+  "required": [
+    "eventMetaData",
+    "data"
+  ],
+  "properties": {
+    "eventMetaData": {
+      "$id": "#/eventMetaData",
+      "type": "object",
+      "title": "event meta data",
+      "required": [
+        "namespace",
+        "version",
+        "eventName",
+        "topic",
+        "originDomain",
+        "timestamp"
+      ],
+      "properties": {
+        "namespace": {
+          "$id": "#/eventMetaData/namespace",
+          "type": "string",
+          "title": "namespace for the event",
+          "examples": [
+            "sap_demo/BUS2032/sap-bo-data"
+          ]
+        },
+        "version": {
+          "$id": "#/eventMetaData/version",
+          "type": "string",
+          "enum": [
+            "v1"
+          ],
+          "title": "schema version"
+        },
+        "eventName": {
+          "$id": "#/eventMetaData/eventName",
+          "type": "string",
+          "title": "name of the event",
+          "enum": [
+            "CreateSalesOrder"
+          ]
+        },
+        "topic": {
+          "$id": "#/eventMetaData/topic",
+          "$ref": "#/definitions/topic",
+          "title": "The topic",
+          "examples": [
+            "sap_demo/BUS2032/sap-bo-data/create/json/v1/asadev/1000/ERD100/{externalReference}"
+          ]
+        },
+        "originDomain": {
+          "$id": "#/eventMetaData/originDomain",
+          "type": "string",
+          "title": "origin domain of the event",
+          "enum": [
+            "webshop"
+          ]
+        },
+        "timestamp": {
+          "$id": "#/eventMetaData/timestamp",
+          "$ref": "#/definitions/timestampType",
+          "title": "The timestamp the event was sent",
+          "examples": [
+            "2019-11-12T16:09:19.234Z"
+          ]
+        }
+      }
+    },
+    "data": {
+      "$id": "#/data",
+      "type": "object",
+      "title": "event data",
+      "default": null,
+      "required": [
+        "externalReference",
+        "channel",
+        "partner",
+        "deliveryInstructions",
+        "items"
+      ],
+      "properties": {
+        "externalReference": {
+          "$id": "#/data/externalReference",
+          "$ref": "#/definitions/uuid",
+          "title": "order reference id",
+          "examples": [
+            "fc2733f720014a48979533496480511a"
+          ]
+        },
+        "channel": {
+          "$id": "#/data/channel",
+          "type": "object",
+          "title": "sales channel info",
+          "required": [
+            "orderType",
+            "salesOrg",
+            "distributionChannel",
+            "division"
+          ],
+          "properties": {
+            "orderType": {
+              "$id": "#/data/channel/orderType",
+              "type": "string",
+              "title": "order type",
+              "enum": [
+                "ZTM"
+              ]
+            },
+            "salesOrg": {
+              "$id": "#/data/channel/salesOrg",
+              "type": "string",
+              "title": "sales org",
+              "enum": [
+                "1000"
+              ]
+            },
+            "distributionChannel": {
+              "$id": "#/data/channel/distributionChannel",
+              "type": "string",
+              "title": "distribution channel",
+              "enum": [
+                "01"
+              ]
+            },
+            "division": {
+              "$id": "#/data/channel/division",
+              "type": "string",
+              "title": "sales division",
+              "enum": [
+                "00"
+              ]
+            }
+          }
+        },
+        "partner": {
+          "$id": "#/data/partner",
+          "type": "object",
+          "title": "partner info",
+          "required": [
+            "soldToId",
+            "shipToId"
+          ],
+          "properties": {
+            "soldToId": {
+              "$id": "#/data/partner/soldToId",
+              "type": "string",
+              "enum": [
+                "CE01"
+              ],
+              "title": "sold to id"
+            },
+            "shipToId": {
+              "$id": "#/data/partner/shipToId",
+              "type": "string",
+              "enum": [
+                "CE01"
+              ],
+              "title": "ship to id"
+            }
+          }
+        },
+        "deliveryInstructions": {
+          "$id": "#/data/deliveryInstructions",
+          "type": "object",
+          "title": "delivery instructions",
+          "required": [
+            "notBefore"
+          ],
+          "properties": {
+            "notBefore": {
+              "$id": "#/data/deliveryInstructions/notBefore",
+              "$ref": "#/definitions/timestampType",
+              "title": "ship not before date"
+            }
+          }
+        },
+        "items": {
+          "$id": "#/data/items",
+          "type": "array",
+          "title": "order items",
+          "items": {
+            "type": "object",
+            "required": [
+              "matnr",
+              "quantity"
+            ],
+            "properties": {
+              "matnr": {
+                "$id": "#/data/items/item/matnr",
+                "type": "string",
+                "title": "material number, sku"
+              },
+              "quantity": {
+                "$id": "#/data/items/item/quantity",
+                "type": "number",
+                "minimum": 1,
+                "multipleOf": 1,
+                "title": "quantity"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

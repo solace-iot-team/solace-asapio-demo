@@ -1,0 +1,323 @@
+{
+  "definitions": {
+    "timestampType": {
+      "type": "string",
+      "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+    },
+    "uuid": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "topic": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9/\\._-]+$"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://solace.com/sap-events/salesOrderUpdate.json",
+  "type": "object",
+  "title": "SAP Sales Order Update",
+  "required": [
+    "eventMetaData",
+    "data",
+    "partner"
+  ],
+  "properties": {
+    "eventMetaData": {
+      "$id": "#/eventMetaData",
+      "type": "object",
+      "title": "event meta data",
+      "required": [
+        "namespace",
+        "version",
+        "eventName",
+        "topic",
+        "originDomain",
+        "timestamp"
+      ],
+      "properties": {
+        "namespace": {
+          "$id": "#/eventMetaData/namespace",
+          "type": "string",
+          "title": "namespace for the event",
+          "examples": [
+            "sap_demo/BUS2032/sap-bo-data"
+          ]
+        },
+        "version": {
+          "$id": "#/eventMetaData/version",
+          "type": "string",
+          "enum": [
+            "v1"
+          ],
+          "title": "schema version"
+        },
+        "eventName": {
+          "$id": "#/eventMetaData/eventName",
+          "type": "string",
+          "title": "name of the event",
+          "enum": [
+            "SalesOrderCreated"
+          ]
+        },
+        "topic": {
+          "$id": "#/eventMetaData/topic",
+          "$ref": "#/definitions/topic",
+          "title": "The topic",
+          "examples": [
+            "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/ERD100/59fa7555a32747e8a02cee2352bc2403/0000096961",
+            "sap_demo/BUS2032/sap-bo-data/create/json/v1/asadev/1000/ERD100/{externalReference}/{vbeln}"
+          ]
+        },
+        "originDomain": {
+          "$id": "#/eventMetaData/originDomain",
+          "type": "string",
+          "title": "origin domain of the event",
+          "enum": [
+            "DomainECC"
+          ]
+        },
+        "timestamp": {
+          "$id": "#/eventMetaData/timestamp",
+          "$ref": "#/definitions/timestampType",
+          "title": "The timestamp the event was sent",
+          "examples": [
+            "2019-11-12T16:09:19.234Z"
+          ]
+        }
+      }
+    },
+    "data": {
+      "$id": "#/data",
+      "type": "object",
+      "title": "event data",
+      "default": null,
+      "required": [
+        "sapOrderNo",
+        "orderType",
+        "salesOrg",
+        "distrChan",
+        "division",
+        "netValue",
+        "documentCurrency",
+        "shippingCond",
+        "externalReference",
+        "paymentTerms",
+        "pricingDate",
+        "incoTerms1",
+        "incoTerms2",
+        "orderReason",
+        "billingBlock",
+        "deliveryBlock",
+        "orderCreationDate",
+        "items"
+      ],
+      "properties": {
+        "sapOrderNo": {
+          "$id": "#/data/sapOrderNo",
+          "$ref": "#/definitions/uuid",
+          "examples": [
+            "0000096961"
+          ]
+        },
+        "orderType": {
+          "$id": "#/data/orderType",
+          "type": "string",
+          "title": "order type",
+          "enum": [
+            "ZTM"
+          ]
+        },
+        "salesOrg": {
+          "$id": "#/data/salesOrg",
+          "type": "string",
+          "title": "sales org",
+          "enum": [
+            "1000"
+          ]
+        },
+        "distrChan": {
+          "$id": "#/data/distrChan",
+          "type": "string",
+          "title": "distribution channel",
+          "enum": [
+            "01"
+          ]
+        },
+        "division": {
+          "$id": "#/data/division",
+          "type": "string",
+          "title": "sales division",
+          "enum": [
+            "00"
+          ]
+        },
+        "netValue": {
+          "$id": "#/data/netValue",
+          "type": "string",
+          "title": "net value"
+        },
+        "documentCurrency": {
+          "$id": "#/data/documentCurrency",
+          "type": "string",
+          "title": "currency",
+          "enum": [
+            "EUR"
+          ]
+        },
+        "shippingCond": {
+          "$id": "#/data/shippingCond",
+          "type": "string",
+          "title": "shipping conditions",
+          "enum": [
+            "01"
+          ]
+        },
+        "externalReference": {
+          "$id": "#/data/externalReference",
+          "$ref": "#/definitions/uuid",
+          "title": "external order reference id",
+          "examples": [
+            "fc2733f720014a48979533496480511a"
+          ]
+        },
+        "paymentTerms": {
+          "$id": "#/data/paymentTerms",
+          "type": "string",
+          "title": "payment terms",
+          "enum": [
+            "0001"
+          ]
+        },
+        "pricingDate": {
+          "$id": "#/data/pricingDate",
+          "$ref": "#/definitions/timestampType",
+          "title": "pricing date"
+        },
+        "incoTerms1": {
+          "$id": "#/data/incoTerms1",
+          "type": "string",
+          "title": "?",
+          "enum": [
+            "FH"
+          ]
+        },
+        "incoTerms2": {
+          "$id": "#/data/incoTerms2",
+          "type": "string",
+          "title": "?"
+        },
+        "orderReason": {
+          "$id": "#/data/orderReason",
+          "type": "string",
+          "title": "?"
+        },
+        "billingBlock": {
+          "$id": "#/data/billingBlock",
+          "type": "string",
+          "title": "?"
+        },
+        "deliveryBlock": {
+          "$id": "#/data/deliveryBlock",
+          "type": "string",
+          "title": "?"
+        },
+        "orderCreationDate": {
+          "$id": "#/data/orderCreationDate",
+          "$ref": "#/definitions/timestampType",
+          "title": "order date"
+        },
+        "items": {
+          "$id": "#/data/items",
+          "type": "array",
+          "title": "order items",
+          "items": {
+            "type": "object",
+            "required": [
+              "itemNo",
+              "itemType",
+              "materialNo",
+              "customerMaterialNo",
+              "itemText",
+              "quantity",
+              "quantityUOM",
+              "netPrice",
+              "pricingUnit",
+              "conditionUnit",
+              "paymentGuarantee",
+              "maxPartialDeliveryItem",
+              "overDeliveryToleranceLimit",
+              "underDeliveryToleranceLimit",
+              "billingItemBlock",
+              "relevantBilling",
+              "netValue",
+              "plant",
+              "storageLocation",
+              "deliveryPriority",
+              "shippingPoint",
+              "netWeight",
+              "grossItemWeight",
+              "itemVolume",
+              "itemVolumeUnit",
+              "itemPaymentTerm",
+              "receivingPoint",
+              "departmentNumber",
+              "salesDistrict",
+              "busType",
+              "itemIncoTerms1",
+              "itemIncoTerms2"
+            ],
+            "properties": {
+              "itemNo": {
+                "$id": "#/data/items/item/itemNo",
+                "type": "string",
+                "title": "item number"
+              },
+              "itemType": {
+                "$id": "#/data/items/item/itemType",
+                "type": "string",
+                "title": "?",
+                "enum": [
+                  "TAN"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "partner": {
+      "$id": "#/data/partnerItems",
+      "type": "array",
+      "title": "partner items",
+      "items": {
+        "type": "object",
+        "required": [
+          "partnerType",
+          "partnerID"
+        ],
+        "properties": {
+          "partnerType": {
+            "$id": "#/data/partner/item/partnerType",
+            "type": "string",
+            "title": "partner type",
+            "enum": [
+              "soldTo",
+              "billTo",
+              "payer",
+              "shipTo"
+            ]
+          },
+          "partnerID": {
+            "$id": "#/data/items/item/partnerID",
+            "type": "string",
+            "title": "partner id",
+            "enum": [
+              "CE02"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "event": "CreateSalesOrder",
+  "schema": "{domain}/{sapObjectId}/{eventType}/{action}/{payloadType}/{version}/{sapOrgId}/{salesOrgId}/{systemId}/{externalReference}",
+  "example": "sap_demo/BUS2032/sap-bo-data/create/json/v1/asadev/1000/ERD100/{externalReference}"
+  "elements": {
+    "domain": {
+      "valueFunction": "staticContent",
+      "value": "sap-demo"
+    },
+    "sapObjectId": {
+      "valueFunction": "staticContent",
+      "value": "BUS2032"
+    },
+    "eventType": {
+      "valueFunction": "staticContent",
+      "value": "sap-bo-data"
+    },
+    "action": {
+      "valueFunction": "staticContent",
+      "value": "create"
+    },
+    "payloadType": {
+      "valueFunction": "staticContent",
+      "value": "json"
+    },
+    "version": {
+      "valueFunction": "staticContent",
+      "value": "v1"
+    },
+    "sapOrgId": {
+      "valueFunction": "staticContent",
+      "value": "asadev"
+    },
+    "salesOrgId": {
+      "valueFunction": "staticContent",
+      "value": "1000"
+    },
+    "systemId": {
+      "valueFunction": "staticContent",
+      "value": "system1"
+    },
+    "externalReference": {
+      "valueFunction": "runtimeInput"
+    }
+  }
+}

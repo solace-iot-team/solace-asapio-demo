@@ -1,0 +1,34 @@
+{
+  "eventMetaData": {
+    "namespace": "sap_demo/BUS2032/sap-bo-data",
+    "version": "v1",
+    "eventName": "CreateSalesOrder",
+    "topic": "sap_demo/BUS2032/sap-bo-data/create/json/v1/asadev/1000/ERD100/fc2733f720014a48979533496480511a",
+    "originDomain": "webshop",
+    "eventId": "fc2733f720014a48979533496480511a",
+    "correlationId": "fc2733f720014a48979533496480511a",
+    "timestamp": "2020-05-14T09:31:01.569Z"
+  },
+  "data": {
+    "externalReference": "fc2733f720014a48979533496480511a",
+    "channel": {
+      "orderType": "ZTM",
+      "salesOrg": "1000",
+      "distributionChannel": "01",
+      "division": "00"
+    },
+    "partner": {
+      "soldToId": "CE01",
+      "shipToId": "CE01"
+    },
+    "deliveryInstructions": {
+      "notBefore": "2020-05-24T09:30:56.674Z"
+    },
+    "items": [
+      {
+        "matnr": "CONTROLLER-2",
+        "quantity": 1
+      }
+    ]
+  }
+}
