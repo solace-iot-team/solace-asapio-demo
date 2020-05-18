@@ -12,7 +12,8 @@ module.exports = {
   mqttConnectionMonitor: require('./mqttConnectionMonitor.js'),
   productCatalog: require('./productCatalog.js'),
   events: require('./events.js'),
-  test: require('./test.js')
+  test: require('./test.js'),
+  sapEventLog: require('./sapEventLog.js')
 }
 
 // The end.

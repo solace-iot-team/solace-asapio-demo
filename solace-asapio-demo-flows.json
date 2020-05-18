@@ -14,6 +14,20 @@
         "info": ""
     },
     {
+        "id": "12e201f9.88b2be",
+        "type": "tab",
+        "label": "main.sap-event-log",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4b36e62d.340ed8",
+        "type": "tab",
+        "label": "main.test",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "b661b75c.e7b738",
         "type": "tab",
         "label": "main.about",
@@ -28,9 +42,9 @@
         "info": ""
     },
     {
-        "id": "4b36e62d.340ed8",
+        "id": "9207c7bc.35e4b8",
         "type": "tab",
-        "label": "main.test",
+        "label": "save.tests",
         "disabled": false,
         "info": ""
     },
@@ -1441,7 +1455,7 @@
         "z": "",
         "name": "About",
         "icon": "dashboard",
-        "order": 3,
+        "order": 4,
         "disabled": false,
         "hidden": false
     },
@@ -1734,6 +1748,47 @@
         "name": "mutex.app.initialize"
     },
     {
+        "id": "41222dff.1824c4",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Tests",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "d7e8a590.ae7fe8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Create Orders",
+        "tab": "41222dff.1824c4",
+        "order": 1,
+        "disp": true,
+        "width": "21",
+        "collapse": false
+    },
+    {
+        "id": "740619e9.082388",
+        "type": "ui_group",
+        "z": "",
+        "name": "Create Faulty Orders",
+        "tab": "41222dff.1824c4",
+        "order": 2,
+        "disp": true,
+        "width": "21",
+        "collapse": false
+    },
+    {
+        "id": "b0cdeb86.b10de8",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "740619e9.082388",
+        "order": 6,
+        "width": "7",
+        "height": 1
+    },
+    {
         "id": "1e3d4002.580e9",
         "type": "ui_text",
         "z": "b661b75c.e7b738",
@@ -1975,7 +2030,7 @@
         "type": "function",
         "z": "3eb672f6.dc73fe",
         "name": "disableTabs",
-        "func": "\nmsg.payload = {\n    tab: 'About',\n    tabs: {\n        disable: [\n            'Order', 'SAP Event Log'\n        ]\n    }\n}\n\nreturn msg;\n\n\n",
+        "func": "\nmsg.payload = {\n    tab: 'About',\n    tabs: {\n        disable: [\n            'Order', 'SAP Event Log', 'Tests'\n        ]\n    }\n}\n\nreturn msg;\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "x": 470,
@@ -4833,7 +4888,8 @@
             "af47e4e7.3f1028",
             "2bce26b2.a7cd2a",
             "7228d7e4.7201d8",
-            "f57ca277.7980b"
+            "f57ca277.7980b",
+            "4fc1447.062e8bc"
         ],
         "x": 610,
         "y": 1020,
@@ -4850,7 +4906,8 @@
             "c3a55027.c2818",
             "fa9e6fc1.f5adb",
             "a6890ed.17d7ff",
-            "33a06c8f.527d04"
+            "33a06c8f.527d04",
+            "5dd06c84.955c14"
         ],
         "x": 350,
         "y": 1380,
@@ -4912,7 +4969,7 @@
         "type": "function",
         "z": "3eb672f6.dc73fe",
         "name": "app.checkModules",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction showStatus(status) {\n    if(!status) node.status({fill:'yellow', shape: 'dot', text: 'false'});\n    else node.status({fill:'green', shape: 'dot', text: 'true'});     \n    return status;\n}\n\n// main -----------------------------------------------------------------\n\n\nlet modules = {\n    isAboutInitialized: global.get(sau.app.getIsInitializedPath(sau.about.getMetaInfo())) || false,\n    isOrderInitialized: global.get(sau.app.getIsInitializedPath(sau.order.getMetaInfo())) || false,\n    isTestInitialized: global.get(sau.app.getIsInitializedPath(sau.test.getMetaInfo())) || false,\n    //isDeviceSettingsInitialized: global.get(sau.app.getIsInitializedPath(sau.devicesettings.getMetaInfo())) || false,\n    //isMqttDeviceSessionControl: global.get(sau.app.getIsInitializedPath(sau.mqttDeviceSessionControl.getMetaInfo())) || false\n}\n\nlet isFullyInitialized = true;\n\nfor(var p in modules) {\n    if(modules[p] === false) isFullyInitialized = false;\n}\n\nshowStatus(isFullyInitialized);\n\nmsg.payload = modules;\n\nif(!isFullyInitialized) {\n    return [null, msg];\n} \n\nreturn msg;\n\n",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nfunction showStatus(status) {\n    if(!status) node.status({fill:'yellow', shape: 'dot', text: 'false'});\n    else node.status({fill:'green', shape: 'dot', text: 'true'});     \n    return status;\n}\n\n// main -----------------------------------------------------------------\n\n\nlet modules = {\n    isAboutInitialized: global.get(sau.app.getIsInitializedPath(sau.about.getMetaInfo())) || false,\n    isOrderInitialized: global.get(sau.app.getIsInitializedPath(sau.order.getMetaInfo())) || false,\n    isSAPEventLogInitialized: global.get(sau.app.getIsInitializedPath(sau.sapEventLog.getMetaInfo())) || false,\n    isTestInitialized: global.get(sau.app.getIsInitializedPath(sau.test.getMetaInfo())) || false,\n}\n\nlet isFullyInitialized = true;\n\nfor(var p in modules) {\n    if(modules[p] === false) isFullyInitialized = false;\n}\n\nshowStatus(isFullyInitialized);\n\nmsg.payload = modules;\n\nif(!isFullyInitialized) {\n    return [null, msg];\n} \n\nreturn msg;\n\n",
         "outputs": 2,
         "noerr": 0,
         "x": 1050,
@@ -4951,7 +5008,7 @@
         "type": "function",
         "z": "3eb672f6.dc73fe",
         "name": "enableTabs",
-        "func": "\nmsg.payload = {\n    tab: 'Order',\n    tabs: {\n        enable: [\n            'Order', 'SAP Event Log'\n        ]\n    }\n}\n\nreturn msg;\n",
+        "func": "\nmsg.payload = {\n    tab: 'Order',\n    tabs: {\n        enable: [\n            'Order', 'SAP Event Log', 'Tests'\n        ]\n    }\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 850,
@@ -7066,31 +7123,10 @@
         "links": [
             "8940887d.e380d8"
         ],
-        "x": 1050,
+        "x": 890,
         "y": 540,
         "wires": [],
         "l": true
-    },
-    {
-        "id": "be1e7465.193368",
-        "type": "delay",
-        "z": "4d60d452.18914c",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "250",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 850,
-        "y": 500,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "d67b54aa.7eb338",
@@ -7182,7 +7218,6 @@
         "y": 540,
         "wires": [
             [
-                "be1e7465.193368",
                 "a6890ed.17d7ff"
             ]
         ]
@@ -7746,8 +7781,8 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 920,
-        "y": 1280,
+        "x": 580,
+        "y": 1300,
         "wires": [
             []
         ]
@@ -7768,8 +7803,7 @@
         "y": 1300,
         "wires": [
             [
-                "af3625fc.67c038",
-                "45ba2acf.048044"
+                "af3625fc.67c038"
             ]
         ]
     },
@@ -7796,7 +7830,7 @@
         ],
         "uncaught": false,
         "x": 90,
-        "y": 1640,
+        "y": 1460,
         "wires": [
             [
                 "1fc51bab.9869d4"
@@ -7808,16 +7842,15 @@
         "type": "mqtt in",
         "z": "4d60d452.18914c",
         "name": "SAPEvent.SalesOrderCreated",
-        "topic": "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/#",
+        "topic": "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/ERD100/#",
         "qos": "1",
         "datatype": "json",
         "broker": "62bac859.25e008",
-        "x": 160,
-        "y": 1900,
+        "x": 140,
+        "y": 1680,
         "wires": [
             [
-                "f1b10946.39ef68",
-                "7305b383.79b80c"
+                "f1b10946.39ef68"
             ]
         ]
     },
@@ -7826,11 +7859,11 @@
         "type": "function",
         "z": "4d60d452.18914c",
         "name": "filter",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\n\n// order not generated by this instance\nif(su.misc.isStringEmpty(orderReference)) return;\n\n// general update, not related to order\nif(msg.topic.includes(orderReference)) return msg;\n\n// ---\n// The End.",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\n\n// order not generated by this instance\nif(su.misc.isStringEmpty(orderReference)) return;\n\n// update for this order\nif(msg.topic.includes(orderReference)) return msg;\n\n// ---\n// The End.",
         "outputs": 1,
         "noerr": 0,
-        "x": 450,
-        "y": 1900,
+        "x": 350,
+        "y": 1680,
         "wires": [
             [
                 "8de1f889.868108"
@@ -7936,36 +7969,16 @@
         "icon": "node-red/trigger.svg"
     },
     {
-        "id": "3822c38e.c75a5c",
-        "type": "ui_template",
-        "z": "4d60d452.18914c",
-        "group": "b1ee4438.4885c8",
-        "name": "displaySAPEventLog",
-        "order": 2,
-        "width": "21",
-        "height": "15",
-        "format": "\n<ol>\n<div ng-repeat=\"x in msg.payload\">\n    <li>\n        {{x.timestamp}}\n        <div>\n            <pre>{{x | json}}</pre>\n        </div>\n    </li>\n    <hr/>\n</div>\n</ol>\n\n\n",
-        "storeOutMessages": false,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 920,
-        "y": 1340,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "708b44ac.d7412c",
         "type": "mqtt out",
         "z": "4d60d452.18914c",
-        "name": "send Order 2 SAP",
+        "name": "SAPEvent.CreateSalesOrder",
         "topic": "",
         "qos": "",
         "retain": "",
         "broker": "62bac859.25e008",
-        "x": 890,
-        "y": 1640,
+        "x": 920,
+        "y": 1460,
         "wires": []
     },
     {
@@ -7995,11 +8008,11 @@
         "outputs": 1,
         "noerr": 0,
         "x": 600,
-        "y": 1640,
+        "y": 1460,
         "wires": [
             [
                 "708b44ac.d7412c",
-                "28c54d13.d3cef2"
+                "499ae631.a2a4e8"
             ]
         ],
         "outputLabels": [
@@ -8193,43 +8206,6 @@
         "icon": "node-red/leveldb.png"
     },
     {
-        "id": "56d84c34.858bb4",
-        "type": "inject",
-        "z": "4d60d452.18914c",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 110,
-        "y": 1560,
-        "wires": [
-            [
-                "b1264c7a.575df"
-            ]
-        ]
-    },
-    {
-        "id": "b1264c7a.575df",
-        "type": "function",
-        "z": "4d60d452.18914c",
-        "name": "setOrderEntries",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet entries = {\n    quantity: 1,\n    shipTo: 'CE01',\n    sku: 'CONTROLLER-2',\n    shipDate: 1589258170207,\n    shipDateISO: '2020-05-12T04:36:10.207Z'\n}\n\nglobal.set(sau.order.getOrderEntriesPath(), entries);\n\nmsg.payload = {\n    orderEntries: entries\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 260,
-        "y": 1560,
-        "wires": [
-            [
-                "1fc51bab.9869d4"
-            ]
-        ],
-        "icon": "node-red/leveldb.png"
-    },
-    {
         "id": "1fc51bab.9869d4",
         "type": "function",
         "z": "4d60d452.18914c",
@@ -8238,7 +8214,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 300,
-        "y": 1640,
+        "y": 1460,
         "wires": [
             [
                 "b9964c3e.6d543",
@@ -8333,60 +8309,6 @@
         ]
     },
     {
-        "id": "b77aad2.ed9735",
-        "type": "inject",
-        "z": "4d60d452.18914c",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 110,
-        "y": 1520,
-        "wires": [
-            [
-                "dab759a.d41e8a8"
-            ]
-        ]
-    },
-    {
-        "id": "dab759a.d41e8a8",
-        "type": "function",
-        "z": "4d60d452.18914c",
-        "name": "setOrderEntries(shipDate in the past)",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet entries = {\n    quantity: 1,\n    shipTo: 'CE01',\n    sku: 'CONTROLLER-2',\n    shipDateISO: '2020-04-12T04:36:10.207Z'\n}\n\nglobal.set(sau.order.getOrderEntriesPath(), entries);\n\nmsg.payload = {\n    orderEntries: entries\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 330,
-        "y": 1520,
-        "wires": [
-            [
-                "1fc51bab.9869d4"
-            ]
-        ],
-        "icon": "node-red/leveldb.png"
-    },
-    {
-        "id": "28c54d13.d3cef2",
-        "type": "function",
-        "z": "4d60d452.18914c",
-        "name": "",
-        "func": "\nmsg.payload = {\n    action: 'sent',\n    topic: msg.topic,\n    qos: msg.qos,\n    payload: msg.payload\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 850,
-        "y": 1700,
-        "wires": [
-            [
-                "499ae631.a2a4e8"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
         "id": "d8272e7b.79ec2",
         "type": "function",
         "z": "4d60d452.18914c",
@@ -8394,8 +8316,8 @@
         "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
         "outputs": 0,
         "noerr": 0,
-        "x": 1340,
-        "y": 1700,
+        "x": 1160,
+        "y": 1400,
         "wires": [],
         "icon": "node-red/trigger.svg"
     },
@@ -8407,8 +8329,8 @@
         "func": "\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 510,
-        "y": 1580,
+        "x": 490,
+        "y": 1400,
         "wires": [
             [
                 "d128cc75.1e4eb"
@@ -8463,75 +8385,40 @@
         "icon": "node-red/leveldb.png"
     },
     {
-        "id": "22d2876f.e80fd8",
-        "type": "comment",
-        "z": "4d60d452.18914c",
-        "name": "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/{sales_org = orgId}/system1/{externalReference}/{vbeln}",
-        "info": "",
-        "x": 430,
-        "y": 2180,
-        "wires": []
-    },
-    {
-        "id": "74323902.3a59b8",
-        "type": "comment",
-        "z": "4d60d452.18914c",
-        "name": "sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/{sales_org = orgId}/system1/{externalReference}",
-        "info": "",
-        "x": 400,
-        "y": 2220,
-        "wires": []
-    },
-    {
-        "id": "7305b383.79b80c",
-        "type": "function",
-        "z": "4d60d452.18914c",
-        "name": "",
-        "func": "\nmsg.payload = {\n    action: 'received',\n    topic: msg.topic,\n    qos: msg.qos,\n    payload: msg.payload\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 450,
-        "y": 1860,
-        "wires": [
-            [
-                "bc9a184.96095e8"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
         "id": "8de1f889.868108",
         "type": "function",
         "z": "4d60d452.18914c",
         "name": "update",
-        "func": "\nmsg.payload = {\n    action: 'order update received',\n    //topic: msg.topic,\n    payload: msg.payload\n}\n\nreturn msg;\n\n",
+        "func": "\nmsg.payload = {\n    message: 'order update received',\n    //topic: msg.topic,\n    payload: msg.payload\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
         "x": 580,
-        "y": 1900,
+        "y": 1680,
         "wires": [
             [
-                "39954b5f.9718f4"
+                "39954b5f.9718f4",
+                "707c3dd1.dc6a84"
             ]
         ],
-        "icon": "node-red/arrow-in.svg"
+        "icon": "node-red/switch.svg"
     },
     {
         "id": "c13eb75e.29c2f8",
         "type": "function",
         "z": "4d60d452.18914c",
         "name": "fault",
-        "func": "\nmsg.payload = {\n    action: 'order fault received',\n    //topic: msg.topic,\n    payload: msg.payload\n}\n\nreturn msg;\n\n",
+        "func": "\nmsg.payload = {\n    message: 'order fault received',\n    //topic: msg.topic,\n    payload: msg.payload\n}\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
         "x": 590,
-        "y": 1980,
+        "y": 1780,
         "wires": [
             [
-                "39954b5f.9718f4"
+                "39954b5f.9718f4",
+                "2e2ff494.80640c"
             ]
         ],
-        "icon": "node-red/arrow-in.svg"
+        "icon": "node-red/switch.svg"
     },
     {
         "id": "676a534.75ce5ac",
@@ -8541,36 +8428,25 @@
         "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
         "outputs": 0,
         "noerr": 0,
-        "x": 1160,
-        "y": 1900,
+        "x": 1140,
+        "y": 1720,
         "wires": [],
         "icon": "node-red/trigger.svg"
-    },
-    {
-        "id": "33b555f0.a58f0a",
-        "type": "comment",
-        "z": "4d60d452.18914c",
-        "name": "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/#",
-        "info": "",
-        "x": 300,
-        "y": 2140,
-        "wires": []
     },
     {
         "id": "91041dde.6391b",
         "type": "mqtt in",
         "z": "4d60d452.18914c",
         "name": "SAPEvent.SalesOrderCreateFault",
-        "topic": "sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/#",
+        "topic": "sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/ERD100/#",
         "qos": "1",
         "datatype": "json",
         "broker": "62bac859.25e008",
         "x": 150,
-        "y": 1980,
+        "y": 1780,
         "wires": [
             [
-                "8f1e4643.cf0728",
-                "7305b383.79b80c"
+                "8f1e4643.cf0728"
             ]
         ]
     },
@@ -8582,8 +8458,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\n\n// order not generated by this instance\nif(su.misc.isStringEmpty(orderReference)) return;\n\n// general update, not related to order\nif(msg.topic.includes(orderReference)) return msg;\n\n// ---\n// The End.",
         "outputs": 1,
         "noerr": 0,
-        "x": 450,
-        "y": 1980,
+        "x": 350,
+        "y": 1780,
         "wires": [
             [
                 "c13eb75e.29c2f8"
@@ -8593,16 +8469,6 @@
             "update"
         ],
         "icon": "font-awesome/fa-filter"
-    },
-    {
-        "id": "4a50a428.8034fc",
-        "type": "comment",
-        "z": "4d60d452.18914c",
-        "name": "sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/#",
-        "info": "",
-        "x": 290,
-        "y": 2100,
-        "wires": []
     },
     {
         "id": "c85446ab.88cc88",
@@ -8618,93 +8484,6 @@
         "icon": "node-red/alert.svg"
     },
     {
-        "id": "b11d4aa3.d00d88",
-        "type": "mqtt out",
-        "z": "4b36e62d.340ed8",
-        "name": "send test SAP ResponseEvent",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "62bac859.25e008",
-        "x": 910,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "ab93c64c.2742a8",
-        "type": "inject",
-        "z": "4b36e62d.340ed8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 130,
-        "y": 480,
-        "wires": [
-            [
-                "291b2668.02349a"
-            ]
-        ]
-    },
-    {
-        "id": "291b2668.02349a",
-        "type": "function",
-        "z": "4b36e62d.340ed8",
-        "name": "fault",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 290,
-        "y": 480,
-        "wires": [
-            [
-                "b11d4aa3.d00d88"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "64f3d1cd.91ed8",
-        "type": "function",
-        "z": "4b36e62d.340ed8",
-        "name": "update",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 280,
-        "y": 520,
-        "wires": [
-            [
-                "b11d4aa3.d00d88"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "853ead92.27baf",
-        "type": "inject",
-        "z": "4b36e62d.340ed8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 130,
-        "y": 520,
-        "wires": [
-            [
-                "64f3d1cd.91ed8"
-            ]
-        ]
-    },
-    {
         "id": "1b7ff3f6.4a7edc",
         "type": "comment",
         "z": "4b36e62d.340ed8",
@@ -8713,229 +8492,6 @@
         "x": 800,
         "y": 60,
         "wires": []
-    },
-    {
-        "id": "7daedb5c.b39134",
-        "type": "comment",
-        "z": "4b36e62d.340ed8",
-        "name": "with my orderReference",
-        "info": "",
-        "x": 140,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "11168287.6be2dd",
-        "type": "comment",
-        "z": "4b36e62d.340ed8",
-        "name": "with other orderReference",
-        "info": "",
-        "x": 150,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "84026ce2.abba1",
-        "type": "inject",
-        "z": "4b36e62d.340ed8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 150,
-        "y": 640,
-        "wires": [
-            [
-                "6eaf3bbf.771834"
-            ]
-        ]
-    },
-    {
-        "id": "6eaf3bbf.771834",
-        "type": "function",
-        "z": "4b36e62d.340ed8",
-        "name": "fault",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.shortUUID();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 640,
-        "wires": [
-            [
-                "b11d4aa3.d00d88"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "98d4bce5.5a692",
-        "type": "function",
-        "z": "4b36e62d.340ed8",
-        "name": "update",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.shortUUID();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 300,
-        "y": 680,
-        "wires": [
-            [
-                "b11d4aa3.d00d88"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "86e886e1.a00cb8",
-        "type": "inject",
-        "z": "4b36e62d.340ed8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 150,
-        "y": 680,
-        "wires": [
-            [
-                "98d4bce5.5a692"
-            ]
-        ]
-    },
-    {
-        "id": "f4ba5870.5cfe98",
-        "type": "ui_button",
-        "z": "4d60d452.18914c",
-        "name": "clear",
-        "group": "b1ee4438.4885c8",
-        "order": 1,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "clear log",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 70,
-        "y": 1380,
-        "wires": [
-            [
-                "6eddbbe.c5e4a44"
-            ]
-        ]
-    },
-    {
-        "id": "d6de9c2f.4365",
-        "type": "inject",
-        "z": "4b36e62d.340ed8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 110,
-        "y": 840,
-        "wires": [
-            [
-                "7bd7d15.b34fd3"
-            ]
-        ]
-    },
-    {
-        "id": "ef24e1c6.ab195",
-        "type": "comment",
-        "z": "4b36e62d.340ed8",
-        "name": "send 200 with my orderReference",
-        "info": "",
-        "x": 180,
-        "y": 800,
-        "wires": []
-    },
-    {
-        "id": "466feecd.5cc7",
-        "type": "function",
-        "z": "4b36e62d.340ed8",
-        "name": "update",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 480,
-        "y": 840,
-        "wires": [
-            [
-                "b11d4aa3.d00d88",
-                "9c5a70e1.c8d7f"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "e1d370b.0f14d9",
-        "type": "delay",
-        "z": "4b36e62d.340ed8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 610,
-        "y": 920,
-        "wires": [
-            [
-                "466feecd.5cc7"
-            ]
-        ]
-    },
-    {
-        "id": "7bd7d15.b34fd3",
-        "type": "function",
-        "z": "4b36e62d.340ed8",
-        "name": "initCounter",
-        "func": "\nflow.set('counter', 0);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 840,
-        "wires": [
-            [
-                "466feecd.5cc7"
-            ]
-        ]
-    },
-    {
-        "id": "9c5a70e1.c8d7f",
-        "type": "function",
-        "z": "4b36e62d.340ed8",
-        "name": "counter++ < 200",
-        "func": "\nlet counter = flow.get('counter');\ncounter++;\n\nif(counter < 200) {\n    flow.set('counter', counter);\n    return msg;\n}\n\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 920,
-        "wires": [
-            [
-                "e1d370b.0f14d9"
-            ]
-        ]
     },
     {
         "id": "6a938a97.e243f4",
@@ -9048,10 +8604,12 @@
         "name": "logger.init(orderDisplayLog)@sendOrder",
         "method": "init",
         "msgPath": "msg.payload.order",
-        "x": 820,
-        "y": 1580,
+        "x": 880,
+        "y": 1400,
         "wires": [
-            []
+            [
+                "d8272e7b.79ec2"
+            ]
         ]
     },
     {
@@ -9062,8 +8620,8 @@
         "name": "logger.get(orderDisplayLog)",
         "method": "get",
         "msgPath": "msg.payload",
-        "x": 660,
-        "y": 1280,
+        "x": 340,
+        "y": 1300,
         "wires": [
             [
                 "8f2beeb3.7f3ec"
@@ -9079,42 +8637,10 @@
         "method": "append",
         "msgPath": "msg.payload",
         "x": 850,
-        "y": 1940,
+        "y": 1720,
         "wires": [
             [
                 "676a534.75ce5ac"
-            ]
-        ]
-    },
-    {
-        "id": "6eddbbe.c5e4a44",
-        "type": "Logger",
-        "z": "4d60d452.18914c",
-        "log": "4d494f6d.5997c",
-        "name": "logger.clear(SAPEventLog)@clearButton",
-        "method": "clear",
-        "msgPath": "msg.payload",
-        "x": 300,
-        "y": 1380,
-        "wires": [
-            [
-                "45ba2acf.048044"
-            ]
-        ]
-    },
-    {
-        "id": "45ba2acf.048044",
-        "type": "Logger",
-        "z": "4d60d452.18914c",
-        "log": "4d494f6d.5997c",
-        "name": "logger.get(SAPEventLog)",
-        "method": "get",
-        "msgPath": "msg.payload",
-        "x": 650,
-        "y": 1340,
-        "wires": [
-            [
-                "3822c38e.c75a5c"
             ]
         ]
     },
@@ -9123,31 +8649,13 @@
         "type": "Logger",
         "z": "4d60d452.18914c",
         "log": "4d494f6d.5997c",
-        "name": "logger.init(SAPEventLog)@sendOrder",
-        "method": "init",
+        "name": "logger.clear(SAPEventLog)@sendOrder",
+        "method": "clear",
         "msgPath": "msg.payload",
-        "x": 1070,
-        "y": 1700,
+        "x": 950,
+        "y": 1520,
         "wires": [
-            [
-                "d8272e7b.79ec2"
-            ]
-        ]
-    },
-    {
-        "id": "bc9a184.96095e8",
-        "type": "Logger",
-        "z": "4d60d452.18914c",
-        "log": "4d494f6d.5997c",
-        "name": "logger.append(SAPEventLog)@SAPEvent",
-        "method": "append",
-        "msgPath": "msg.payload",
-        "x": 860,
-        "y": 1860,
-        "wires": [
-            [
-                "676a534.75ce5ac"
-            ]
+            []
         ]
     },
     {
@@ -9182,7 +8690,6 @@
         "y": 280,
         "wires": [
             [
-                "a48469d9.2bdb38",
                 "efbcc82a.1ed738"
             ]
         ],
@@ -9196,39 +8703,18 @@
         "links": [
             "8940887d.e380d8"
         ],
-        "x": 1090,
+        "x": 930,
         "y": 280,
         "wires": [],
         "l": true
     },
     {
-        "id": "a48469d9.2bdb38",
-        "type": "delay",
-        "z": "4b36e62d.340ed8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "10",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 520,
-        "y": 300,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "7aac64f6.91a58c",
         "type": "comment",
         "z": "4b36e62d.340ed8",
-        "name": "testing initialized mutex -----------------------------------------------------------------------------------------------",
+        "name": "initialize -----------------------------------------------------------------------------------------------",
         "info": "",
-        "x": 380,
+        "x": 340,
         "y": 240,
         "wires": []
     },
@@ -9240,7 +8726,7 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nglobal.set(sau.app.getIsInitializedPath(_meta), true);\n\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 710,
+        "x": 550,
         "y": 280,
         "wires": [
             [
@@ -9257,7 +8743,7 @@
         "func": "\n\nmsg = {}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 900,
+        "x": 740,
         "y": 280,
         "wires": [
             [
@@ -9367,13 +8853,1574 @@
         "icon": "node-red/arrow-in.svg"
     },
     {
-        "id": "77c0c6a1.fd27d8",
+        "id": "8026db22.7f8958",
+        "type": "mqtt out",
+        "z": "9207c7bc.35e4b8",
+        "name": "send test SAP ResponseEvent",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "62bac859.25e008",
+        "x": 990,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "584ef358.dac58c",
+        "type": "inject",
+        "z": "9207c7bc.35e4b8",
+        "name": "t",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 210,
+        "y": 300,
+        "wires": [
+            [
+                "e71f30d5.f277f"
+            ]
+        ]
+    },
+    {
+        "id": "e71f30d5.f277f",
+        "type": "function",
+        "z": "9207c7bc.35e4b8",
+        "name": "fault",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 300,
+        "wires": [
+            [
+                "8026db22.7f8958"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "29cbed00.c0e494",
+        "type": "function",
+        "z": "9207c7bc.35e4b8",
+        "name": "update",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 360,
+        "y": 340,
+        "wires": [
+            [
+                "8026db22.7f8958"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "d864787.9873488",
+        "type": "inject",
+        "z": "9207c7bc.35e4b8",
+        "name": "t",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 210,
+        "y": 340,
+        "wires": [
+            [
+                "29cbed00.c0e494"
+            ]
+        ]
+    },
+    {
+        "id": "2bdc421f.f81a3e",
+        "type": "comment",
+        "z": "9207c7bc.35e4b8",
+        "name": "with my orderReference",
+        "info": "",
+        "x": 220,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "506936ed.15d768",
+        "type": "comment",
+        "z": "9207c7bc.35e4b8",
+        "name": "with other orderReference",
+        "info": "",
+        "x": 230,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "bc04fb8f.a76068",
+        "type": "inject",
+        "z": "9207c7bc.35e4b8",
+        "name": "t",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 230,
+        "y": 460,
+        "wires": [
+            [
+                "c281a85e.15a498"
+            ]
+        ]
+    },
+    {
+        "id": "c281a85e.15a498",
+        "type": "function",
+        "z": "9207c7bc.35e4b8",
+        "name": "fault",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.shortUUID();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 460,
+        "wires": [
+            [
+                "8026db22.7f8958"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "746d9016.5d8bd",
+        "type": "function",
+        "z": "9207c7bc.35e4b8",
+        "name": "update",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.shortUUID();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "8026db22.7f8958"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "8b7b367b.a32f78",
+        "type": "inject",
+        "z": "9207c7bc.35e4b8",
+        "name": "t",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 230,
+        "y": 500,
+        "wires": [
+            [
+                "746d9016.5d8bd"
+            ]
+        ]
+    },
+    {
+        "id": "6415a736.a2e838",
+        "type": "inject",
+        "z": "9207c7bc.35e4b8",
+        "name": "t",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 660,
+        "wires": [
+            [
+                "e44a5fbe.5893f"
+            ]
+        ]
+    },
+    {
+        "id": "52cb417b.f883f",
+        "type": "comment",
+        "z": "9207c7bc.35e4b8",
+        "name": "send 200 with my orderReference",
+        "info": "",
+        "x": 260,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "debac1d0.e9bf",
+        "type": "function",
+        "z": "9207c7bc.35e4b8",
+        "name": "update",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 660,
+        "wires": [
+            [
+                "8026db22.7f8958",
+                "5cf49cbb.4369d4"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "e5eeecd3.5865f",
+        "type": "delay",
+        "z": "9207c7bc.35e4b8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 690,
+        "y": 740,
+        "wires": [
+            [
+                "debac1d0.e9bf"
+            ]
+        ]
+    },
+    {
+        "id": "e44a5fbe.5893f",
+        "type": "function",
+        "z": "9207c7bc.35e4b8",
+        "name": "initCounter",
+        "func": "\nflow.set('counter', 0);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 660,
+        "wires": [
+            [
+                "debac1d0.e9bf"
+            ]
+        ]
+    },
+    {
+        "id": "5cf49cbb.4369d4",
+        "type": "function",
+        "z": "9207c7bc.35e4b8",
+        "name": "counter++ < 200",
+        "func": "\nlet counter = flow.get('counter');\ncounter++;\n\nif(counter < 200) {\n    flow.set('counter', counter);\n    return msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 740,
+        "wires": [
+            [
+                "e5eeecd3.5865f"
+            ]
+        ]
+    },
+    {
+        "id": "4183dff3.38fd9",
+        "type": "comment",
+        "z": "9207c7bc.35e4b8",
+        "name": "manual tests -----------------------------------------------------------------------------------------------",
+        "info": "",
+        "x": 430,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "858ee092.ae63c",
         "type": "comment",
         "z": "4b36e62d.340ed8",
         "name": "manual tests -----------------------------------------------------------------------------------------------",
         "info": "",
         "x": 350,
-        "y": 380,
+        "y": 360,
         "wires": []
+    },
+    {
+        "id": "f24af303.b4055",
+        "type": "comment",
+        "z": "12e201f9.88b2be",
+        "name": "main.sap-event-log -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+        "info": "",
+        "x": 840,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6c05e486.bd4d5c",
+        "type": "comment",
+        "z": "12e201f9.88b2be",
+        "name": "startup -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+        "info": "",
+        "x": 810,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6d824be8.2ca464",
+        "type": "comment",
+        "z": "12e201f9.88b2be",
+        "name": "initialize -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+        "info": "",
+        "x": 810,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3f2c727e.188f0e",
+        "type": "subflow:4f07498e.ebb5f8",
+        "z": "12e201f9.88b2be",
+        "name": "flowProperties:set(main.sap-event-log)",
+        "env": [
+            {
+                "name": "instance-name",
+                "value": "flowProperties:set(main.sap-event-log)",
+                "type": "str"
+            },
+            {
+                "name": "method",
+                "value": "set",
+                "type": "str"
+            },
+            {
+                "name": "packageId",
+                "value": "main",
+                "type": "str"
+            },
+            {
+                "name": "componentId",
+                "value": "sap-event-log",
+                "type": "str"
+            }
+        ],
+        "x": 350,
+        "y": 260,
+        "wires": [
+            [
+                "935c4457.436998"
+            ]
+        ]
+    },
+    {
+        "id": "18d5e095.df0abf",
+        "type": "inject",
+        "z": "12e201f9.88b2be",
+        "name": "startup",
+        "topic": "",
+        "payload": "",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "3f2c727e.188f0e"
+            ]
+        ]
+    },
+    {
+        "id": "4fc1447.062e8bc",
+        "type": "link in",
+        "z": "12e201f9.88b2be",
+        "name": "main.app.initialize.create",
+        "links": [
+            "f96041d6.ab02"
+        ],
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "f42fd185.39b59"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "5dd06c84.955c14",
+        "type": "link out",
+        "z": "12e201f9.88b2be",
+        "name": "main.app.initialize.update",
+        "links": [
+            "8940887d.e380d8"
+        ],
+        "x": 970,
+        "y": 500,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "c292d460.5701f8",
+        "type": "catch",
+        "z": "12e201f9.88b2be",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 140,
+        "wires": [
+            [
+                "dd09187a.801418"
+            ]
+        ]
+    },
+    {
+        "id": "22b5329f.b1025e",
+        "type": "subflow:317873af.a031fc",
+        "z": "12e201f9.88b2be",
+        "name": "",
+        "env": [],
+        "x": 470,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "dd09187a.801418",
+        "type": "subflow:4f07498e.ebb5f8",
+        "z": "12e201f9.88b2be",
+        "name": "flowProperties:get",
+        "env": [
+            {
+                "name": "instance-name",
+                "value": "flowProperties:get",
+                "type": "str"
+            },
+            {
+                "name": "method",
+                "value": "get",
+                "type": "str"
+            }
+        ],
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "22b5329f.b1025e"
+            ]
+        ]
+    },
+    {
+        "id": "ebb02028.2d3a2",
+        "type": "comment",
+        "z": "12e201f9.88b2be",
+        "name": "var _meta = {   packageId: 'app',   componentId: 'sap-event-log',   version: '0.1.0' }",
+        "info": "",
+        "x": 300,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "f42fd185.39b59",
+        "type": "function",
+        "z": "12e201f9.88b2be",
+        "name": "sapEventLog.set(isInitialized=true)",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.sapEventLog.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nglobal.set(sau.app.getIsInitializedPath(_meta), true);\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "1a62d40c.dff1cc"
+            ]
+        ],
+        "icon": "node-red/leveldb.png"
+    },
+    {
+        "id": "1a62d40c.dff1cc",
+        "type": "function",
+        "z": "12e201f9.88b2be",
+        "name": "cleanMsg",
+        "func": "\n\nmsg = {}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 760,
+        "y": 500,
+        "wires": [
+            [
+                "5dd06c84.955c14"
+            ]
+        ]
+    },
+    {
+        "id": "935c4457.436998",
+        "type": "function",
+        "z": "12e201f9.88b2be",
+        "name": "trigger_updateLog",
+        "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
+        "outputs": 0,
+        "noerr": 0,
+        "x": 610,
+        "y": 260,
+        "wires": [],
+        "icon": "node-red/trigger.svg"
+    },
+    {
+        "id": "ba125a4c.42f908",
+        "type": "complete",
+        "z": "12e201f9.88b2be",
+        "name": "on_updateLog",
+        "scope": [
+            "935c4457.436998",
+            "26e08d35.95fa12"
+        ],
+        "uncaught": false,
+        "x": 140,
+        "y": 720,
+        "wires": [
+            [
+                "80368f9e.28ac"
+            ]
+        ]
+    },
+    {
+        "id": "1a914bb4.9df4d4",
+        "type": "ui_template",
+        "z": "12e201f9.88b2be",
+        "group": "b1ee4438.4885c8",
+        "name": "displaySAPEventLog",
+        "order": 2,
+        "width": "21",
+        "height": "15",
+        "format": "\n<ol>\n<div ng-repeat=\"x in msg.payload\">\n    <li>\n        {{x.timestamp}}\n        <div>\n            <pre>{{x | json}}</pre>\n        </div>\n    </li>\n    <hr/>\n</div>\n</ol>\n\n\n",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1260,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7e8701bc.89f9",
+        "type": "ui_button",
+        "z": "12e201f9.88b2be",
+        "name": "clear",
+        "group": "b1ee4438.4885c8",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "clear log",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 110,
+        "y": 760,
+        "wires": [
+            [
+                "d04a4460.fb05e8"
+            ]
+        ]
+    },
+    {
+        "id": "d04a4460.fb05e8",
+        "type": "Logger",
+        "z": "12e201f9.88b2be",
+        "log": "4d494f6d.5997c",
+        "name": "logger.clear(SAPEventLog)@clearButton",
+        "method": "clear",
+        "msgPath": "msg.payload",
+        "x": 680,
+        "y": 760,
+        "wires": [
+            [
+                "80368f9e.28ac"
+            ]
+        ]
+    },
+    {
+        "id": "80368f9e.28ac",
+        "type": "Logger",
+        "z": "12e201f9.88b2be",
+        "log": "4d494f6d.5997c",
+        "name": "logger.get(SAPEventLog)",
+        "method": "get",
+        "msgPath": "msg.payload",
+        "x": 1010,
+        "y": 720,
+        "wires": [
+            [
+                "1a914bb4.9df4d4"
+            ]
+        ]
+    },
+    {
+        "id": "2752bb5e.02e4f4",
+        "type": "mqtt in",
+        "z": "12e201f9.88b2be",
+        "name": "SAPEvent.SalesOrderCreated",
+        "topic": "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/ERD100/#",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "62bac859.25e008",
+        "x": 180,
+        "y": 1020,
+        "wires": [
+            [
+                "37fb983f.a780c8"
+            ]
+        ]
+    },
+    {
+        "id": "e337f52c.f47d58",
+        "type": "mqtt in",
+        "z": "12e201f9.88b2be",
+        "name": "SAPEvent.SalesOrderCreateFault",
+        "topic": "sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/ERD100/#",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "62bac859.25e008",
+        "x": 190,
+        "y": 1120,
+        "wires": [
+            [
+                "e4be18e0.79b5c8"
+            ]
+        ]
+    },
+    {
+        "id": "5fa90e3d.c1477",
+        "type": "mqtt in",
+        "z": "12e201f9.88b2be",
+        "name": "SAPEvent.CreateSalesOrder",
+        "topic": "sap_demo/BUS2032/sap-bo-data/create/json/v1/asadev/1000/ERD100/#",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "62bac859.25e008",
+        "x": 180,
+        "y": 920,
+        "wires": [
+            [
+                "80f9913d.57272"
+            ]
+        ]
+    },
+    {
+        "id": "80f9913d.57272",
+        "type": "function",
+        "z": "12e201f9.88b2be",
+        "name": "transform",
+        "func": "\nmsg.payload = {\n    event: 'CreateSalesOrder',\n    topic: msg.topic,\n    qos: msg.qos,\n    payload: msg.payload\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 920,
+        "wires": [
+            [
+                "5adef55d.c9b9ec"
+            ]
+        ],
+        "icon": "node-red/switch.svg"
+    },
+    {
+        "id": "5adef55d.c9b9ec",
+        "type": "Logger",
+        "z": "12e201f9.88b2be",
+        "log": "4d494f6d.5997c",
+        "name": "logger.append(SAPEventLog)",
+        "method": "append",
+        "msgPath": "msg.payload",
+        "x": 860,
+        "y": 1020,
+        "wires": [
+            [
+                "26e08d35.95fa12"
+            ]
+        ]
+    },
+    {
+        "id": "26e08d35.95fa12",
+        "type": "function",
+        "z": "12e201f9.88b2be",
+        "name": "trigger_updateLog",
+        "func": "node.status({fill:\"green\", shape:\"dot\", text:\"triggered\"});\n\n",
+        "outputs": 0,
+        "noerr": 0,
+        "x": 1090,
+        "y": 1020,
+        "wires": [],
+        "icon": "node-red/trigger.svg"
+    },
+    {
+        "id": "37fb983f.a780c8",
+        "type": "function",
+        "z": "12e201f9.88b2be",
+        "name": "transform",
+        "func": "\nmsg.payload = {\n    event: 'SalesOrderCreated',\n    topic: msg.topic,\n    qos: msg.qos,\n    payload: msg.payload\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 1020,
+        "wires": [
+            [
+                "5adef55d.c9b9ec"
+            ]
+        ],
+        "icon": "node-red/switch.svg"
+    },
+    {
+        "id": "e4be18e0.79b5c8",
+        "type": "function",
+        "z": "12e201f9.88b2be",
+        "name": "transform",
+        "func": "\nmsg.payload = {\n    event: 'SalesOrderCreateFault',\n    topic: msg.topic,\n    qos: msg.qos,\n    payload: msg.payload\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 1120,
+        "wires": [
+            [
+                "5adef55d.c9b9ec"
+            ]
+        ],
+        "icon": "node-red/switch.svg"
+    },
+    {
+        "id": "a845cfdd.e6984",
+        "type": "comment",
+        "z": "12e201f9.88b2be",
+        "name": "sap_demo/BUS2032/sap-bo-data/create/json/v1/asadev/1000/ERD100/#",
+        "info": "",
+        "x": 320,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "ce8b9f2d.d6f7e",
+        "type": "comment",
+        "z": "12e201f9.88b2be",
+        "name": "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/ERD100/#",
+        "info": "",
+        "x": 320,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "cd92f574.27a488",
+        "type": "comment",
+        "z": "12e201f9.88b2be",
+        "name": "sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/ERD100/#",
+        "info": "",
+        "x": 310,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "cf4703ba.273b5",
+        "type": "comment",
+        "z": "4d60d452.18914c",
+        "name": "sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/ERD100/#",
+        "info": "",
+        "x": 280,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "371e4373.7c434c",
+        "type": "comment",
+        "z": "4d60d452.18914c",
+        "name": "sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/ERD100/#",
+        "info": "",
+        "x": 270,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "707c3dd1.dc6a84",
+        "type": "debug",
+        "z": "4d60d452.18914c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 760,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "2e2ff494.80640c",
+        "type": "debug",
+        "z": "4d60d452.18914c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 750,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "ba4bdbb2.0cc8e8",
+        "type": "ui_button",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "group": "d7e8a590.ae7fe8",
+        "order": 0,
+        "width": "7",
+        "height": "1",
+        "passthru": false,
+        "label": "Create 5 Orders",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "98e59f81.4a11"
+            ]
+        ]
+    },
+    {
+        "id": "98e59f81.4a11",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "initCounter",
+        "func": "\nflow.set('counter', 0);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 420,
+        "wires": [
+            [
+                "678d997b.36c088"
+            ]
+        ]
+    },
+    {
+        "id": "678d997b.36c088",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeNewOrder",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.shortUUID(),\n    orderEntries: sau.test.composeOrderEntries()\n}\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 420,
+        "wires": [
+            [
+                "71959988.871a18"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "font-awesome/fa-random"
+    },
+    {
+        "id": "71959988.871a18",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeEvent(createSalesOrder)",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = msg.payload.order;\nif(su.misc.isObjectEmpty(order)) return throwError(msg, \"cannot find order in msg.payload\", {payload: msg.payload});\n\n// get all eventSchemas\nlet eventSchemasPath = sau.app.getEventSchemasConfigPath();\nlet eventSchemas = global.get(eventSchemasPath) || {};\nif(su.misc.isObjectEmpty(eventSchemas)) return throwError(msg, \"cannot find eventSchemas in global context\", {path: eventSchemasPath});\n\nlet channelPath = sau.app.getAppChannelConfigPath();\nlet channel = global.get(channelPath);\nif(su.misc.isObjectEmpty(channel)) return throwError(msg, \"cannot find channel in global context\", {path: channelPath});\n\nlet sapEventMeta = {\n    eventName: 'createSalesOrder',\n    properties: { \n        qos: 1\n    },\n    schemas: eventSchemas,\n    channel: channel,\n    entries: order.orderEntries,\n    timestamp: order.orderCreatedTimestamp,\n    eventId: order.orderReference,\n    correlationId: order.orderReference,\n    externalReference: order.orderReference\n};\n\nlet event = sau.events.composeSAPCreateSalesOrderEvent(sapEventMeta);\n\nmsg.topic = event.topic;\nmsg.payload = event.payload;\nmsg.qos = event.properties.qos;\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 850,
+        "y": 420,
+        "wires": [
+            [
+                "7f585a9d.102c54",
+                "af666ff9.4d586"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "node-red/leveldb.png"
+    },
+    {
+        "id": "b295e69c.911dc8",
+        "type": "mqtt out",
+        "z": "4b36e62d.340ed8",
+        "name": "SAPEvent.CreateSalesOrder",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "62bac859.25e008",
+        "x": 1460,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "7a4f02c6.ca0fbc",
+        "type": "delay",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 830,
+        "y": 480,
+        "wires": [
+            [
+                "678d997b.36c088"
+            ]
+        ]
+    },
+    {
+        "id": "7f585a9d.102c54",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "counter++ < 5",
+        "func": "\nlet counter = flow.get('counter');\ncounter++;\n\nif(counter < 5) {\n    flow.set('counter', counter);\n    return msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 480,
+        "wires": [
+            [
+                "7a4f02c6.ca0fbc"
+            ]
+        ]
+    },
+    {
+        "id": "d7208ead.d8de",
+        "type": "ui_button",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "group": "d7e8a590.ae7fe8",
+        "order": 0,
+        "width": "7",
+        "height": "1",
+        "passthru": false,
+        "label": "Create 100 Orders",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 130,
+        "y": 560,
+        "wires": [
+            [
+                "d3d83f9c.583af"
+            ]
+        ]
+    },
+    {
+        "id": "d3d83f9c.583af",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "initCounter",
+        "func": "\nflow.set('counter', 0);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 560,
+        "wires": [
+            [
+                "dcc4c47d.29e9d8"
+            ]
+        ]
+    },
+    {
+        "id": "dcc4c47d.29e9d8",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeNewOrder",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.shortUUID(),\n    orderEntries: sau.test.composeOrderEntries()\n}\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 560,
+        "wires": [
+            [
+                "2386ad81.398882"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "font-awesome/fa-random"
+    },
+    {
+        "id": "2386ad81.398882",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeEvent(createSalesOrder)",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = msg.payload.order;\nif(su.misc.isObjectEmpty(order)) return throwError(msg, \"cannot find order in msg.payload\", {payload: msg.payload});\n\n// get all eventSchemas\nlet eventSchemasPath = sau.app.getEventSchemasConfigPath();\nlet eventSchemas = global.get(eventSchemasPath) || {};\nif(su.misc.isObjectEmpty(eventSchemas)) return throwError(msg, \"cannot find eventSchemas in global context\", {path: eventSchemasPath});\n\nlet channelPath = sau.app.getAppChannelConfigPath();\nlet channel = global.get(channelPath);\nif(su.misc.isObjectEmpty(channel)) return throwError(msg, \"cannot find channel in global context\", {path: channelPath});\n\nlet sapEventMeta = {\n    eventName: 'createSalesOrder',\n    properties: { \n        qos: 1\n    },\n    schemas: eventSchemas,\n    channel: channel,\n    entries: order.orderEntries,\n    timestamp: order.orderCreatedTimestamp,\n    eventId: order.orderReference,\n    correlationId: order.orderReference,\n    externalReference: order.orderReference\n};\n\nlet event = sau.events.composeSAPCreateSalesOrderEvent(sapEventMeta);\n\nmsg.topic = event.topic;\nmsg.payload = event.payload;\nmsg.qos = event.properties.qos;\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 850,
+        "y": 560,
+        "wires": [
+            [
+                "e0ec82fa.df7a3",
+                "349bfdd3.f917a2"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "node-red/leveldb.png"
+    },
+    {
+        "id": "6169b97c.b31128",
+        "type": "delay",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "200",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 850,
+        "y": 620,
+        "wires": [
+            [
+                "dcc4c47d.29e9d8"
+            ]
+        ]
+    },
+    {
+        "id": "e0ec82fa.df7a3",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "counter++ < 100",
+        "func": "\nlet counter = flow.get('counter');\ncounter++;\n\nif(counter < 100) {\n    flow.set('counter', counter);\n    return msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 620,
+        "wires": [
+            [
+                "6169b97c.b31128"
+            ]
+        ]
+    },
+    {
+        "id": "6f3d99c4.3c47b8",
+        "type": "ui_button",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "group": "740619e9.082388",
+        "order": 1,
+        "width": "7",
+        "height": "1",
+        "passthru": false,
+        "label": "Create order / ship date in the past",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 180,
+        "y": 760,
+        "wires": [
+            [
+                "79653d45.dfe1c4"
+            ]
+        ]
+    },
+    {
+        "id": "79653d45.dfe1c4",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeNewOrder",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.shortUUID(),\n    orderEntries: sau.test.composeOrderEntries()\n}\n\norder.orderEntries.shipDateISO = '2020-04-12T04:36:10.207Z';\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 760,
+        "wires": [
+            [
+                "3a61c2e7.11b53e"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "font-awesome/fa-random"
+    },
+    {
+        "id": "ed80abcc.82ecf8",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeEvent(createSalesOrder)",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = msg.payload.order;\nif(su.misc.isObjectEmpty(order)) return throwError(msg, \"cannot find order in msg.payload\", {payload: msg.payload});\n\n// get all eventSchemas\nlet eventSchemasPath = sau.app.getEventSchemasConfigPath();\nlet eventSchemas = global.get(eventSchemasPath) || {};\nif(su.misc.isObjectEmpty(eventSchemas)) return throwError(msg, \"cannot find eventSchemas in global context\", {path: eventSchemasPath});\n\nlet channelPath = sau.app.getAppChannelConfigPath();\nlet channel = global.get(channelPath);\nif(su.misc.isObjectEmpty(channel)) return throwError(msg, \"cannot find channel in global context\", {path: channelPath});\n\nlet sapEventMeta = {\n    eventName: 'createSalesOrder',\n    properties: { \n        qos: 1\n    },\n    schemas: eventSchemas,\n    channel: channel,\n    entries: order.orderEntries,\n    timestamp: order.orderCreatedTimestamp,\n    eventId: order.orderReference,\n    correlationId: order.orderReference,\n    externalReference: order.orderReference\n};\n\nlet event = sau.events.composeSAPCreateSalesOrderEvent(sapEventMeta);\n\nmsg.topic = event.topic;\nmsg.payload = event.payload;\nmsg.qos = event.properties.qos;\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 950,
+        "y": 820,
+        "wires": [
+            [
+                "45e3bcc4.285d54"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "node-red/leveldb.png"
+    },
+    {
+        "id": "af666ff9.4d586",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1170,
+        "y": 420,
+        "wires": [
+            [
+                "b295e69c.911dc8",
+                "4259238f.fae68c"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "349bfdd3.f917a2",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1170,
+        "y": 560,
+        "wires": [
+            [
+                "b295e69c.911dc8",
+                "4259238f.fae68c"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "45e3bcc4.285d54",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1170,
+        "y": 820,
+        "wires": [
+            [
+                "b295e69c.911dc8",
+                "4259238f.fae68c"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "4b3da41a.6427dc",
+        "type": "ui_button",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "group": "740619e9.082388",
+        "order": 7,
+        "width": "7",
+        "height": "1",
+        "passthru": false,
+        "label": "Create order / unknown sku",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 160,
+        "y": 1000,
+        "wires": [
+            [
+                "3c83137c.14716c"
+            ]
+        ]
+    },
+    {
+        "id": "3c83137c.14716c",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeNewOrder",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.shortUUID(),\n    orderEntries: sau.test.composeOrderEntries()\n}\n\norder.orderEntries.sku = 'unknown sku';\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 1000,
+        "wires": [
+            [
+                "6f4ca15f.e727c"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "font-awesome/fa-random"
+    },
+    {
+        "id": "3a61c2e7.11b53e",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 760,
+        "wires": [
+            [
+                "ed80abcc.82ecf8"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "6f4ca15f.e727c",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 1000,
+        "wires": [
+            [
+                "ed80abcc.82ecf8"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "9d007f26.422bc",
+        "type": "link in",
+        "z": "12e201f9.88b2be",
+        "name": "main.sap-event-log.clearLog",
+        "links": [
+            "4259238f.fae68c"
+        ],
+        "x": 180,
+        "y": 820,
+        "wires": [
+            [
+                "d04a4460.fb05e8"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "4259238f.fae68c",
+        "type": "link out",
+        "z": "4b36e62d.340ed8",
+        "name": "main.sap-event-log.clearLog",
+        "links": [
+            "9d007f26.422bc"
+        ],
+        "x": 1460,
+        "y": 500,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "c699c064.fa0cd",
+        "type": "ui_button",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "group": "740619e9.082388",
+        "order": 2,
+        "width": "7",
+        "height": "1",
+        "passthru": false,
+        "label": "Create order / wrong date format",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 180,
+        "y": 800,
+        "wires": [
+            [
+                "b4a1335.a0dc9d"
+            ]
+        ]
+    },
+    {
+        "id": "b4a1335.a0dc9d",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeNewOrder",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.shortUUID(),\n    orderEntries: sau.test.composeOrderEntries()\n}\n\norder.orderEntries.shipDateISO = 'APRIL-12T04:36:10.207Z';\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 800,
+        "wires": [
+            [
+                "d025ae86.83da"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "font-awesome/fa-random"
+    },
+    {
+        "id": "d025ae86.83da",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 800,
+        "wires": [
+            [
+                "ed80abcc.82ecf8"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "cf29a78.931d658",
+        "type": "ui_button",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "group": "740619e9.082388",
+        "order": 3,
+        "width": "7",
+        "height": "1",
+        "passthru": false,
+        "label": "Create order / empty date",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 150,
+        "y": 840,
+        "wires": [
+            [
+                "9e4a6a59.7c8da8"
+            ]
+        ]
+    },
+    {
+        "id": "9e4a6a59.7c8da8",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeNewOrder",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.shortUUID(),\n    orderEntries: sau.test.composeOrderEntries()\n}\n\norder.orderEntries.shipDateISO = '';\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 840,
+        "wires": [
+            [
+                "3068fde8.2b9012"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "font-awesome/fa-random"
+    },
+    {
+        "id": "3068fde8.2b9012",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 840,
+        "wires": [
+            [
+                "ed80abcc.82ecf8"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "b5e33d6a.fc2ec",
+        "type": "ui_button",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "group": "740619e9.082388",
+        "order": 4,
+        "width": "7",
+        "height": "1",
+        "passthru": false,
+        "label": "Create order / qty=0",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 140,
+        "y": 900,
+        "wires": [
+            [
+                "3027a755.85a4d8"
+            ]
+        ]
+    },
+    {
+        "id": "3027a755.85a4d8",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeNewOrder",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.shortUUID(),\n    orderEntries: sau.test.composeOrderEntries()\n}\n\norder.orderEntries.quantity = 0;\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 900,
+        "wires": [
+            [
+                "894b0e3b.9663d"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "font-awesome/fa-random"
+    },
+    {
+        "id": "894b0e3b.9663d",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 900,
+        "wires": [
+            [
+                "ed80abcc.82ecf8"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "106c234e.3d4a6d",
+        "type": "ui_button",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "group": "740619e9.082388",
+        "order": 5,
+        "width": "7",
+        "height": "1",
+        "passthru": false,
+        "label": "Create order / qty=-1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 140,
+        "y": 940,
+        "wires": [
+            [
+                "f55cfa90.fd6e38"
+            ]
+        ]
+    },
+    {
+        "id": "f55cfa90.fd6e38",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "test.composeNewOrder",
+        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.test.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet order = {\n    orderCreatedTimestamp: new Date().toISOString(),\n    orderReference: su.misc.shortUUID(),\n    orderEntries: sau.test.composeOrderEntries()\n}\n\norder.orderEntries.quantity = -1;\n\nmsg.payload = { \n    order: order\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 940,
+        "wires": [
+            [
+                "8ddb54d2.4a23f8"
+            ]
+        ],
+        "outputLabels": [
+            "valid"
+        ],
+        "icon": "font-awesome/fa-random"
+    },
+    {
+        "id": "8ddb54d2.4a23f8",
+        "type": "function",
+        "z": "4b36e62d.340ed8",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 940,
+        "wires": [
+            [
+                "ed80abcc.82ecf8"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg"
     }
 ]

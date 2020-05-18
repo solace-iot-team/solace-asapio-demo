@@ -1,6 +1,6 @@
 {
   "name": "solace-asapio-demo",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Solace ASAPIO Demo application for SAP Events",
   "homepage": "https://github.com/solace-iot-team/solace-asapio-demo",
   "repository": {

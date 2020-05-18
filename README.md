@@ -2,7 +2,7 @@
 
 Demonstration of Solace + ASAPIO interacting with SAP ECC, Sales & Distribution.
 
-**Version: 0.1.4**
+**Version: 0.1.5**
 
 ## Overview
 
@@ -73,14 +73,24 @@ cd solace-asapio-demo
 ./install.sh
 
 ```
+
+### Get the Start Script
+
+Get the start script and copy to
+
+```bash
+sap-demo/solace-asapio-demo/{the-start-script}.sh
+```
+make it executable:
+
+```bash
+chmod u+x sap-demo/solace-asapio-demo/{the-start-script}.sh
+```
+
 ### Start the Demo Server
 
 ```bash
-
-in directory: sap-demo/solace-asapio-demo
-
-./start-node-red.sh
-
+sap-demo/solace-asapio-demo/{the-start-script}.sh
 ```
 
 ### Connect to the UI
