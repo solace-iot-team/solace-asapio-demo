@@ -5,3 +5,4 @@ localContextStore
 docs
 save.README.md
 package-lock.json
+*.sh
