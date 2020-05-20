@@ -9706,7 +9706,8 @@
         "y": 420,
         "wires": [
             [
-                "98e59f81.4a11"
+                "98e59f81.4a11",
+                "703e936a.9dea4c"
             ]
         ]
     },
@@ -9841,7 +9842,8 @@
         "y": 560,
         "wires": [
             [
-                "d3d83f9c.583af"
+                "d3d83f9c.583af",
+                "703e936a.9dea4c"
             ]
         ]
     },
@@ -9853,7 +9855,7 @@
         "func": "\nflow.set('counter', 0);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 310,
+        "x": 330,
         "y": 560,
         "wires": [
             [
@@ -10019,8 +10021,7 @@
         "y": 420,
         "wires": [
             [
-                "b295e69c.911dc8",
-                "4259238f.fae68c"
+                "b295e69c.911dc8"
             ]
         ],
         "icon": "node-red/arrow-in.svg"
@@ -10037,8 +10038,7 @@
         "y": 560,
         "wires": [
             [
-                "b295e69c.911dc8",
-                "4259238f.fae68c"
+                "b295e69c.911dc8"
             ]
         ],
         "icon": "node-red/arrow-in.svg"
@@ -10147,7 +10147,8 @@
         "z": "12e201f9.88b2be",
         "name": "main.sap-event-log.clearLog",
         "links": [
-            "4259238f.fae68c"
+            "4259238f.fae68c",
+            "703e936a.9dea4c"
         ],
         "x": 180,
         "y": 820,
@@ -10167,7 +10168,7 @@
             "9d007f26.422bc"
         ],
         "x": 1460,
-        "y": 500,
+        "y": 820,
         "wires": [],
         "l": true
     },
@@ -10422,5 +10423,18 @@
             ]
         ],
         "icon": "node-red/arrow-in.svg"
+    },
+    {
+        "id": "703e936a.9dea4c",
+        "type": "link out",
+        "z": "4b36e62d.340ed8",
+        "name": "main.sap-event-log.clearLog",
+        "links": [
+            "9d007f26.422bc"
+        ],
+        "x": 240,
+        "y": 480,
+        "wires": [],
+        "l": true
     }
 ]
