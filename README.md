@@ -2,7 +2,7 @@
 
 Demonstration of Solace + ASAPIO interacting with SAP ECC, Sales & Distribution.
 
-**Version: 0.1.5**
+**Version: 0.1.6**
 
 ## Overview
 
@@ -50,9 +50,38 @@ sudo npm install -g --unsafe-perm node-red-dashboard
 
 Create a working directory where all the Node-RED code will live.
 
-_**Note: you may be asked for your github credentials.**_
-
 For example: **``sap-demo``**
+
+Execute the following commands in a bash shell:
+
+```bash
+
+curl -L -o node-red-contrib-solace-utils-master.zip https://github.com/solace-iot-team/node-red-contrib-solace-utils/archive/master.zip
+
+unzip node-red-contrib-solace-utils-master.zip
+
+mv node-red-contrib-solace-utils-master node-red-contrib-solace-utils
+
+curl -L -o node-red-contrib-solace-sempv2-master.zip https://github.com/solace-iot-team/node-red-contrib-solace-sempv2/archive/master.zip
+
+unzip node-red-contrib-solace-sempv2-master.zip
+
+mv node-red-contrib-solace-sempv2-master node-red-contrib-solace-sempv2
+
+curl -L -o solace-asapio-demo-master.zip https://github.com/solace-iot-team/solace-asapio-demo/archive/master.zip
+
+unzip solace-asapio-demo-master.zip
+
+mv solace-asapio-demo-master solace-asapio-demo
+
+cd solace-asapio-demo
+
+./install.sh
+
+
+```
+
+#### Alternatively: Install using `git`
 
 ```bash
 cd sap-demo
@@ -96,6 +125,10 @@ sap-demo/solace-asapio-demo/{the-start-script}.sh
 ### Connect to the UI
 
 Point your browser at: http://127.0.0.1:1882/ui/
+
+### Uninstall the Demo
+
+Delete files / directories in your `sap-demo` folder.
 
 ### Uninstall Node-RED
 
