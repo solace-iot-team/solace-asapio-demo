@@ -28,7 +28,7 @@
 var _meta = {
   packageId: 'app',
   componentId: 'controller',
-  version: '0.1.7',
+  version: '0.1.8',
   shortName: 'app',
   id: 'solace-asapio-demo'
 }

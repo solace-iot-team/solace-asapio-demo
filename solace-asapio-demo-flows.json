@@ -1679,7 +1679,7 @@
         "y": 460,
         "wires": [
             [
-                "19465cb4.994783"
+                "781428bf.b860f8"
             ]
         ]
     },
@@ -2682,8 +2682,8 @@
         "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nlet envVars = [\n    'SOLACE_SAP_DEMO_MQTT_BROKER_HOST',\n    'SOLACE_SAP_DEMO_MQTT_BROKER_PORT',\n    'SOLACE_SAP_DEMO_MQTT_BROKER_USER',\n    'SOLACE_SAP_DEMO_MQTT_BROKER_PASSWORD',\n    'SOLACE_SAP_DEMO_MQTT_CLIENT_ID'\n    ];\n\nlet config = {};\nfor(i=0; i < envVars.length; i++) {\n    let v = env.get(envVars[i]);\n    if(su.misc.isStringEmpty(v)) return throwError(msg, \"environment variable not found\", {envVar: envVars[i]});\n    su.misc.setObjectPath(config, envVars[i], v);\n}\n\nglobal.set(sau.app.getConfigPath(_meta) + '.broker.mqtt', config);\n\nreturn msg;\n\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 740,
-        "y": 380,
+        "x": 680,
+        "y": 400,
         "wires": [
             [
                 "9038781a.7c79d8"
@@ -5610,22 +5610,6 @@
             ],
             [
                 "24d718e.46061e8"
-            ]
-        ]
-    },
-    {
-        "id": "19465cb4.994783",
-        "type": "function",
-        "z": "7335a6bf.4e03a8",
-        "name": "app.config.broker.sempv2",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.app.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nlet envVars = [\n    ['SOLACE_SAP_DEMO_BROKER_SEMPV2_BASE_PATH','basePath'],\n    ['SOLACE_SAP_DEMO_BROKER_SEMPV2_VPN', 'vpn'],\n    ['SOLACE_SAP_DEMO_BROKER_SEMPV2_VIRTUAL_ROUTER', 'virtualRouter'],\n    ['SOLACE_SAP_DEMO_BROKER_SEMPV2_USER', 'user' ],\n    ['SOLACE_SAP_DEMO_BROKER_SEMPV2_PASSWORD', 'pwd']\n    ];\n\nlet config = {};\nfor(i=0; i < envVars.length; i++) {\n    let v = env.get(envVars[i][0]);\n    if(su.misc.isStringEmpty(v)) return throwErrorEnvVar(msg, \"environment variable not found\", {envVar: envVars[i][0]});\n    su.misc.setObjectPath(config, envVars[i][1], v);\n}\n\nlet isSolaceCloudEnvVar = 'SOLACE_SAP_DEMO_BROKER_SEMPV2_IS_SOLACE_CLOUD';\nlet isSolaceCloudStr = env.get(isSolaceCloudEnvVar);\nif(su.misc.isStringEmpty(isSolaceCloudStr)) return throwError(msg, \"environment variable not found\", {envVar: isSolaceCloudEnvVar});\n\nlet isSolaceCloud = false;\ntry {\n    isSolaceCloud = JSON.parse(isSolaceCloudStr.toLowerCase());\n} catch(err) {\n    let message = 'Invalid boolean value of environment variable';\n    let details = {\n        envVar: isSolaceCloudEnvVar,\n        value: isSolaceCloudStr\n    }\n    return throwError(msg, message, details);\n}\nconfig.isSolaceCloud = isSolaceCloud;\n\n//node.warn(node.name + ':config = \\n' + JSON.stringify(config, null, 1));\n\nglobal.set(sau.app.getConfigPath(_meta) + '.broker.sempv2', config);\n\nreturn msg;\n\n\n\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 750,
-        "y": 420,
-        "wires": [
-            [
-                "781428bf.b860f8"
             ]
         ]
     },
