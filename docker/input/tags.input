@@ -1,0 +1,10 @@
+
+VERSION="0.1.7"
+
+IMAGE_NAME="solace-asapio-demo"
+
+IMAGE_TAG="$IMAGE_NAME:v$VERSION"
+
+CONTAINER_NAME="$IMAGE_NAME-v$VERSION"
+
+REPO="rjgu"
