@@ -218,8 +218,7 @@ module.exports = {
     //    global.get("os")
     functionGlobalContext: {
       _solaceAppUtils: require('app-utils'),
-      _solaceUtils: require('node-red-contrib-solace-utils'),
-      _solaceUtilsSempv2: require('node-red-contrib-solace-sempv2')
+      _solaceUtils: require('node-red-contrib-solace-utils')
     },
     // `global.keys()` returns a list of all properties set in global context.
     // This allows them to be displayed in the Context Sidebar within the editor.
@@ -253,7 +252,7 @@ module.exports = {
     // added to the end of the palette.
     // If not set, the following default order is used:
     //paletteCategories: ['subflows','flow','input','output','function','parser','social','mobile','storage','analysis','advanced'],
-    paletteCategories: ['solace asapio demo', 'solace utils', 'solace sempv2'],
+    paletteCategories: ['solace asapio demo', 'solace utils'],
 
     // Configure the logging output
     logging: {

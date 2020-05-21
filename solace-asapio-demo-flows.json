@@ -42,13 +42,6 @@
         "info": ""
     },
     {
-        "id": "9207c7bc.35e4b8",
-        "type": "tab",
-        "label": "save.tests",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "317873af.a031fc",
         "type": "subflow",
         "name": "app error handler",
@@ -103,140 +96,6 @@
             "wires": [
                 {
                     "id": "aea90ded.7c436",
-                    "port": 0
-                }
-            ]
-        }
-    },
-    {
-        "id": "72433083.19e34",
-        "type": "subflow",
-        "name": "sempv2 config",
-        "info": "Configuration node for a Solace broker instance for the ``solace.sempv2`` nodes.\n\n[see solace.sempv2.config](http://github.com/.../node-red-contrib-solace-sempv2/doc/sempv2.config.md)\n\n---\nThe End.\n",
-        "category": "solace sempv2",
-        "in": [
-            {
-                "x": 60,
-                "y": 220,
-                "wires": [
-                    {
-                        "id": "efd76714.54afd8"
-                    }
-                ]
-            }
-        ],
-        "out": [
-            {
-                "x": 1780,
-                "y": 220,
-                "wires": [
-                    {
-                        "id": "9602ae1.378fd5",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 1780,
-                "y": 340,
-                "wires": [
-                    {
-                        "id": "ed2cae31.155fb",
-                        "port": 0
-                    }
-                ]
-            }
-        ],
-        "env": [
-            {
-                "name": "instance-name",
-                "type": "str",
-                "value": "",
-                "ui": {
-                    "type": "input",
-                    "opts": {
-                        "types": [
-                            "str"
-                        ]
-                    },
-                    "label": {}
-                }
-            },
-            {
-                "name": "method",
-                "type": "str",
-                "value": "",
-                "ui": {
-                    "type": "select",
-                    "opts": {
-                        "opts": [
-                            {
-                                "l": {
-                                    "en-US": "select ..."
-                                },
-                                "v": ""
-                            },
-                            {
-                                "l": {
-                                    "en-US": "get"
-                                },
-                                "v": "get"
-                            },
-                            {
-                                "l": {
-                                    "en-US": "set"
-                                },
-                                "v": "set"
-                            },
-                            {
-                                "l": {
-                                    "en-US": "unset"
-                                },
-                                "v": "unset"
-                            }
-                        ]
-                    },
-                    "label": {}
-                }
-            },
-            {
-                "name": "solaceBrokerId",
-                "type": "str",
-                "value": "solaceDeviceBroker",
-                "ui": {
-                    "icon": "font-awesome/fa-database",
-                    "label": {
-                        "en-US": "sempv2 config id"
-                    },
-                    "type": "select",
-                    "opts": {
-                        "opts": [
-                            {
-                                "l": {
-                                    "en-US": "solaceDeviceBroker"
-                                },
-                                "v": "solaceDeviceBroker"
-                            }
-                        ]
-                    }
-                }
-            }
-        ],
-        "color": "#34e39a",
-        "inputLabels": [
-            "input"
-        ],
-        "outputLabels": [
-            "success",
-            "error"
-        ],
-        "icon": "node-red/leveldb.png",
-        "status": {
-            "x": 1780,
-            "y": 160,
-            "wires": [
-                {
-                    "id": "502e8b1d.28cda4",
                     "port": 0
                 }
             ]
@@ -338,160 +197,6 @@
             "wires": [
                 {
                     "id": "4b1decb9.9c4564",
-                    "port": 0
-                }
-            ]
-        }
-    },
-    {
-        "id": "6b984824.a17568",
-        "type": "subflow",
-        "name": "sempv2 about",
-        "info": "\nCall [Solace SempV2 About API](https://docs.solace.com/API-Developer-Online-Ref-Documentation/swagger-ui/config/index.html#/about).\n\n\n[see solace.sempv2.about](http://github.com/.../node-red-contrib-solace-sempv2/doc/sempv2.about.md)\n\n",
-        "category": "solace sempv2",
-        "in": [
-            {
-                "x": 80,
-                "y": 280,
-                "wires": [
-                    {
-                        "id": "616e0712.29bdf8"
-                    }
-                ]
-            }
-        ],
-        "out": [
-            {
-                "x": 1780,
-                "y": 300,
-                "wires": [
-                    {
-                        "id": "4b5c1ce7.4c9eb4",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 1780,
-                "y": 240,
-                "wires": [
-                    {
-                        "id": "ddd8e537.7b8b08",
-                        "port": 0
-                    }
-                ]
-            }
-        ],
-        "env": [
-            {
-                "name": "instance-name",
-                "type": "str",
-                "value": "",
-                "ui": {
-                    "type": "input",
-                    "opts": {
-                        "types": [
-                            "str"
-                        ]
-                    }
-                }
-            },
-            {
-                "name": "solaceBrokerId",
-                "type": "str",
-                "value": "",
-                "ui": {
-                    "type": "input",
-                    "opts": {
-                        "types": [
-                            "str"
-                        ]
-                    }
-                }
-            },
-            {
-                "name": "resource",
-                "type": "str",
-                "value": "",
-                "ui": {
-                    "type": "select",
-                    "opts": {
-                        "opts": [
-                            {
-                                "l": {
-                                    "en-US": "select ..."
-                                },
-                                "v": ""
-                            },
-                            {
-                                "l": {
-                                    "en-US": "all"
-                                },
-                                "v": "all"
-                            },
-                            {
-                                "l": {
-                                    "en-US": "about"
-                                },
-                                "v": "about"
-                            },
-                            {
-                                "l": {
-                                    "en-US": "about/api"
-                                },
-                                "v": "about/api"
-                            },
-                            {
-                                "l": {
-                                    "en-US": "about/user"
-                                },
-                                "v": "about/user"
-                            },
-                            {
-                                "l": {
-                                    "en-US": "about/user/msgVpns"
-                                },
-                                "v": "about/user/msgVpns"
-                            },
-                            {
-                                "l": {
-                                    "en-US": "about/user/msgVpns/{vpn}"
-                                },
-                                "v": "about/user/msgVpns/{vpn}"
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "name": "vpn",
-                "type": "str",
-                "value": "",
-                "ui": {
-                    "type": "input",
-                    "opts": {
-                        "types": [
-                            "str"
-                        ]
-                    }
-                }
-            }
-        ],
-        "color": "#34e39a",
-        "inputLabels": [
-            "msg.payload"
-        ],
-        "outputLabels": [
-            "success",
-            "error"
-        ],
-        "icon": "font-awesome/fa-exchange",
-        "status": {
-            "x": 1780,
-            "y": 380,
-            "wires": [
-                {
-                    "id": "2ff6e77b.3ac0c8",
                     "port": 0
                 }
             ]
@@ -1635,17 +1340,6 @@
         "collapse": true
     },
     {
-        "id": "b957fef7.e902d",
-        "type": "ui_group",
-        "z": "",
-        "name": "About Solace Broker",
-        "tab": "c3b5e796.9436e8",
-        "order": 2,
-        "disp": true,
-        "width": "21",
-        "collapse": true
-    },
-    {
         "id": "68e5a2a5.0d004c",
         "type": "ui_tab",
         "z": "",
@@ -1931,42 +1625,6 @@
         "l": true
     },
     {
-        "id": "ea57e263.ad971",
-        "type": "subflow:72433083.19e34",
-        "z": "3eb672f6.dc73fe",
-        "name": "sempv2 config unset",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "sempv2 config unset",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "unset",
-                "type": "str"
-            },
-            {
-                "name": "instanceName",
-                "value": "sempv2 config unset",
-                "type": "str"
-            },
-            {
-                "name": "debugName",
-                "value": "SempV2:Config:clearConfig",
-                "type": "str"
-            }
-        ],
-        "x": 380,
-        "y": 800,
-        "wires": [
-            [
-                "ccc8ddc6.25c34"
-            ],
-            []
-        ]
-    },
-    {
         "id": "9185b714.c09188",
         "type": "function",
         "z": "317873af.a031fc",
@@ -2124,34 +1782,6 @@
         ]
     },
     {
-        "id": "db82e187.a2ea5",
-        "type": "function",
-        "z": "b661b75c.e7b738",
-        "name": "about.showAboutSolaceDeviceBroker",
-        "func": "\n//{\"group\": {\"hide\": [\"tab_name_group_name_with_underscores\"], \"show\": [\"reveal_another_group\"], \"focus\": true}}\n\nmsg.payload = {\n    group: {\n        show: [\n            'About_About_Solace_Device_Broker'\n        ]\n    }\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1150,
-        "y": 640,
-        "wires": [
-            [
-                "9e02b983.635dc8"
-            ]
-        ]
-    },
-    {
-        "id": "9e02b983.635dc8",
-        "type": "ui_ui_control",
-        "z": "b661b75c.e7b738",
-        "name": "applyGroup",
-        "events": "all",
-        "x": 1390,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "e13cb973.0aab68",
         "type": "function",
         "z": "3eb672f6.dc73fe",
@@ -2251,33 +1881,6 @@
         "wires": []
     },
     {
-        "id": "b127ccda.4e18b",
-        "type": "comment",
-        "z": "6b984824.a17568",
-        "name": "solace.sempv2.about ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
-        "info": "",
-        "x": 800,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "bf5fe39e.a6b9e",
-        "type": "catch",
-        "z": "6b984824.a17568",
-        "name": "catch httpRequest",
-        "scope": [
-            "dfaf881c.36c188"
-        ],
-        "uncaught": false,
-        "x": 150,
-        "y": 180,
-        "wires": [
-            [
-                "9a74b452.a0a7a8"
-            ]
-        ]
-    },
-    {
         "id": "f4cc72ee.c9615",
         "type": "comment",
         "z": "3eb672f6.dc73fe",
@@ -2327,29 +1930,6 @@
         "y": 460,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "c2676af7.59e7d8",
-        "type": "ui_template",
-        "z": "b661b75c.e7b738",
-        "group": "b957fef7.e902d",
-        "name": "displayAboutDeviceBroker",
-        "order": 2,
-        "width": "21",
-        "height": "6",
-        "format": "\n\n<div>\n    <pre>{{msg.payload.deviceBroker.about | json}}</pre>\n</div>\n\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 840,
-        "y": 640,
-        "wires": [
-            [
-                "db82e187.a2ea5",
-                "e58bfb0.929d608"
-            ]
         ]
     },
     {
@@ -2418,26 +1998,6 @@
         "wires": []
     },
     {
-        "id": "e62ceaed.ba9d88",
-        "type": "comment",
-        "z": "72433083.19e34",
-        "name": "solace.sempv2.config ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
-        "info": "",
-        "x": 830,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "8d628a2d.6a2d98",
-        "type": "comment",
-        "z": "72433083.19e34",
-        "name": "the end  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
-        "info": "",
-        "x": 810,
-        "y": 500,
-        "wires": []
-    },
-    {
         "id": "4d33dbd6.9af704",
         "type": "comment",
         "z": "44813701.a560c8",
@@ -2485,18 +2045,6 @@
         ]
     },
     {
-        "id": "502e8b1d.28cda4",
-        "type": "status",
-        "z": "72433083.19e34",
-        "name": "",
-        "scope": null,
-        "x": 1680,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "f72481f9.0d87a",
         "type": "comment",
         "z": "44813701.a560c8",
@@ -2504,117 +2052,6 @@
         "info": "",
         "x": 830,
         "y": 520,
-        "wires": []
-    },
-    {
-        "id": "122fe845.c2a7e8",
-        "type": "catch",
-        "z": "6b984824.a17568",
-        "name": "catch-all x (error handler, httpRequest)",
-        "scope": [
-            "b127ccda.4e18b",
-            "80537b6a.50ea28",
-            "2ff6e77b.3ac0c8",
-            "6020c05e.e4d69",
-            "ebb26519.80ab48",
-            "118812c3.9520cd",
-            "74cdef40.01333",
-            "65c36bb9.6d9814",
-            "9a74b452.a0a7a8",
-            "884cdb87.779788",
-            "616e0712.29bdf8",
-            "ee0d5851.17a708",
-            "d0a63fcb.ec5a2",
-            "fbc76c69.56629",
-            "c4faeee4.3ed8d",
-            "cb9207f3.f22508",
-            "94e6c844.2878f8",
-            "6f489538.8a154c",
-            "4b5c1ce7.4c9eb4",
-            "382d8818.fc2bd8",
-            "ddd8e537.7b8b08"
-        ],
-        "uncaught": false,
-        "x": 210,
-        "y": 140,
-        "wires": [
-            [
-                "b4377583.93fd98"
-            ]
-        ]
-    },
-    {
-        "id": "2ff6e77b.3ac0c8",
-        "type": "status",
-        "z": "6b984824.a17568",
-        "name": "",
-        "scope": null,
-        "x": 1660,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6020c05e.e4d69",
-        "type": "comment",
-        "z": "6b984824.a17568",
-        "name": "\"statusCode\": \"ESOCKETTIMEDOUT\"",
-        "info": "```json\n{\n \"headers\": {\n  \"Authorization\": \"Basic eGRrLWRldmljZXMtYWRtaW46NzZwanA0NDI2NWR2MWZlMzcwZnI4M2JhcHE=\"\n },\n \"method\": \"GET\",\n \"url\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/xxxxxxabout\",\n \"requestTimeout\": 100,\n \"_msgid\": \"ec7a77e9.a9b788\",\n \"payload\": \"Error: ESOCKETTIMEDOUT : https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/xxxxxxabout\",\n \"statusCode\": \"ESOCKETTIMEDOUT\"\n}\n```",
-        "x": 1370,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "ebb26519.80ab48",
-        "type": "comment",
-        "z": "6b984824.a17568",
-        "name": "\"statusCode\": 400",
-        "info": "```json\n\n\"payload\": {\n  \"meta\": {\n   \"error\": {\n    \"code\": 14,\n    \"description\": \"API confi not supported.\",\n    \"status\": \"NOT_SUPPORTED\"\n   },\n\n\n\n```\n\n\n\n```json\n\n\n{\n \"headers\": {\n  \"date\": \"Wed, 15 Apr 2020 18:31:40 GMT\",\n  \"content-type\": \"application/json\",\n  \"transfer-encoding\": \"chunked\",\n  \"connection\": \"keep-alive\",\n  \"server\": \"Solace_VMR/9.3.1.8\",\n  \"cache-control\": \"no-cache\",\n  \"access-control-allow-credentials\": \"true\",\n  \"access-control-allow-headers\": \"Authorization, Content-Type, X-Requested-With\",\n  \"access-control-allow-methods\": \"GET, POST, PUT, PATCH, DELETE, OPTIONS\",\n  \"strict-transport-security\": \"max-age=31536000\",\n  \"x-node-red-request-node\": \"20b17e5b\"\n },\n \"method\": \"GET\",\n \"url\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/aboutxxx\",\n \"requestTimeout\": 30000,\n \"_msgid\": \"e464a037.d5043\",\n \"statusCode\": 400,\n \"responseUrl\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/aboutxxx\",\n \"payload\": {\n  \"meta\": {\n   \"error\": {\n    \"code\": 535,\n    \"description\": \"No paths found for /aboutxxx\",\n    \"status\": \"INVALID_PATH\"\n   },\n   \"request\": {\n    \"method\": \"GET\",\n    \"uri\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/aboutxxx\"\n   },\n   \"responseCode\": 400\n  }\n },\n \"redirectList\": []\n}\n\n\n\n```\n\n\n```json\n\n\n{\n \"headers\": {\n  \"date\": \"Wed, 15 Apr 2020 18:50:54 GMT\",\n  \"content-type\": \"application/json\",\n  \"transfer-encoding\": \"chunked\",\n  \"connection\": \"keep-alive\",\n  \"server\": \"Solace_VMR/9.3.1.8\",\n  \"cache-control\": \"no-cache\",\n  \"access-control-allow-credentials\": \"true\",\n  \"access-control-allow-headers\": \"Authorization, Content-Type, X-Requested-With\",\n  \"access-control-allow-methods\": \"GET, POST, PUT, PATCH, DELETE, OPTIONS\",\n  \"strict-transport-security\": \"max-age=31536000\",\n  \"x-node-red-request-node\": \"78e79f5a\"\n },\n \"method\": \"GET\",\n \"url\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/confi/about\",\n \"requestTimeout\": 300,\n \"_msgid\": \"8e2fd7cf.f99218\",\n \"statusCode\": 400,\n \"responseUrl\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/confi/about\",\n \"payload\": {\n  \"meta\": {\n   \"error\": {\n    \"code\": 14,\n    \"description\": \"API confi not supported.\",\n    \"status\": \"NOT_SUPPORTED\"\n   },\n   \"request\": {\n    \"method\": \"GET\",\n    \"uri\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/confi/about\"\n   },\n   \"responseCode\": 400\n  }\n },\n \"redirectList\": []\n}\n\n```",
-        "x": 1310,
-        "y": 405,
-        "wires": []
-    },
-    {
-        "id": "118812c3.9520cd",
-        "type": "comment",
-        "z": "6b984824.a17568",
-        "name": "\"statusCode\": 401",
-        "info": "```json\n\n{\n \"headers\": {\n  \"date\": \"Wed, 15 Apr 2020 18:46:42 GMT\",\n  \"content-type\": \"application/json\",\n  \"transfer-encoding\": \"chunked\",\n  \"connection\": \"keep-alive\",\n  \"server\": \"Solace_VMR/9.3.1.8\",\n  \"cache-control\": \"no-cache\",\n  \"www-authenticate\": \"Basic realm=\\\"Unauthorized\\\"\",\n  \"access-control-allow-credentials\": \"true\",\n  \"access-control-allow-headers\": \"Authorization, Content-Type, X-Requested-With\",\n  \"access-control-allow-methods\": \"GET, POST, PUT, PATCH, DELETE, OPTIONS\",\n  \"strict-transport-security\": \"max-age=31536000\",\n  \"x-node-red-request-node\": \"023f4222\"\n },\n \"method\": \"GET\",\n \"url\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/about/user\",\n \"requestTimeout\": 30000,\n \"_msgid\": \"57c9fe3c.cef7d\",\n \"statusCode\": 401,\n \"responseUrl\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/about/user\",\n \"payload\": {\n  \"meta\": {\n   \"error\": {\n    \"code\": 72,\n    \"description\": \"Authorization Failed\",\n    \"status\": \"UNAUTHORIZED\"\n   },\n   \"request\": {\n    \"method\": \"GET\",\n    \"uri\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/about/user\"\n   },\n   \"responseCode\": 401\n  }\n },\n \"redirectList\": []\n}\n\n\n```",
-        "x": 1310,
-        "y": 445,
-        "wires": []
-    },
-    {
-        "id": "74cdef40.01333",
-        "type": "comment",
-        "z": "6b984824.a17568",
-        "name": "\"statusCode\": \"ENOTFOUND\"",
-        "info": "```json\n\n{\n \"headers\": {\n  \"Authorization\": \"Basic eGRrLWRldmljZXMtYWRtaW46NzZwanA0NDI2NWR2MWZlMzcwZnI4M2JhcHE=\"\n },\n \"method\": \"GET\",\n \"url\": \"https://mrm7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/about\",\n \"requestTimeout\": 300,\n \"_msgid\": \"9de696e5.4faef8\",\n \"payload\": \"Error: getaddrinfo ENOTFOUND mrm7sc2dxasz.messaging.solace.cloud mrm7sc2dxasz.messaging.solace.cloud:943 : https://mrm7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/about\",\n \"statusCode\": \"ENOTFOUND\"\n}\n\n```",
-        "x": 1340,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "65c36bb9.6d9814",
-        "type": "comment",
-        "z": "6b984824.a17568",
-        "name": "\"statusCode\": \"ETIMEDOUT\"",
-        "info": "wrong port\n\n```json\n{\n \"headers\": {\n  \"Authorization\": \"Basic eGRrLWRldmljZXMtYWRtaW46NzZwanA0NDI2NWR2MWZlMzcwZnI4M2JhcHE=\"\n },\n \"method\": \"GET\",\n \"url\": \"https://mr6m7sc2dxasz.messaging.solace.cloud:942/SEMP/v2/config/about\",\n \"requestTimeout\": 300,\n \"_msgid\": \"c2f12edc.bee16\",\n \"payload\": \"Error: ETIMEDOUT : https://mr6m7sc2dxasz.messaging.solace.cloud:942/SEMP/v2/config/about\",\n \"statusCode\": \"ETIMEDOUT\"\n}\n```",
-        "x": 1340,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "9517c0dd.9e911",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "utils.debug(sempv2.config)",
-        "func": "\n\nlet entry = JSON.stringify(msg, null, 1);\nnode.warn(entry);\n\n\nreturn msg;",
-        "outputs": 0,
-        "noerr": 0,
-        "x": 1520,
-        "y": 80,
         "wires": []
     },
     {
@@ -2668,18 +2105,6 @@
                 "c728f80b.a1d258"
             ]
         ]
-    },
-    {
-        "id": "9a74b452.a0a7a8",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "utils.log(sempv2.about.httpErr)",
-        "func": "var su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.about.getMetaInfo();\n\nmsg = su.misc.setObjectPath(msg, '_solace.utils.log.meta', _meta);\n\nnode.error(JSON.stringify(msg, null, 1));\n\nnode.status({fill:\"red\",shape:\"dot\",text:\"http error\"});\n",
-        "outputs": 0,
-        "noerr": 0,
-        "x": 510,
-        "y": 180,
-        "wires": []
     },
     {
         "id": "455042b0.6e533c",
@@ -3434,320 +2859,6 @@
         ]
     },
     {
-        "id": "51efcbf6.b4be64",
-        "type": "catch",
-        "z": "72433083.19e34",
-        "name": "catch-all x (err handler)",
-        "scope": [
-            "e62ceaed.ba9d88",
-            "8d628a2d.6a2d98",
-            "502e8b1d.28cda4",
-            "9517c0dd.9e911",
-            "efd76714.54afd8",
-            "479174e5.df47cc",
-            "fb2e0fdb.2a72d",
-            "9602ae1.378fd5",
-            "c993e3b5.08e35",
-            "fadb9ae6.eac3a8",
-            "df8275be.a20e68",
-            "7974ec04.8977c4",
-            "ed2cae31.155fb",
-            "644ca100.f8086",
-            "71fb6edf.d408",
-            "f8140932.bb3d38",
-            "750c1d8d.8501c4"
-        ],
-        "uncaught": false,
-        "x": 140,
-        "y": 80,
-        "wires": [
-            [
-                "c73be3b9.05f3a"
-            ]
-        ]
-    },
-    {
-        "id": "efd76714.54afd8",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "sempv2.config.start",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.config.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\n/* solace framework --- */\nfunction isValidFrameworkInstanceProperties(msg) {\n    let fips = {\n        instanceName: env.get('instance-name')\n    };\n    if(su.misc.isStringEmpty(fips.instanceName)) return throwError(msg, \"property 'instance-name' not found\");\n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, fips);\n    return true;\n}\n/* end solace framework --- */\n\n/* component vars & functions --- */\n\nfunction isValidComponentInstanceProperties(msg) {\n    \n    let cips = {\n        method: env.get('method'),\n        solaceBrokerId: env.get('solaceBrokerId')\n    };\n\n    if(su.misc.isStringEmpty(cips.method)) return throwError(msg, \"property 'method' not found\");\n\n    if(!su.misc.isStringEmpty(cips.solaceBrokerId)) {\n        \n        if(!su.misc.isValidId(cips.solaceBrokerId)) return throwError(\"property 'solaceBrokerId' is not a valid id\");\n            \n    } else return throwError(\"property 'solaceBrokerId' not found\");\n    \n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, cips);\n    \n    return true;\n\n}\n\n// main ----------------------------------------------------\n\nmsg = su.flow.initMsgProperties(msg, _meta);\n\nif(!isValidFrameworkInstanceProperties(msg)) return; \n\nif(!isValidComponentInstanceProperties(msg)) return;\n\nnode.status({fill:\"green\", shape:\"dot\", text:\"start\"});\n\nreturn msg;\n\n//--------------------\n//The End.\n\n\n\n\n\n\n\n\n\n\n\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 200,
-        "y": 220,
-        "wires": [
-            [
-                "479174e5.df47cc"
-            ]
-        ]
-    },
-    {
-        "id": "479174e5.df47cc",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "sempv2.config.method",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.config.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n// main ----------------------------------------------------\n\nlet method = su.flow.getMsgInstanceProperties(msg, _meta).method;\nif(method === null) return throwError(msg, \"msg instance property 'method' not found\");\n\nswitch(method) {\n    case 'get':\n        return [msg];\n    case 'set':\n        return [null, msg];\n    case 'unset':\n        return [null, null, msg];\n    default: {\n        return throwError(msg, 'unknown method', {method: method});\n    }\n}\n\n// ------------\n// The End",
-        "outputs": 3,
-        "noerr": 0,
-        "x": 430,
-        "y": 220,
-        "wires": [
-            [
-                "644ca100.f8086"
-            ],
-            [
-                "c993e3b5.08e35"
-            ],
-            [
-                "fb2e0fdb.2a72d"
-            ]
-        ],
-        "outputLabels": [
-            "get",
-            "set",
-            "unset"
-        ]
-    },
-    {
-        "id": "fb2e0fdb.2a72d",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "sempv2.config.method.unset",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.config.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\nlet path = su.flow.getBasePath(_meta) + '.' + mips.solaceBrokerId;\n\nglobal.set(path, undefined);\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 700,
-        "y": 260,
-        "wires": [
-            [
-                "f8140932.bb3d38"
-            ]
-        ]
-    },
-    {
-        "id": "9602ae1.378fd5",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "sempv2.config.endSuccess",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.config.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nsuccess = su.flow.unsetMsg(msg, _meta);\n\nnode.status({fill:\"green\",shape:\"dot\",text:\"end:success\"});\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1620,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "be6725c8.ea7ea8",
-        "type": "subflow:7335a6bf.4e03a8",
-        "z": "3eb672f6.dc73fe",
-        "name": "app.get:config.sempv2",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "app.get:config.sempv2",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "get",
-                "type": "str"
-            }
-        ],
-        "x": 730,
-        "y": 800,
-        "wires": [
-            [
-                "7867718f.f1e47"
-            ]
-        ]
-    },
-    {
-        "id": "ccc8ddc6.25c34",
-        "type": "function",
-        "z": "3eb672f6.dc73fe",
-        "name": "input",
-        "func": "msg.payload = {\n    get: {\n        state: 'config.broker.sempv2'\n    }\n}\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 550,
-        "y": 800,
-        "wires": [
-            [
-                "be6725c8.ea7ea8"
-            ]
-        ]
-    },
-    {
-        "id": "c993e3b5.08e35",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "sempv2.config.method.set",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.config.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nfunction isValidBrokerConfig(msg, c) {\n    \n    let isError = false;\n    let message;\n    let details = {};\n    \n    if(su.misc.isObjectEmpty(c)) {\n        \n        isError = true;\n        message = \"'brokerConfig' not found in msg payload\";\n        \n    } else {\n\n        let issues = suSempv2.config.testValidBrokerConfig(c);\n        if(issues.length > 0) {\n            isError = true;\n            message = \"'brokerConfig' in msg payload is not valid\";\n            details.issues = issues;\n        }\n    }\n    \n    if(isError) { \n        details.payload = msg.payload, \n        details.expected = {\n                path: su.flow.getMsgPayloadPath(_meta, 'brokerConfig'),\n                sampleContents: suSempv2.config.getBrokerConfigReference(),\n        };\n        return throwError(msg, message, details);\n    }\n    return true;\n}\n\n// main ----------------------------------------------------\n\nlet c = su.flow.getMsgPayload(msg, _meta, 'brokerConfig');\n\nif(!isValidBrokerConfig(msg, c)) return;\n\n// create a sempv2.config function for this\nlet config = {\n    basePath: c.basePath,\n    vpn: c.vpn,\n    virtualRouter: c.virtualRouter,\n    headers: {\n      Authorization: 'Basic ' + new Buffer(c.user + ':' + c.pwd).toString('base64')\n    },\n    requestTimeout: 10000,\n    api: {\n        mqttSession: {\n            basePath: c.basePath + '/msgVpns/' + c.vpn + '/mqttSessions'\n        },\n        about: {\n            basePath: c.basePath\n        }\n    }\n};\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\nlet path = su.flow.getBasePath(_meta) + '.' + mips.solaceBrokerId;\n\nglobal.set(path, config);\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 700,
-        "y": 220,
-        "wires": [
-            [
-                "df8275be.a20e68"
-            ]
-        ]
-    },
-    {
-        "id": "7867718f.f1e47",
-        "type": "function",
-        "z": "3eb672f6.dc73fe",
-        "name": "input",
-        "func": "\nlet payload = {\n    sempv2: {\n        config: {\n            brokerConfig: msg.payload.config.broker.sempv2\n        }\n    }\n}\n\nmsg.payload = payload;\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 910,
-        "y": 800,
-        "wires": [
-            [
-                "d464c6aa.271cd8"
-            ]
-        ]
-    },
-    {
-        "id": "d464c6aa.271cd8",
-        "type": "subflow:72433083.19e34",
-        "z": "3eb672f6.dc73fe",
-        "name": "sempv2.config.set@app",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "sempv2.config.set@app",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "set",
-                "type": "str"
-            }
-        ],
-        "x": 1090,
-        "y": 800,
-        "wires": [
-            [
-                "c3d7a262.3e2",
-                "fc6dd38b.c144e"
-            ],
-            [
-                "a3c60d3d.c74f5",
-                "336138b0.b0e838"
-            ]
-        ]
-    },
-    {
-        "id": "fadb9ae6.eac3a8",
-        "type": "subflow:6b984824.a17568",
-        "z": "72433083.19e34",
-        "name": "sempv2 config-sempv2 about",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "sempv2 config-sempv2 about",
-                "type": "str"
-            },
-            {
-                "name": "resource",
-                "value": "all",
-                "type": "str"
-            },
-            {
-                "name": "instanceName",
-                "value": "sempv2 config-sempv2 about",
-                "type": "str"
-            }
-        ],
-        "x": 1090,
-        "y": 220,
-        "wires": [
-            [
-                "7974ec04.8977c4"
-            ],
-            [
-                "ed2cae31.155fb"
-            ]
-        ]
-    },
-    {
-        "id": "884cdb87.779788",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "utils.debug(sempv2.about)",
-        "func": "\n\nlet entry = JSON.stringify(msg, null, 1);\nnode.warn(entry);\n\n\nreturn msg;",
-        "outputs": 0,
-        "noerr": 0,
-        "x": 1160,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "616e0712.29bdf8",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "sempv2.about.start",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.about.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\n/* solace framework --- */\nfunction isValidFrameworkInstanceProperties(msg) {\n    let fips = {\n        instanceName: env.get('instance-name')\n    };\n    if(su.misc.isStringEmpty(fips.instanceName)) return throwError(msg, \"property 'instance-name' not found\");\n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, fips);\n    return true;\n}\n/* end solace framework --- */\n\n/* component vars & functions --- */\n\nfunction isValidComponentInstanceProperties(msg) {\n\n    let cips = {\n        solaceBrokerId: env.get('solaceBrokerId'),\n        resource: env.get('resource'),\n        vpn: env.get('vpn')\n    };\n\n    if(su.misc.isStringEmpty(cips.solaceBrokerId)) isPayloadRequiresSolaceBrokerId = true;\n    else {\n        if(!su.misc.isValidId(cips.solaceBrokerId)) return throwError(msg, \"property 'solaceBrokerId' is not a valid id\", {solaceBrokerId: cips.solaceBrokerId});\n        solaceBrokerId = cips.solaceBrokerId;\n    }\n\n    if(su.misc.isStringEmpty(cips.resource)) return throwError(msg, \"property 'resource' not found\");\n\n    switch(cips.resource) {\n        case 'all':\n        case 'about':\n        case 'about/api':\n        case 'about/user':\n        case 'about/user/msgVpns':\n            break;\n        case 'about/user/msgVpns/{vpn}': {\n            if(su.misc.isStringEmpty(cips.vpn)) \n                return throwError(msg, \"property 'vpn' required for resource='about/user/msgVpns/{vpn}'\");\n        }    \n            break;\n        default: {\n            return throwError(msg, 'unknown resource', {resource: cips.resource});\n        }\n    }\n\n    msg = su.flow.updateMsgInstanceProperties(msg, _meta, cips);\n    \n    return true;\n}\n\nfunction isValidMsgPayloadParams(msg, params) {\n\n    let details = {\n        payload: msg.payload,\n        expected: {\n            params: {\n                path: su.flow.getMsgPayloadPath(_meta, 'params'),\n                sampleContents: suSempv2.about.getMsgPayloadParamsReference()\n            }\n        }\n    }   \n    \n    if(su.misc.isObjectEmpty(params)) return throwError(msg, \"'params' not found in msg payload\", details);\n    \n    if(isPayloadRequiresSolaceBrokerId) {\n\n        if(su.misc.isStringEmpty(params.solaceBrokerId)) return throwError(msg, \"'params.solaceBrokerId' not found in msg payload\", details);\n\n        if(!su.misc.isValidId(params.solaceBrokerId)) return throwError(msg, \"'params.solaceBrokerId' is not a valid id\", {solaceBrokerId: params.solaceBrokerId});\n        \n        solaceBrokerId = params.solaceBrokerId;\n    }\n    \n    return true;\n}\n\n// main ----------------------------------------------------\n\nvar solaceBrokerId = null;\nvar isPayloadRequiresSolaceBrokerId = false;\n\nmsg = su.flow.initMsgProperties(msg, _meta);\n\nif(!isValidFrameworkInstanceProperties(msg)) return; \n\nif(!isValidComponentInstanceProperties(msg)) return;\n\nlet params = su.flow.getMsgPayload(msg, _meta, 'params');\n  \nif(!isValidMsgPayloadParams(msg, params)) return;\n\nlet path = suSempv2.config.getConfigPath(solaceBrokerId);\nlet sempv2 = global.get(path);\nif(su.misc.isObjectEmpty(sempv2)) return throwError(msg, \"sempv2 config not found in global context\", {path: path})\nlet update = {\n    sempv2: sempv2\n};\n\nsu.misc.merge(params, update);\n\nsu.flow.updateMsgInstanceProperties(msg, _meta, params)\n\nnode.status({fill:\"green\", shape:\"dot\", text:\"start\"});\n\nreturn msg;\n\n//--------------------\n//The End.\n\n\n\n\n\n\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 210,
-        "y": 280,
-        "wires": [
-            [
-                "ee0d5851.17a708"
-            ]
-        ]
-    },
-    {
-        "id": "b4377583.93fd98",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "utils.subflowErrorHandler(sempv2.about)",
-        "func": "\ntry {\n    \n    var su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\n    var suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\n    var _meta = suSempv2.about.getMetaInfo();\n\n    var errObj = su.flow.getMsgSolaceError(msg, _meta);\n    // instanceName may not be set, depending on where / what the error is\n    // let's make sure and get it from env\n    let instanceName = env.get('instance-name');\n    if(!su.misc.isStringEmpty(instanceName)) errObj.setInstanceName(instanceName);\n    \n    // now re-throw the error for the parent flow\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n\n} catch(err) {\n    // throw error here for parent flow\n    node.error(err.name + ':' + err.message, msg);\n}\n\nnode.status({fill:\"red\",shape:\"dot\",text:\"error\"});\n",
-        "outputs": 0,
-        "noerr": 0,
-        "x": 540,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "df8275be.a20e68",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "input",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.config.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\nmsg.payload = {\n      sempv2: {\n          about: {\n              params: {\n                solaceBrokerId: mips.solaceBrokerId\n              }\n          }\n     }\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 890,
-        "y": 220,
-        "wires": [
-            [
-                "fadb9ae6.eac3a8"
-            ]
-        ]
-    },
-    {
-        "id": "ee0d5851.17a708",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "sempv2.about.calls",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.about.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n\n// main ----------------------------------------------------\n\nlet ips = su.flow.getMsgInstanceProperties(msg, _meta); \nvar _payload = {\n    resource: ips.resource, \n    solaceBrokerId: ips.solaceBrokerId\n}\n\nvar calls = [];\n\nlet call;\n\nswitch(_payload.resource) {\n    case 'about':\n    case 'about/api':\n    case 'about/user':\n    case 'about/user/msgVpns': {\n        call = { \n            payload: { \n                resource: _payload.resource, \n                solaceBrokerId: _payload.solaceBrokerId \n            }\n        };\n        calls.push(call);\n    }\n    break; \n    case 'about/user/msgVpns/{vpn}': {\n        call = { \n            payload: { \n                resource: 'about/user/msgVpns/' + _payload.resourceParams.vpn, \n                solaceBrokerId: _payload.solaceBrokerId \n            }\n        };\n        calls.push(call);\n    }\n    break;\n    case 'all': {\n        call = { \n            payload: { \n                resource: 'about', \n                solaceBrokerId: _payload.solaceBrokerId \n            }\n        };\n        calls.push(call);\n\n        call = { \n            payload: { \n                resource: 'about/api', \n                solaceBrokerId: _payload.solaceBrokerId \n            }\n        };\n        calls.push(call);\n\n        call = { \n            payload: { \n                resource: 'about/user', \n                solaceBrokerId: _payload.solaceBrokerId \n            }\n        };\n        calls.push(call);\n\n        call = { \n            payload: { \n                resource: 'about/user/msgVpns', \n                solaceBrokerId: _payload.solaceBrokerId \n            }\n        };\n        calls.push(call);\n    }\n    break;\n    default:\n        return throwError('unknown resource', {resource: _payload.resource}, msg);\n}\n\nmsg.payload = {\n    start: true,\n    end: true,\n    items: calls\n}\n\nreturn msg;\n\n//--------------------\n//The End.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 280,
-        "wires": [
-            [
-                "d0a63fcb.ec5a2"
-            ]
-        ]
-    },
-    {
         "id": "e907d4d0.096d08",
         "type": "function",
         "z": "44813701.a560c8",
@@ -3787,37 +2898,6 @@
         ]
     },
     {
-        "id": "d0a63fcb.ec5a2",
-        "type": "subflow:44813701.a560c8",
-        "z": "6b984824.a17568",
-        "name": "sempv2 about forEach",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "sempv2 about forEach",
-                "type": "str"
-            },
-            {
-                "name": "instanceName",
-                "value": "sempV2.config",
-                "type": "str"
-            }
-        ],
-        "x": 660,
-        "y": 280,
-        "wires": [
-            [
-                "fbc76c69.56629"
-            ],
-            [
-                "c4faeee4.3ed8d"
-            ],
-            [
-                "382d8818.fc2bd8"
-            ]
-        ]
-    },
-    {
         "id": "cb9e650e.ac4bc8",
         "type": "function",
         "z": "44813701.a560c8",
@@ -3829,29 +2909,6 @@
         "y": 240,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "fbc76c69.56629",
-        "type": "delay",
-        "z": "6b984824.a17568",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 650,
-        "y": 380,
-        "wires": [
-            [
-                "d0a63fcb.ec5a2"
-            ]
         ]
     },
     {
@@ -3869,106 +2926,6 @@
         ]
     },
     {
-        "id": "c4faeee4.3ed8d",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "sempv2.about.input4http",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.about.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nlet solaceBrokerId = msg.payload.item.v.payload.solaceBrokerId;\n\nlet sempv2 = su.flow.getMsgInstanceProperties(msg, _meta).sempv2;\n\nlet url=sempv2.api.about.basePath + '/' + msg.payload.item.v.payload.resource;\n\nvar httpMsg = {\n    headers: sempv2.headers,\n    method: 'GET',\n    url: url,\n    requestTimeout: sempv2.requestTimeout\n}\n\nsu.misc.merge(msg, httpMsg);\n\nnode.status({fill:\"green\", shape:\"dot\", text:\"http get \" + msg.payload.item.v.payload.resource});\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 930,
-        "y": 260,
-        "wires": [
-            [
-                "dfaf881c.36c188"
-            ]
-        ]
-    },
-    {
-        "id": "dfaf881c.36c188",
-        "type": "http request",
-        "z": "6b984824.a17568",
-        "name": "sempv2.about.httpRequest",
-        "method": "use",
-        "ret": "obj",
-        "paytoqs": false,
-        "url": "",
-        "tls": "",
-        "persist": true,
-        "proxy": "",
-        "authType": "",
-        "x": 1180,
-        "y": 260,
-        "wires": [
-            [
-                "cb9207f3.f22508"
-            ]
-        ]
-    },
-    {
-        "id": "cb9207f3.f22508",
-        "type": "switch",
-        "z": "6b984824.a17568",
-        "name": "200?",
-        "property": "statusCode",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "200",
-                "vt": "num"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 1370,
-        "y": 260,
-        "wires": [
-            [
-                "6f489538.8a154c"
-            ],
-            [
-                "94e6c844.2878f8"
-            ]
-        ]
-    },
-    {
-        "id": "94e6c844.2878f8",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "sempv2.about.setOutputError",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.about.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n// put the error together\n\nvar errorDetails = {\n    _meta: _meta,\n    statusCode: msg.statusCode,\n    payload: msg.payload\n};\n\nif(su.misc.hasObjectPath(msg, 'payload.meta.error.code')) errorDetails.type = 'api'; \nelse errorDetails.type = 'http';\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta); \n\nmsgUpdate = {\n    payload: {\n        sempv2: {\n            about: {\n                solaceBrokerId: mips.solaceBrokerId,\n                error: errorDetails    \n            }\n        }\n    }\n}\n\nsu.misc.merge(msg, msgUpdate);\n\nsuccess = su.flow.unsetMsg(msg);\nmsg.payload.meta = undefined;\n\nnode.status({fill:\"red\", shape:\"dot\", text:\"end:error\"});\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1610,
-        "y": 200,
-        "wires": [
-            [
-                "ddd8e537.7b8b08"
-            ]
-        ]
-    },
-    {
-        "id": "6f489538.8a154c",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "sempv2.about.setInstanceData",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.about.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n// get the resource from the url\n// msg.url: \"https://mr6m7sc2dxasz.messaging.solace.cloud:943/SEMP/v2/config/about/user\"\n// extract: everything after /about, convert / to .\n\nvar pos = msg.url.lastIndexOf('/about');\nif(pos === -1) return throwError(msg, '/about not found in url', {url: msg.url});\nvar resourceUrl = msg.url.substr(pos);\nvar resourceDot = resourceUrl.replace(/\\//g, '.');\n//node.warn('resourceDot = ' + resourceDot);\n//contains '.about.user'\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta); \n\n//if(su.misc.isObjectEmpty(mips.data)) mips.data = { about: {} };\n\n//about = mips.data.about;\n\nlet path = 'data' + resourceDot;\n\nsu.misc.setObjectPath(mips, path, msg.payload.data);\nsu.misc.setObjectPath(mips, path + '.server', msg.headers.server);\n\n//su.misc.merge(mips, about);\n\nmsg = su.flow.updateMsgInstanceProperties(msg, _meta, mips);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 870,
-        "y": 520,
-        "wires": [
-            [
-                "fbc76c69.56629"
-            ]
-        ]
-    },
-    {
         "id": "404b41c4.06b95",
         "type": "function",
         "z": "44813701.a560c8",
@@ -3980,294 +2937,6 @@
         "y": 320,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "4b5c1ce7.4c9eb4",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "sempv2.about.setOutputSuccess",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.about.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta); \n\nmsgUpdate = {\n    payload: {\n        sempv2: {\n            about: {\n                solaceBrokerId: mips.solaceBrokerId,\n                data: mips.data.about    \n            }\n        }\n    }\n}\n\nsu.misc.merge(msg, msgUpdate);\n\nsuccess = su.flow.unsetMsg(msg, _meta);\n\nnode.status({fill:\"green\", shape:\"dot\", text:\"end:success\"});\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1600,
-        "y": 300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "382d8818.fc2bd8",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "sempv2.about.stripHttpFromMsg",
-        "func": "\nmsg.headers = undefined;\nmsg.method = undefined;\nmsg.url = undefined;\nmsg.requestTimeout = undefined;\nmsg.statusCode = undefined;\nmsg.responseUrl = undefined;\nmsg.redirectList = undefined;\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 960,
-        "y": 300,
-        "wires": [
-            [
-                "4b5c1ce7.4c9eb4"
-            ]
-        ]
-    },
-    {
-        "id": "89ba3432.cbbfa8",
-        "type": "subflow:7335a6bf.4e03a8",
-        "z": "3eb672f6.dc73fe",
-        "name": "app.set(broker.about)",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "app.set(broker.about)",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "set",
-                "type": "str"
-            }
-        ],
-        "x": 1540,
-        "y": 760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c3d7a262.3e2",
-        "type": "function",
-        "z": "3eb672f6.dc73fe",
-        "name": "input",
-        "func": "msg.payload = {\n    set: {\n        state: 'broker.about',\n        params: {\n            solaceBrokerId: msg.payload.sempv2.about.solaceBrokerId,\n            about: msg.payload.sempv2.about\n        } \n    }\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1370,
-        "y": 760,
-        "wires": [
-            [
-                "89ba3432.cbbfa8"
-            ]
-        ]
-    },
-    {
-        "id": "1530c0ba.819a4f",
-        "type": "subflow:7335a6bf.4e03a8",
-        "z": "b661b75c.e7b738",
-        "name": "app get deviceBroker about",
-        "env": [
-            {
-                "name": "instance-name",
-                "value": "app get deviceBroker about",
-                "type": "str"
-            },
-            {
-                "name": "method",
-                "value": "get",
-                "type": "str"
-            }
-        ],
-        "x": 580,
-        "y": 640,
-        "wires": [
-            [
-                "c2676af7.59e7d8"
-            ]
-        ]
-    },
-    {
-        "id": "27aaf355.bce7dc",
-        "type": "function",
-        "z": "b661b75c.e7b738",
-        "name": "input",
-        "func": "msg.payload = {\n    get: {\n        state: 'broker.about',\n        params: {\n            solaceBrokerId: 'solaceDeviceBroker'\n        } \n    }\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 390,
-        "y": 640,
-        "wires": [
-            [
-                "1530c0ba.819a4f"
-            ]
-        ]
-    },
-    {
-        "id": "7974ec04.8977c4",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "sempv2.config.checks",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.config.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\nlet about = msg.payload.sempv2.about.data;\nif(su.misc.isObjectEmpty(about)) return throwError(msg, 'msg.payload.sempv2.about not found', {payload:payload});\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\nlet path = su.flow.getBasePath(_meta) + '.' + mips.solaceBrokerId;\nlet config = global.get(path);\nif(su.misc.isObjectEmpty(config)) return throwError(msg, 'broker config not found in global context', {path: path});\n\n\n// now validate if configured vpn exists\nlet actualVpns = about.user.msgVpns;\nif(su.misc.isArrayEmpty(actualVpns)) return throwError(msg, 'about.user.msgVpns not found in sempv2/about call to broker', {about: about});\n\nlet actualVpn = su.misc.find(actualVpns, function(o) { return o.msgVpnName === config.vpn; });\nif(actualVpn === undefined) return throwError(msg, 'configured msgVpn not found on broker', {configuredVpn: config.vpn, brokerVpns: actualVpns});\n// check that \"accessLevel\": \"read-write\"\nif(actualVpn.accessLevel !== 'read-write') return throwError(msg, 'accessLevel of vpn not \\'read-write\\'', {brokerVpn: actualVpn});\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1360,
-        "y": 220,
-        "wires": [
-            [
-                "9602ae1.378fd5"
-            ]
-        ]
-    },
-    {
-        "id": "ed2cae31.155fb",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "sempv2.config.endError",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.config.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nsuccess = su.flow.unsetMsg(msg, _meta);\n\nvar aboutError = msg.payload.sempv2.about.error;\n\nmsg.payload = {\n    sempv2: {\n        config: {\n            error: aboutError\n        }\n    }\n}\n\nnode.status({fill:\"red\",shape:\"dot\",text:\"end:error\"});\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1630,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "644ca100.f8086",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "sempv2.config.method.get",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\nvar _meta = suSempv2.config.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = su.flow.createSolaceError(msg, _meta, message, details);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\nif(!su.flow.isValidFlowMsg(msg, _meta)) return throwError(msg, 'msg is not a valid flow msg structure', msg);\n/* end solace framework --- */\n\n// main ----------------------------------------------------\n\nlet mips = su.flow.getMsgInstanceProperties(msg, _meta);\n\nlet path = su.flow.getBasePath(_meta) + '.' + mips.solaceBrokerId;\n\nlet config = global.get(path);\n\nif(su.misc.isObjectEmpty(config)) return throwError(msg, 'broker config not found in global context', {path: path});\n\nsu.flow.setMsgPayload(msg, _meta, 'brokerConfig', config);\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 700,
-        "y": 180,
-        "wires": [
-            [
-                "71fb6edf.d408"
-            ]
-        ]
-    },
-    {
-        "id": "ddd8e537.7b8b08",
-        "type": "function",
-        "z": "6b984824.a17568",
-        "name": "sempv2.about.stripHttp",
-        "func": "\nmsg.headers = undefined;\nmsg.method = undefined;\nmsg.url = undefined;\nmsg.requestTimeout = undefined;\nmsg.statusCode = undefined;\nmsg.responseUrl = undefined;\nmsg.redirectList = undefined;\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1630,
-        "y": 240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "71fb6edf.d408",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1410,
-        "y": 180,
-        "wires": [
-            [
-                "9602ae1.378fd5"
-            ]
-        ]
-    },
-    {
-        "id": "f8140932.bb3d38",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1410,
-        "y": 260,
-        "wires": [
-            [
-                "9602ae1.378fd5"
-            ]
-        ]
-    },
-    {
-        "id": "a3c60d3d.c74f5",
-        "type": "function",
-        "z": "3eb672f6.dc73fe",
-        "name": "app.sempV2.error",
-        "func": "var su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\n\nfunction throwError(message, details, msg) {\n    let p = flow.get(su.flowProperties.getFlowPath());\n    let errObj = new su.SolaceError(p.packageId + '.' + p.componentId, p.instanceName, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n}\n\nif(su.misc.hasObjectPath(msg, 'payload.error.payload.meta.error')) {\n    \n    msg.sempV2Error = msg.payload.error.payload.meta.error;\n    return msg;    \n}\n\nmsg.sempv2Error = {\n    statusCode: msg.statusCode,\n    payload: msg.payload\n}\nreturn msg;\n\n//return throwError('unknown error, can\\'t extract error description. check msg and add here extraction rule', null, msg);\n   ",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1410,
-        "y": 800,
-        "wires": [
-            [
-                "d90447e1.a3b2d8"
-            ]
-        ]
-    },
-    {
-        "id": "d90447e1.a3b2d8",
-        "type": "function",
-        "z": "3eb672f6.dc73fe",
-        "name": "errorUsrMsg",
-        "func": "\n/*\nlet message = 'Broker id: \\'solaceDeviceBroker\\'' +\n                '<br/>' + \n                'error:' +\n                '<br/><pre>' + JSON.stringify(msg.sempV2Error,2) + '</pre>' + \n                '<br/>' +               \n                '<br/>-check your internet connection' +\n                '<br/>-check your connection credentials' +\n                '<br/>' + \n                '<br/>Please fix and re-start the app.';\n*/                \n\nlet message = 'Broker id: \\'solaceDeviceBroker\\'' +\n                '<br/>' + \n                'error:' +\n                '<br/><pre>' + JSON.stringify(msg.sempV2Error,null, 1) + '</pre>' + \n                '<br/>Please fix and re-start the app.';\n\nmsg.topic   = 'Error executing SempV2 call on device broker';\n\nmsg.payload = message;\n\nreturn msg;\n\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1590,
-        "y": 800,
-        "wires": [
-            [
-                "205744f.4d5a1bc"
-            ]
-        ]
-    },
-    {
-        "id": "205744f.4d5a1bc",
-        "type": "ui_toast",
-        "z": "3eb672f6.dc73fe",
-        "position": "dialog",
-        "displayTime": "120",
-        "highlight": "green",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": true,
-        "topic": "",
-        "name": "usrDialog",
-        "x": 1740,
-        "y": 800,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8a9ce915.54acb8",
-        "type": "ui_toast",
-        "z": "3eb672f6.dc73fe",
-        "position": "top right",
-        "displayTime": "600",
-        "highlight": "red",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "errPopup",
-        "x": 1520,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "336138b0.b0e838",
-        "type": "function",
-        "z": "3eb672f6.dc73fe",
-        "name": "usrMsg",
-        "func": "\nmsg.topic = 'SempV2 Error';\nmsg.payload = \"see log for more details\";\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1380,
-        "y": 840,
-        "wires": [
-            [
-                "8a9ce915.54acb8"
-            ]
         ]
     },
     {
@@ -4836,32 +3505,6 @@
         ]
     },
     {
-        "id": "c73be3b9.05f3a",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "utils.subflowErrorHandler(sempv2.config)",
-        "func": "\ntry {\n    \n    var su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\n    var suSempv2 = global.get('_solaceUtilsSempv2') || (node.error('_solaceUtilsSempv2 not found in global context', msg));\n    var _meta = suSempv2.config.getMetaInfo();\n\n    var errObj = su.flow.getMsgSolaceError(msg, _meta);\n    // instanceName may not be set, depending on where / what the error is\n    // let's make sure and get it from env\n    let instanceName = env.get('instance-name');\n    if(!su.misc.isStringEmpty(instanceName)) errObj.setInstanceName(instanceName);\n    \n    // now re-throw the error for the parent flow\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n\n} catch(err) {\n    // throw error here for parent flow\n    node.error(err.name + ':' + err.message, msg);\n}\n\nnode.status({fill:\"red\",shape:\"dot\",text:\"error\"});\n",
-        "outputs": 0,
-        "noerr": 0,
-        "x": 420,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "750c1d8d.8501c4",
-        "type": "function",
-        "z": "72433083.19e34",
-        "name": "throw.error.javascript",
-        "func": "\nlet hello = thisPackageIsNotDefined.world(msg);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1280,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "193fe52b.b9a7fb",
         "type": "link in",
         "z": "b661b75c.e7b738",
@@ -4873,7 +3516,7 @@
         "y": 640,
         "wires": [
             [
-                "27aaf355.bce7dc"
+                "e58bfb0.929d608"
             ]
         ],
         "l": true
@@ -4892,7 +3535,7 @@
             "4fc1447.062e8bc"
         ],
         "x": 610,
-        "y": 1020,
+        "y": 940,
         "wires": [],
         "l": true
     },
@@ -4927,7 +3570,7 @@
             "8940887d.e380d8"
         ],
         "x": 850,
-        "y": 700,
+        "y": 640,
         "wires": [],
         "l": true
     },
@@ -4940,7 +3583,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 660,
-        "y": 700,
+        "y": 640,
         "wires": [
             [
                 "4b3510ea.91f22"
@@ -4956,7 +3599,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 380,
-        "y": 1020,
+        "y": 940,
         "wires": [
             [
                 "f96041d6.ab02"
@@ -4996,7 +3639,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 460,
-        "y": 700,
+        "y": 640,
         "wires": [
             [
                 "d5f2be92.b4c37"
@@ -5136,7 +3779,7 @@
             }
         ],
         "x": 490,
-        "y": 900,
+        "y": 800,
         "wires": [
             [
                 "4c847b18.4176b4"
@@ -5152,7 +3795,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 330,
-        "y": 900,
+        "y": 800,
         "wires": [
             [
                 "ea43befa.23769"
@@ -6225,7 +4868,7 @@
         "y": 620,
         "wires": [
             [
-                "ea57e263.ad971"
+                "fc6dd38b.c144e"
             ],
             [
                 "54284a4a.389154",
@@ -6251,7 +4894,7 @@
         "z": "46127397.12a33c",
         "name": "",
         "pauseType": "delay",
-        "timeout": "3",
+        "timeout": "2",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -6901,16 +5544,6 @@
         "icon": "node-red/alert.svg"
     },
     {
-        "id": "37f2340a.15817c",
-        "type": "comment",
-        "z": "6b984824.a17568",
-        "name": "var _meta = {   packageId: 'sempv2',   componentId: 'about',   version: '0.2.1',   shortName: 'about' }",
-        "info": "",
-        "x": 350,
-        "y": 60,
-        "wires": []
-    },
-    {
         "id": "c75372a4.e92b5",
         "type": "function",
         "z": "3eb672f6.dc73fe",
@@ -7366,7 +5999,7 @@
             }
         ],
         "x": 700,
-        "y": 900,
+        "y": 800,
         "wires": [
             [
                 "845713fc.bbc2b"
@@ -8851,300 +7484,6 @@
             ]
         ],
         "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "8026db22.7f8958",
-        "type": "mqtt out",
-        "z": "9207c7bc.35e4b8",
-        "name": "send test SAP ResponseEvent",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "62bac859.25e008",
-        "x": 990,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "584ef358.dac58c",
-        "type": "inject",
-        "z": "9207c7bc.35e4b8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 210,
-        "y": 300,
-        "wires": [
-            [
-                "e71f30d5.f277f"
-            ]
-        ]
-    },
-    {
-        "id": "e71f30d5.f277f",
-        "type": "function",
-        "z": "9207c7bc.35e4b8",
-        "name": "fault",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 370,
-        "y": 300,
-        "wires": [
-            [
-                "8026db22.7f8958"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "29cbed00.c0e494",
-        "type": "function",
-        "z": "9207c7bc.35e4b8",
-        "name": "update",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 360,
-        "y": 340,
-        "wires": [
-            [
-                "8026db22.7f8958"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "d864787.9873488",
-        "type": "inject",
-        "z": "9207c7bc.35e4b8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 210,
-        "y": 340,
-        "wires": [
-            [
-                "29cbed00.c0e494"
-            ]
-        ]
-    },
-    {
-        "id": "2bdc421f.f81a3e",
-        "type": "comment",
-        "z": "9207c7bc.35e4b8",
-        "name": "with my orderReference",
-        "info": "",
-        "x": 220,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "506936ed.15d768",
-        "type": "comment",
-        "z": "9207c7bc.35e4b8",
-        "name": "with other orderReference",
-        "info": "",
-        "x": 230,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "bc04fb8f.a76068",
-        "type": "inject",
-        "z": "9207c7bc.35e4b8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 230,
-        "y": 460,
-        "wires": [
-            [
-                "c281a85e.15a498"
-            ]
-        ]
-    },
-    {
-        "id": "c281a85e.15a498",
-        "type": "function",
-        "z": "9207c7bc.35e4b8",
-        "name": "fault",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.shortUUID();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/fault/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreateFault'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 390,
-        "y": 460,
-        "wires": [
-            [
-                "8026db22.7f8958"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "746d9016.5d8bd",
-        "type": "function",
-        "z": "9207c7bc.35e4b8",
-        "name": "update",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReference = su.misc.shortUUID();\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 380,
-        "y": 500,
-        "wires": [
-            [
-                "8026db22.7f8958"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "8b7b367b.a32f78",
-        "type": "inject",
-        "z": "9207c7bc.35e4b8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 230,
-        "y": 500,
-        "wires": [
-            [
-                "746d9016.5d8bd"
-            ]
-        ]
-    },
-    {
-        "id": "6415a736.a2e838",
-        "type": "inject",
-        "z": "9207c7bc.35e4b8",
-        "name": "t",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 190,
-        "y": 660,
-        "wires": [
-            [
-                "e44a5fbe.5893f"
-            ]
-        ]
-    },
-    {
-        "id": "52cb417b.f883f",
-        "type": "comment",
-        "z": "9207c7bc.35e4b8",
-        "name": "send 200 with my orderReference",
-        "info": "",
-        "x": 260,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "debac1d0.e9bf",
-        "type": "function",
-        "z": "9207c7bc.35e4b8",
-        "name": "update",
-        "func": "/* solace framework --- */\nvar su = global.get('_solaceUtils') || (node.error('_solaceUtils not found in global context', msg));\nvar sau = global.get('_solaceAppUtils') || (node.error('_solaceAppUtils not found in global context', msg));\nvar _meta = sau.order.getMetaInfo();\nfunction throwError(msg, message, details) {\n    let errObj = new su.SolaceError(_meta.packageId, _meta.componentId, message, 'ERROR', details, msg);\n    node.error(errObj.getMessage(), errObj.getAsDataObject());\n    return false;\n}\n/* end solace framework --- */\n\nlet orderReferencePath = sau.order.getOrderReferencePath();\nlet orderReference = global.get(orderReferencePath);\nif(su.misc.isStringEmpty(orderReference)) return throwError(msg, \"cannot find orderReference in global context\", {path: orderReferencePath});\n\nmsg.topic = 'sap_demo/BUS2032/sap-bo-data/update/json/v1/asadev/1000/system1/' + orderReference;\nmsg.qos = 1;\nmsg.payload = {\n    message: 'event: SalesOrderCreated'\n}\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 560,
-        "y": 660,
-        "wires": [
-            [
-                "8026db22.7f8958",
-                "5cf49cbb.4369d4"
-            ]
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "e5eeecd3.5865f",
-        "type": "delay",
-        "z": "9207c7bc.35e4b8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 690,
-        "y": 740,
-        "wires": [
-            [
-                "debac1d0.e9bf"
-            ]
-        ]
-    },
-    {
-        "id": "e44a5fbe.5893f",
-        "type": "function",
-        "z": "9207c7bc.35e4b8",
-        "name": "initCounter",
-        "func": "\nflow.set('counter', 0);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 350,
-        "y": 660,
-        "wires": [
-            [
-                "debac1d0.e9bf"
-            ]
-        ]
-    },
-    {
-        "id": "5cf49cbb.4369d4",
-        "type": "function",
-        "z": "9207c7bc.35e4b8",
-        "name": "counter++ < 200",
-        "func": "\nlet counter = flow.get('counter');\ncounter++;\n\nif(counter < 200) {\n    flow.set('counter', counter);\n    return msg;\n}\n\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 740,
-        "wires": [
-            [
-                "e5eeecd3.5865f"
-            ]
-        ]
-    },
-    {
-        "id": "4183dff3.38fd9",
-        "type": "comment",
-        "z": "9207c7bc.35e4b8",
-        "name": "manual tests -----------------------------------------------------------------------------------------------",
-        "info": "",
-        "x": 430,
-        "y": 200,
-        "wires": []
     },
     {
         "id": "858ee092.ae63c",

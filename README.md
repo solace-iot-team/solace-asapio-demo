@@ -2,7 +2,7 @@
 
 Demonstration of Solace + ASAPIO interacting with SAP ECC, Sales & Distribution.
 
-**Version: 0.1.6**
+**Version: 0.1.7**
 
 ## Overview
 
@@ -64,9 +64,9 @@ mv node-red-contrib-solace-utils-master node-red-contrib-solace-utils
 
 curl -L -o node-red-contrib-solace-sempv2-master.zip https://github.com/solace-iot-team/node-red-contrib-solace-sempv2/archive/master.zip
 
-unzip node-red-contrib-solace-sempv2-master.zip
+#unzip node-red-contrib-solace-sempv2-master.zip
 
-mv node-red-contrib-solace-sempv2-master node-red-contrib-solace-sempv2
+#mv node-red-contrib-solace-sempv2-master node-red-contrib-solace-sempv2
 
 curl -L -o solace-asapio-demo-master.zip https://github.com/solace-iot-team/solace-asapio-demo/archive/master.zip
 
@@ -90,7 +90,7 @@ cd sap-demo
 git clone https://github.com/solace-iot-team/node-red-contrib-solace-utils.git
 ```
 ```bash
-git clone https://github.com/solace-iot-team/node-red-contrib-solace-sempv2.git
+#git clone https://github.com/solace-iot-team/node-red-contrib-solace-sempv2.git
 ```
 ```bash
 git clone https://github.com/solace-iot-team/solace-asapio-demo.git

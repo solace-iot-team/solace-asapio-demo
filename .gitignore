@@ -5,4 +5,4 @@ localContextStore
 docs
 save.README.md
 package-lock.json
-*.sh
+start-demo-server.sh

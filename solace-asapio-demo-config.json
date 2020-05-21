@@ -88,12 +88,12 @@
       "products": [
         {
           "sku": "CONTROLLER-2",
-          "title": "controller-2 user title",
+          "title": "Controller 2",
           "description": "this is a controller 2"
         },
         {
           "sku": "second-sku",
-          "title": "the second sku product title",
+          "title": "Another product",
           "description": "this is a second sku"
         }
       ]
