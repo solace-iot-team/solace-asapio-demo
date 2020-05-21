@@ -62,12 +62,6 @@ unzip node-red-contrib-solace-utils-master.zip
 
 mv node-red-contrib-solace-utils-master node-red-contrib-solace-utils
 
-curl -L -o node-red-contrib-solace-sempv2-master.zip https://github.com/solace-iot-team/node-red-contrib-solace-sempv2/archive/master.zip
-
-#unzip node-red-contrib-solace-sempv2-master.zip
-
-#mv node-red-contrib-solace-sempv2-master node-red-contrib-solace-sempv2
-
 curl -L -o solace-asapio-demo-master.zip https://github.com/solace-iot-team/solace-asapio-demo/archive/master.zip
 
 unzip solace-asapio-demo-master.zip
@@ -88,9 +82,6 @@ cd sap-demo
 ```
 ```bash
 git clone https://github.com/solace-iot-team/node-red-contrib-solace-utils.git
-```
-```bash
-#git clone https://github.com/solace-iot-team/node-red-contrib-solace-sempv2.git
 ```
 ```bash
 git clone https://github.com/solace-iot-team/solace-asapio-demo.git
