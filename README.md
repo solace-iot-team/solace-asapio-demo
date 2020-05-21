@@ -2,7 +2,7 @@
 
 Demonstration of Solace + ASAPIO interacting with SAP ECC, Sales & Distribution.
 
-**Version: 0.1.7**
+**Version: 0.1.8**
 
 ## Overview
 
