@@ -2,8 +2,6 @@
 
 Demonstration of Solace + ASAPIO interacting with SAP ECC, Sales & Distribution.
 
-**Version: 0.1.8**
-
 ## Overview
 
 The demonstrator consists of:
@@ -21,6 +19,8 @@ As it is written in Node-RED, it is a single instance, single user system.
 Which means installation on a local machine.
 
 ## Installation
+
+See also [Install as Container in Azure](./azure/README.md)
 
 ### Install Node.js & npm
 

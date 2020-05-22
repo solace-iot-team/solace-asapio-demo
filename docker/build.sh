@@ -8,7 +8,7 @@ echo
 source ./input/tags.input
 
 echo "removing container ..."
-docker rm -f $CONTAINER_NAME
+docker rm -f $IMAGE_NAME-latest
 
 echo "removing image ..."
 docker rmi -f $IMAGE_TAG
