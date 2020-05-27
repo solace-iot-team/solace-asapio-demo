@@ -34,4 +34,8 @@ echo
 
 cat ./generated/$RUN_SCRIPT_NAME
 
+echo
+echo "script: ./generated/$RUN_SCRIPT_NAME"
+echo
+
 # The end.

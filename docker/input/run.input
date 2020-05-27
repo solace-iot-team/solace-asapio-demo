@@ -10,5 +10,21 @@ docker run -d --name $IMAGE_NAME-latest -p 1882:1882 \
   -e SOLACE_SAP_DEMO_MQTT_CLIENT_ID=$_SOLACE_SAP_DEMO_MQTT_CLIENT_ID \
   $REPO/$IMAGE_NAME:latest
 
+code=$?
 
+echo ""
+echo "===================================================================="
+echo ""
+
+if [ $code -eq 0 ]
+then
+  echo "The Demo is at: http://127.0.0.1/ui"
+else
+  echo "ERROR:" $code
+fi
+
+echo ""
+echo "===================================================================="
+echo ""
+  
 # The end.

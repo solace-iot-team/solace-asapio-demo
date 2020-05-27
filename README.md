@@ -75,25 +75,6 @@ cd solace-asapio-demo
 
 ```
 
-#### Alternatively: Install using `git`
-
-```bash
-cd sap-demo
-```
-```bash
-git clone https://github.com/solace-iot-team/node-red-contrib-solace-utils.git
-```
-```bash
-git clone https://github.com/solace-iot-team/solace-asapio-demo.git
-```
-```bash
-
-cd solace-asapio-demo
-
-./install.sh
-
-```
-
 ### Get the Start Script
 
 Get the start script and copy to

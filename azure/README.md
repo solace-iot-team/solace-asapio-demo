@@ -2,10 +2,6 @@
 
 * Have the Solace broker connection details & credentials ready
 
-```bash
-
-```
-
 * Login to your Azure Account
 
 * Create a resource group, e.g. ``solace-asapio-demo-docker-rg``
@@ -67,6 +63,11 @@ az container logs --resource-group solace-asapio-demo-docker-rg --name solace-as
 ```bash
 az container delete --name solace-asapio-demo-container --resource-group solace-asapio-demo-docker-rg
 ```
+
+## Create an Application Gateway
+
+[article](https://docs.microsoft.com/en-us/azure/web-application-firewall/ag/application-gateway-web-application-firewall-portal)
+
 
 ---
 The End.
