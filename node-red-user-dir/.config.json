@@ -673,6 +673,33 @@
      "file": "/usr/local/lib/node_modules/node-red-contrib-solace-utils/nodes/MutexMethods.js"
     }
    }
+  },
+  "node-red-contrib-solace-sempv2": {
+   "name": "node-red-contrib-solace-sempv2",
+   "version": "0.1.0",
+   "local": false,
+   "nodes": {
+    "Sempv2Config": {
+     "name": "Sempv2Config",
+     "types": [
+      "Sempv2Config"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-solace-sempv2",
+     "file": "/usr/local/lib/node_modules/node-red-contrib-solace-sempv2/nodes/Sempv2Config.js"
+    },
+    "Sempv2About": {
+     "name": "Sempv2About",
+     "types": [
+      "Sempv2About"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-solace-sempv2",
+     "file": "/usr/local/lib/node_modules/node-red-contrib-solace-sempv2/nodes/Sempv2About.js"
+    }
+   }
   }
  },
  "_credentialSecret": "1d990d5da81a3eaf66ded9133adbde4ffe068aa9b5887685de6cecec7ecb055b",
